@@ -1,5 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
+//posibles imports 
+const categoriaRutas = require('./routes/categoria');   
+const clienteRutas = require('./routes/cliente');
+const compraRutas = require('./routes/compra');
+const productoRutas = require('./routes/producto');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
