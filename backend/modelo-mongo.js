@@ -76,7 +76,7 @@ const Cliente = mongoose.model('Cliente', ClienteSchema);
 
 // Exportando los modelos
 module.exports = {
-    Categoria,
+    Clasificacion,
     Producto,
     Compra,
     Cliente
