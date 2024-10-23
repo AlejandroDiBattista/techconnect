@@ -1,14 +1,3 @@
-// Definición de los esquemas para MongoDB usando Mongoose
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-
-// Esquema para la clasificacion
-const CategoriaSchema = new Schema({
-    nombre: { type: String, required: true },
-    url_imagen: { type: String, required: true },
-}, { timestamps: true });
-
-const Clasificacion = mongoose.model('Clasificacion', CategoriaSchema);
 
 // Esquema para el producto
 const ProductoSchema = new Schema({

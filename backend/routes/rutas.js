@@ -1,7 +1,7 @@
 // routes/api.js
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const { traerCategorias, traerProductos, traerProducto, crearCompra, agregarProductoCarrito, borrarCarrito, confirmarCompra, agregarDatosCliente } = require('../controllers/controlador');
+import { traerCategorias, traerProductos, traerProducto, crearCompra, agregarProductoCarrito, borrarCarrito, confirmarCompra, agregarDatosCliente } from '../controllers/controlador';
 
 // Rutas
 router.get('/categoria', traerCategorias);
@@ -13,4 +13,4 @@ router.delete('/carrito/:id', borrarCarrito);
 router.post('/carrito/:id', confirmarCompra);
 router.post('/cliente', agregarDatosCliente);
 
-module.exports = router;
+export default router;
