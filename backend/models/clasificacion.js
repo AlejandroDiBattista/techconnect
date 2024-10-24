@@ -8,5 +8,5 @@ const ClasificacionSchema = new Schema({
     url_imagen: { type: String, required: true },
 }, { timestamps: true });
 
-Clasificacion = mongoose.model('Clasificacion', CategoriaSchema);
+Clasificacion = mongoose.model('Clasificacion', ClasificacionSchema);
 export default Clasificacion;

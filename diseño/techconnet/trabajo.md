@@ -1,4 +1,4 @@
-# Division del trajo.
+# División del trabajo
 
 ## Mongo 
 - Jaime
