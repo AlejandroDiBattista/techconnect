@@ -18,10 +18,10 @@ export function Inicio() {
                                 <ListItemText primary="Celulares" />
                             </ListItem>
                             <ListItem button component={RouterLink} to="/elegir/2">
-                                <ListItemText primary="Notebooks" />
+                                <ListItemText primary="Tablets" />
                             </ListItem>
                             <ListItem button component={RouterLink} to="/elegir/3">
-                                <ListItemText primary="Tablets" />
+                                <ListItemText primary="Notebooks" />
                             </ListItem>
                         </List>
                     </nav>

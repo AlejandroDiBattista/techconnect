@@ -1,7 +1,7 @@
 const categoria = {
     id: 2,
     nombre: "tablet",
-    url_imagen: "0001.jpg",
+    url_imagen: "001.jpg",
 };
 
 const tablas= [
@@ -10,7 +10,7 @@ const tablas= [
         nombre: "Samsung Galaxy Tab S8",
         precio: 1000,
         categoria_id: categoria.id, // Usar solo el id de la categoría
-        url_imagen: "0001.jpg",
+        url_imagen: "001.jpg",
         detalle: "Pantalla: 11 pulgadas, Super AMOLED, resolución 2560x1600.  Procesador: Qualcomm Snapdragon 88.  Memoria RAM: 6/8 GB.  Cámaras: 13 MP principal, 6 MP frontal. Batería: 8000 mAh. Sistema Operativo: Android 11",
         cantidad: 10,
         variantes: [
@@ -36,7 +36,7 @@ const tablas= [
         nombre: "Apple iPad Air (4ta generación)",
         precio: 1000,
         categoria_id: categoria.id, // Usar solo el id de la categoría
-        url_imagen: "0002.jpg", // Cambié la URL de la imagen
+        url_imagen: "002.jpg", // Cambié la URL de la imagen
         detalle: "- Pantalla: 10,9 pulgadas, LCD, resolución 2224x1668.  Procesador: Apple A14 Bionic. Memoria RAM: 3/4 GB. Cámaras: 12 MP principal, 7 MP frontal. Batería: 7600 mAh. Sistema Operativo: iPadOS 14",
         cantidad: 10,
         variantes: [
@@ -64,7 +64,7 @@ const tablas= [
         nombre: "Lenovo Tab P11 Pro",
         precio: 1000,
         categoria_id: categoria.id, 
-        url_imagen: "0003.jpg", 
+        url_imagen: "003.jpg", 
         detalle: "Pantalla: 11,5 pulgadas, OLED, resolución 2560x1600.  Procesador: MediaTek Helio P60T. Memoria RAM: 4/6 GB. Cámaras: 13 MP principal, 8 MP frontal.  Batería: 8600 mAh. Sistema Operativo: Android 10",
         cantidad: 10,
         variantes: [

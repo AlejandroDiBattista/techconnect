@@ -16,8 +16,8 @@ export function Menu() {
     };
 
     return (
-        <Container maxWidth={true} style={{ display: 'flex', justifyContent: 'center' }}>
-            <AppBar position="fixed" style={{ width: '800px', top: 0 }}>
+        <Container>
+            <AppBar>
                 <Toolbar style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <IconButton color="inherit" onClick={handleBackClick}>

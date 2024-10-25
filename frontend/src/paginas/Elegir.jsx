@@ -22,7 +22,7 @@ export function Elegir() {
         <Grid container spacing={2} style={{ marginTop: '20px' }}>
             {productos.map((producto, index) => (
                 <Grid xs={12} sm={6} md={4} key={index}>
-                    <Card>
+                    <Card style={{ maxWidth: '300px', margin: 'auto' }}>
                         <Link to={`/detalle/${producto.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                             <CardContent style={{ cursor: 'pointer' }}>
                                 <img
@@ -30,8 +30,8 @@ export function Elegir() {
                                     alt={producto.nombre}
                                     style={{ width: '300px', height: '300px', objectFit: 'cover' }}
                                 />
-                                <Typography variant="h5">{producto.nombre}</Typography>
-                                <Typography color="textSecondary">{producto.descripcion}</Typography>
+                                <Typography variant="h5">{`${producto.nombre} [${producto.id}]`}</Typography>
+                                <Typography color="textSecondary">{`${producto.detalle}`}</Typography>
                                 <Typography variant="h6">${producto.precio}</Typography>
                             </CardContent>
                         </Link>

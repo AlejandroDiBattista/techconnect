@@ -4,7 +4,7 @@ import { Container } from '@mui/material';
 export function Layout({ children }) {
   return (
     <Container
-      maxWidth="md"
+      maxWidth={false}
       style={{
         display: 'flex',
         flexDirection: 'column',
@@ -12,6 +12,8 @@ export function Layout({ children }) {
         justifyContent: 'flex-start',
         minHeight: '100vh',
         paddingTop: '20px',
+        maxWidth: '800px',
+        margin: '0 auto',
       }}
     >
       {children}
