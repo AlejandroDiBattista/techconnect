@@ -10,7 +10,7 @@ const celulares = [
         nombre: "IPhone 14 Pro Max",
         precio: 1200,
         categoria_id: categoria.id,  // Cambié a categoría.id
-        url_imagen: "0001.jpg",
+        url_imagen: "",
         detalle: "El Apple iPhone 14 Pro Max es el iPhone más grande y poderoso de la serie 14. Potenciado por el nuevo procesador Apple A16 Bionic, cuenta con una pantalla OLED LTPO de 6.7 pulgadas, entre otras características.",
         cantidad: 10,
         variantes: [
