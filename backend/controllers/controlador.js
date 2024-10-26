@@ -1,8 +1,8 @@
 
-import Categoria from '../models/Categoria';
-import Producto from '../models/Producto';
-import Cliente from '../models/Cliente';
-import Compra from '../models/Compra';
+import Categoria from '../models/clasificacion.js';
+import Producto from '../models/producto.js';
+import Cliente from '../models/cliente.js';
+import Compra from '../models/compra.js';
 
 export const traerCategorias = async (req, res) => {
   const categorias = await Categoria.find();
@@ -11,7 +11,7 @@ export const traerCategorias = async (req, res) => {
 
 export const traerProductos = async (req, res) => {
   const { categoria } = req.query;
-  const productos = await Producto.find({ categoria_id: categoria });
+  const productos = await Producto.find({ categoria: categoria });
   res.json(productos);
 };
 

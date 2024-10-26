@@ -1,7 +1,11 @@
 // routes/api.js
 import express from 'express';
 const router = express.Router();
-import { traerCategorias, traerProductos, traerProducto, crearCompra, agregarProductoCarrito, borrarCarrito, confirmarCompra, agregarDatosCliente } from '../controllers/controlador';
+import { traerCategorias, traerProductos, traerProducto, crearCompra, agregarProductoCarrito, borrarCarrito, confirmarCompra, agregarDatosCliente } from '../controllers/controlador.js';
+
+router.get('/', (req,res) => {
+    res.send('ruta de prueba');
+});
 
 // Rutas
 router.get('/categoria', traerCategorias);
