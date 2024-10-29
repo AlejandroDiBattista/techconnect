@@ -27,34 +27,6 @@ export const crearCompra = async (req, res) => {
   res.json({ compra_id: compra._id });
 };
 
-export const agregarProductoCarrito = async (req, res) => {
-  // Lógica para agregar o quitar producto al carrito
-};
-
-export const borrarCarrito = async (req, res) => {
-  // Lógica para eliminar el carrito
-  const { id } = req.params;
-
-  //Eliminar el carrito 
-  const carritoEliminado = await Compra.findByIdAndDelete(id);
-  if (!carritoEliminado) {
-    return res.status(404).json({ message: 'No se encontro el carrito' });
-  }
-};
-
-export const confirmarCompra = async (req, res) => {
-  // Lógica para confirmar la compra
-  const { id } = req.params;
-
-  const carrito = await Compra.findById(id);
-  if (!carrito) {
-    return res.status(404).json({ message: 'No se encontro el carrito' });
-  }
-  //Cambio de estado 
-  carrito.estado = 'enviado';
-  await carrito.save();
-  res.json(carrito);
-};
 
 export const agregarDatosCliente = async (req, res) => {
   const cliente = new Cliente(req.body);

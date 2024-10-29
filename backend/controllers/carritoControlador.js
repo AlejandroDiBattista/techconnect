@@ -1,7 +1,7 @@
 import Carrito from '../models/Carrito.js';
 
 // Agregar producto al carrito
-exports.agregarProducto = async (req, res) => {
+export const agregarProducto = async (req, res) => {
   const { userId } = req.params;
   const { productoId, cantidad, variante } = req.body;
 
@@ -30,7 +30,7 @@ exports.agregarProducto = async (req, res) => {
 };
 
 // Ver carrito
-exports.verCarrito = async (req, res) => {
+export const verCarrito = async (req, res) => {
   const { userId } = req.params;
 
   try {
@@ -44,7 +44,7 @@ exports.verCarrito = async (req, res) => {
 };
 
 // Confirmar compra
-exports.confirmarCompra = async (req, res) => {
+export const confirmarCompra = async (req, res) => {
   const { userId } = req.params;
 
   try {
@@ -61,7 +61,7 @@ exports.confirmarCompra = async (req, res) => {
 };
 
 // Eliminar producto del carrito
-exports.eliminarProducto = async (req, res) => {
+export const eliminarProducto = async (req, res) => {
   const { userId } = req.params;
   const { productoId } = req.body;
 
@@ -77,5 +77,16 @@ exports.eliminarProducto = async (req, res) => {
     res.status(200).json(carrito);
   } catch (error) {
     res.status(500).json({ error: 'Error al eliminar producto' });
+  }
+};
+
+export const borrarCarrito = async (req, res) => {
+  // Lógica para eliminar el carrito
+  const { id } = req.params;
+
+  //Eliminar el carrito 
+  const carritoEliminado = await Compra.findByIdAndDelete(id);
+  if (!carritoEliminado) {
+    return res.status(404).json({ message: 'No se encontro el carrito' });
   }
 };
