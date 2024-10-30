@@ -4,7 +4,7 @@ const categoria = {
     url_imagen: "tablet.jpg",
 };
 
-const tablas = [
+const tablets = [
     // Tablets Gama Premium
     {
         id: 1,
@@ -142,3 +142,4 @@ const tablas = [
         ]
     },
 ];
+export { tablets };

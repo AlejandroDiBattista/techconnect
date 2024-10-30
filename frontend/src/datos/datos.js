@@ -1,24 +1,24 @@
 import { celulares } from './celulares.js';
-import { tablas } from './tablas.js';
+import { tablets } from './tablets.js';
 
 function cargar() {
     if (!localStorage.getItem('celulares')) {
         localStorage.setItem('celulares', JSON.stringify(celulares));
     }
     if (!localStorage.getItem('tablas')) {
-        localStorage.setItem('tablas', JSON.stringify(tablas));
+        localStorage.setItem('tablas', JSON.stringify(tablets));
     }
 }
 
 cargar();
 function traerCategoria(categoria) {
     let salida = null;
-    
+
     categoria = parseInt(categoria);
     if (+categoria == 1) {
         salida = celulares;
     } else if (+categoria == 2) {
-        salida = tablas;
+        salida = tablets;
     }
     console.log(`> traerCategoria: ${+categoria}`, salida);
     return salida;
@@ -34,8 +34,8 @@ function traerProducto(id) {
             break;
         }
     }
-    
-    for (let producto of tablas) {
+
+    for (let producto of tablets) {
         if (+producto.id == id) {
             salida = producto;
             break;
