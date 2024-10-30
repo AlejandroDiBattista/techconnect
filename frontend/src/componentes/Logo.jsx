@@ -11,7 +11,7 @@ const Logo = () => {
 
     return (
         <Typography variant="h4" style={{ cursor: 'pointer' }} onClick={handleHomeClick}>
-            Tienda E-commerce
+            TecnoConnet
         </Typography>
     );
 };

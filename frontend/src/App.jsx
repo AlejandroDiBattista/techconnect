@@ -9,9 +9,9 @@ import { Carrito } from './paginas/Carrito';
 
 export function App() {
     return (
+        <>
         <Router>
             <Layout>
-                <Menu />
                 <Container style={{ marginTop: '80px' }}>
                     <Routes>
                         <Route path="/" element={<Inicio />} />
@@ -22,5 +22,7 @@ export function App() {
                 </Container>
             </Layout>
         </Router>
+        </>
+
     );
 }

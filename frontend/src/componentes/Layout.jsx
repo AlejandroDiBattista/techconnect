@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from '@mui/material';
-
+import Menu from '../componentes/Menu'
 export function Layout({ children }) {
   return (
     <Container
@@ -16,7 +16,9 @@ export function Layout({ children }) {
         margin: '0 auto',
       }}
     >
+      <Menu />
       {children}
+      <footer>Este es el footer</footer>
     </Container>
   );
 }
