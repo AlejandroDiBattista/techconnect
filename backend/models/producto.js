@@ -17,6 +17,13 @@ const ProductoSchema = new Schema({
     }],
 }, { timestamps: true });
 
+
+// Métodos estáticos para el modelo de producto
+ProductoSchema.statics.traerProductos = async function(clasificacion) {
+    const filtro = clasificacion ? { clasificacion } : {};
+    return this.find(filtro).populate('clasificacion');
+};
+
 const Producto = mongoose.model('Producto', ProductoSchema);
 
 export default Producto;

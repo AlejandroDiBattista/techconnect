@@ -10,9 +10,16 @@ export const traerCategorias = async (req, res) => {
 };
 
 export const traerProductos = async (req, res) => {
-  const { categoria } = req.query;
-  const productos = await Producto.find({ categoria: categoria });
-  res.json(productos);
+  try {
+      const { categoria } = req.query;
+
+      const productos = await Producto.traerProductos(categoria);
+
+      res.json(productos);
+  } catch (error) {
+      console.error('Error al traer los productos:', error);
+      res.status(500).json({ mensaje: 'Error interno del servidor' });
+  }
 };
 
 export const traerProducto = async (req, res) => {

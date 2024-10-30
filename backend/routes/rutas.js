@@ -1,8 +1,9 @@
 // routes/api.js
 import express from 'express';
 const router = express.Router();
-import { traerCategorias, traerProductos, traerProducto, crearCompra, agregarDatosCliente } from '../controllers/controlador.js';
+import { traerCategorias, traerProducto, crearCompra, agregarDatosCliente } from '../controllers/controlador.js';
 import { agregarProducto, verCarrito, borrarCarrito, confirmarCompra, eliminarProducto } from '../controllers/carritoControlador.js';
+import {traerProductos} from "../models/producto.js"
 
 router.get('/', (req,res) => {
     res.send('Servidor en Funcionamiento');
@@ -16,7 +17,7 @@ router.post('/compra', crearCompra);
 
 //rutas del carrito
 router.post('/compra/:userId/producto', agregarProducto);
-router.get('/carrito', verCarrito); 
+router.get('/carrito', verCarrito);
 router.delete('/carrito/:userId/producto', eliminarProducto);
 router.delete('/carrito/:userId', borrarCarrito);
 router.post('/carrito/:userId/confirmar', confirmarCompra);
