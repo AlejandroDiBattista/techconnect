@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "nombre": "Celulares",
+        "url_imagen":""
+    },
+    {
+        "id": 2,
+        "nombre": "tablet",
+        "url_imagen":"tablet.jpg"
+    },
+    {
+        "id": 3,
+        "nombre": "notebook",
+        "url_imagen":"notebook.jpg"
+    }
+]

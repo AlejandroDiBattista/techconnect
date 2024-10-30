@@ -1,10 +1,4 @@
-const categoria = {
-    id: 1,
-    nombre: 'Celulares',
-    url_imagen: '',
-};
-
-const productos = [
+[
     {
         id: 1,
         nombre: 'IPhone 14 Pro Max',
@@ -275,5 +269,5 @@ const productos = [
             }
         ]
     }
-];
+]
 

@@ -1,0 +1,1150 @@
+[{
+  "_id": {
+    "$oid": "67224dfab346d2d2123f2733"
+  },
+  "id": 1,
+  "nombre": "Google Pixel 8 Pro",
+  "precio": 980,
+  "categoria_id": 1,
+  "url_imagen": "001.jpg, 002.jpg",
+  "detalle": "El Google Pixel 8 Pro cuenta con un diseño premium, pantalla LTPO OLED de 6.7\" con resolución QHD+, y una cámara principal de 50 MP, ultra gran angular de 48 MP y teleobjetivo de 48 MP, permitiendo grabación de video en 4K. La batería es de 5050 mAh y soporta carga rápida.",
+  "cantidad": 8,
+  "variantes": [
+    {
+      "nombre": "Memoria",
+      "valores": [
+        {
+          "valor": "128GB",
+          "aumento": 900
+        },
+        {
+          "valor": "256GB",
+          "aumento": 1100
+        }
+      ]
+    },
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "luz suave",
+          "aumento": 0
+        },
+        {
+          "valor": "noche oscura",
+          "aumento": 0
+        },
+        {
+          "valor": "azul de medianoche",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224dfab346d2d2123f2734"
+  },
+  "id": 2,
+  "nombre": "Samsung Galaxy A55 5G",
+  "precio": 980,
+  "categoria_id": 1,
+  "url_imagen": "003.jpg, 004.jpg",
+  "detalle": "El Samsung Galaxy A55 5G tiene una batería de 5000 mAh con carga rápida de 25W. Cuenta con un sistema de cámaras que incluye una principal de 50 MP, una ultra ancha de 12 MP, una macro de 5 MP, y una frontal de 32 MP. Su pantalla Super AMOLED de 6.6 pulgadas ofrece resolución Full HD+ y tasa de refresco de 120Hz, con RAM de 6 GB, 8 GB o 12 GB.",
+  "cantidad": 8,
+  "variantes": [
+    {
+      "nombre": "Memoria",
+      "valores": [
+        {
+          "valor": "128GB",
+          "aumento": 900
+        },
+        {
+          "valor": "256GB",
+          "aumento": 1100
+        }
+      ]
+    },
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "awesome navi",
+          "aumento": 0
+        },
+        {
+          "valor": "awesome iceblue",
+          "aumento": 0
+        },
+        {
+          "valor": "awesome lilac",
+          "aumento": 0
+        },
+        {
+          "valor": "awesome lemon",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224dfab346d2d2123f2735"
+  },
+  "id": 3,
+  "nombre": "Motorola Edge 40",
+  "precio": 980,
+  "categoria_id": 1,
+  "url_imagen": "005.jpg, 006.jpg",
+  "detalle": "El Motorola Edge 40 presenta una pantalla OLED de 6.55\" FHD+ con tasa de refresco de 144 Hz. Su cámara principal de 50 MP permite grabación en 4K, mientras que la cámara frontal es de 32 MP. Además, cuenta con una batería de 4400 mAh con carga rápida de 68W y es resistente al agua y polvo (IP68).",
+  "cantidad": 8,
+  "variantes": [
+    {
+      "nombre": "Memoria",
+      "valores": [
+        {
+          "valor": "128GB",
+          "aumento": 900
+        },
+        {
+          "valor": "256GB",
+          "aumento": 1100
+        }
+      ]
+    },
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "eco black",
+          "aumento": 0
+        },
+        {
+          "valor": "pura agua",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224dfab346d2d2123f2736"
+  },
+  "id": 4,
+  "nombre": "Samsung Galaxy Z Fold5",
+  "precio": 980,
+  "categoria_id": 1,
+  "url_imagen": "007.jpg, 008.jpg",
+  "detalle": "El dispositivo cuenta con un procesador Octa-Core (3.36GHz, 2.8GHz, 2GHz) y una cámara frontal de 10 MP, junto con una cámara trasera de 50 MP, 12 MP y 10 MP. Ofrece almacenamiento de 256 GB y 512 GB, y una pantalla de 7.6\" (192.1 mm) en rectángulo completo. Tiene una batería de 4400 mAh con carga a través de USB Type-C. En la caja se incluyen un cable de datos, guía de inicio rápido y pin de extracción, además de contar con inteligencia artificial.",
+  "cantidad": 8,
+  "variantes": [
+    {
+      "nombre": "Memoria",
+      "valores": [
+        {
+          "valor": "256 GB",
+          "aumento": 900
+        },
+        {
+          "valor": "512GB",
+          "aumento": 1100
+        }
+      ]
+    },
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "phantom black",
+          "aumento": 0
+        },
+        {
+          "valor": "cream",
+          "aumento": 0
+        },
+        {
+          "valor": "icy blue",
+          "aumento": 0
+        },
+        {
+          "valor": "gray",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224dfab346d2d2123f2737"
+  },
+  "id": 5,
+  "nombre": "Samsung S23 Ultra",
+  "precio": 980,
+  "categoria_id": 1,
+  "url_imagen": "009.jpg, 010.jpg",
+  "detalle": "El Galaxy S23 Ultra destaca por su batería de 5000 mAh con carga rápida de 45W y carga inalámbrica de 10W. En cuanto a cámaras, incluye un sensor posterior de 200 MP, dos teleobjetivos de 10 MP con zoom óptico de 10X y 3X, y una cámara frontal de 12 MP. Puede grabar videos en 8K a 30 FPS y en 4K a 60 FPS. Su pantalla es Dynamic AMOLED 2X de 6,8\", protegida por Corning Gorilla Glass Victus 2, y cuenta con S-Pen integrado.",
+  "cantidad": 8,
+  "variantes": [
+    {
+      "nombre": "Memoria",
+      "valores": [
+        {
+          "valor": "256GB",
+          "aumento": 900
+        },
+        {
+          "valor": "512GB",
+          "aumento": 1100
+        },
+        {
+          "valor": "1TB",
+          "aumento": 1100
+        }
+      ]
+    },
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "phantom negro",
+          "aumento": 0
+        },
+        {
+          "valor": "verde",
+          "aumento": 0
+        },
+        {
+          "valor": "crema",
+          "aumento": 0
+        },
+        {
+          "valor": "lavanda",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224dfab346d2d2123f2738"
+  },
+  "id": 6,
+  "nombre": "Samsung S24+",
+  "precio": 980,
+  "categoria_id": 1,
+  "url_imagen": "011.jpg, 012.jpg",
+  "detalle": "Batería: Soporta carga rápida por cable e inalámbrica, tiene parlantes estéreo Hi-Fi, lector de huellas, resistencia al agua y corre Android 14 con siete actualizaciones prometidas. Cámara: Frontal de 12 MP y trasera con ultra gran angular de 12 MP, teleobjetivo de 50 MP, otro de 10 MP con zoom 3x y cámara principal de 200 MP con estabilización óptica. Pantalla: Dynamic AMOLED 2X de 6.7 pulgadas con resolución QHD+ y tasa de refresco de 120Hz. Memoria: con 12 GB de RAM y procesador Exynos 2400.",
+  "cantidad": 8,
+  "variantes": [
+    {
+      "nombre": "Memoria",
+      "valores": [
+        {
+          "valor": "256GB",
+          "aumento": 900
+        },
+        {
+          "valor": "512GB",
+          "aumento": 1100
+        }
+      ]
+    },
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "cobalt violet",
+          "aumento": 0
+        },
+        {
+          "valor": "amber yellow",
+          "aumento": 0
+        },
+        {
+          "valor": "onyx black",
+          "aumento": 0
+        },
+        {
+          "valor": "marble gray",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224dfab346d2d2123f2739"
+  },
+  "id": 7,
+  "nombre": "IPhone 14 Pro Max",
+  "precio": 1200,
+  "categoria_id": 1,
+  "url_imagen": "013.jpg, 014.jpg",
+  "detalle": "El Apple iPhone 14 Pro Max es el iPhone más grande y poderoso de la serie 14. Potenciado por el nuevo procesador Apple A16 Bionic, cuenta con una pantalla OLED LTPO de 6.7 pulgadas, entre otras características.",
+  "cantidad": 10,
+  "variantes": [
+    {
+      "nombre": "Memoria",
+      "valores": [
+        {
+          "valor": "128GB",
+          "aumento": 1000
+        },
+        {
+          "valor": "256GB",
+          "aumento": 1200
+        },
+        {
+          "valor": "512GB",
+          "aumento": 1300
+        },
+        {
+          "valor": "1TB",
+          "aumento": 1500
+        }
+      ]
+    },
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "negro espacial",
+          "aumento": 0
+        },
+        {
+          "valor": "plata",
+          "aumento": 0
+        },
+        {
+          "valor": "oro",
+          "aumento": 0
+        },
+        {
+          "valor": "morado oscuro",
+          "aumento": 0
+        },
+        {
+          "valor": "blanco",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224dfab346d2d2123f273a"
+  },
+  "id": 8,
+  "nombre": "iPhone 15 Pro Max",
+  "precio": 900,
+  "categoria_id": 1,
+  "url_imagen": "015.jpg, 016.jpg",
+  "detalle": "El iPhone 15 Pro Max destaca por su sistema de cámaras Pro, con una principal de 48 MP, ultra gran angular de 12 MP y dos teleobjetivos de 12 MP, ofreciendo zoom óptico de hasta x5 y digital hasta x25, junto con tecnologías avanzadas como Photonic Engine y HDR Inteligente 5. Su pantalla Super Retina XDR OLED de 6.7\" incluye Dynamic Island, tasa de refresco adaptativa de hasta 120 Hz y un brillo máximo de 2.000 nits en exteriores. La batería ofrece hasta 29 horas de reproducción de video, soporta carga rápida y MagSafe, logrando un 50% de carga en 30 minutos con un adaptador de 20 W.",
+  "cantidad": 8,
+  "variantes": [
+    {
+      "nombre": "Memoria",
+      "valores": [
+        {
+          "valor": "256GB",
+          "aumento": 900
+        },
+        {
+          "valor": "512GB",
+          "aumento": 1100
+        },
+        {
+          "valor": "1TB",
+          "aumento": 1100
+        }
+      ]
+    },
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "titanio negro",
+          "aumento": 0
+        },
+        {
+          "valor": "titanio blanco",
+          "aumento": 0
+        },
+        {
+          "valor": "titanio azul",
+          "aumento": 0
+        },
+        {
+          "valor": "titanio natural",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224dfab346d2d2123f273b"
+  },
+  "id": 9,
+  "nombre": "Xiaomi Note 13",
+  "precio": 980,
+  "categoria_id": 1,
+  "url_imagen": "017.jpg, 018.jpg",
+  "detalle": "El smartphone cuenta con una cámara principal de 108 MP, secundaria de 16 MP y flash LED, además de grabar video en 1080p a 30 fps. Tiene una pantalla FHD+ AMOLED de 6.67\" con una frecuencia de actualización de 120 Hz. La batería es de 5000 mAh, permitiendo carga rápida de 67W. Los colores disponibles son negro, blanco y azul.",
+  "cantidad": 8,
+  "variantes": [
+    {
+      "nombre": "Memoria",
+      "valores": [
+        {
+          "valor": "128GB",
+          "aumento": 900
+        },
+        {
+          "valor": "256GB",
+          "aumento": 1100
+        }
+      ]
+    },
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "negro",
+          "aumento": 0
+        },
+        {
+          "valor": "blanco",
+          "aumento": 0
+        },
+        {
+          "valor": "azul",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224dfab346d2d2123f273c"
+  },
+  "id": 10,
+  "nombre": "Huawei P60",
+  "precio": 980,
+  "categoria_id": 1,
+  "url_imagen": "019.jpg, 020.jpg",
+  "detalle": "El Huawei P60 combina diseño elegante con tecnología avanzada, incluyendo cámara principal de 48 MP, ultra gran angular de 13 MP y teleobjetivo de 12 MP. Su pantalla OLED de 6.67\" FHD+ ofrece una experiencia visual impresionante, y la batería de 4815 mAh soporta carga rápida de 66W.",
+  "cantidad": 8,
+  "variantes": [
+    {
+      "nombre": "Memoria",
+      "valores": [
+        {
+          "valor": "256GB",
+          "aumento": 900
+        },
+        {
+          "valor": "512GB",
+          "aumento": 1100
+        }
+      ]
+    },
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "blanco",
+          "aumento": 0
+        },
+        {
+          "valor": "negro",
+          "aumento": 0
+        },
+        {
+          "valor": "azul",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224e0ab346d2d2123f273d"
+  },
+  "id": 11,
+  "nombre": "MacBook Pro 16\" M1 Max",
+  "precio": 3000,
+  "categoria_id": 3,
+  "url_imagen": "021.jpg, 022.jpg",
+  "detalle": "Pantalla: 16 pulgadas, Liquid Retina XDR, resolución 3456x2234. Procesador: Apple M1 Max. Memoria RAM: 32/64 GB. Almacenamiento: 1TB. Sistema Operativo: macOS",
+  "cantidad": 5,
+  "variantes": [
+    {
+      "nombre": "RAM",
+      "valores": [
+        {
+          "valor": "32GB",
+          "aumento": 500
+        },
+        {
+          "valor": "64GB",
+          "aumento": 1000
+        }
+      ]
+    },
+    {
+      "nombre": "Almacenamiento",
+      "valores": [
+        {
+          "valor": "1TB",
+          "aumento": 0
+        },
+        {
+          "valor": "2TB",
+          "aumento": 400
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224e0ab346d2d2123f273e"
+  },
+  "id": 12,
+  "nombre": "Dell XPS 15",
+  "precio": 2500,
+  "categoria_id": 3,
+  "url_imagen": "023.jpg, 024.jpg",
+  "detalle": "Pantalla: 15.6 pulgadas, OLED, resolución 3456x2160. Procesador: Intel Core i9-11900H. Memoria RAM: 16/32 GB. Almacenamiento: 512GB/1TB SSD. Sistema Operativo: Windows 11",
+  "cantidad": 5,
+  "variantes": [
+    {
+      "nombre": "RAM",
+      "valores": [
+        {
+          "valor": "16GB",
+          "aumento": 0
+        },
+        {
+          "valor": "32GB",
+          "aumento": 300
+        }
+      ]
+    },
+    {
+      "nombre": "Almacenamiento",
+      "valores": [
+        {
+          "valor": "512GB",
+          "aumento": 0
+        },
+        {
+          "valor": "1TB",
+          "aumento": 200
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224e0ab346d2d2123f273f"
+  },
+  "id": 13,
+  "nombre": "HP Spectre x360 14",
+  "precio": 2200,
+  "categoria_id": 3,
+  "url_imagen": "025.jpg, 026.jpg",
+  "detalle": "Pantalla: 13.5 pulgadas, OLED, resolución 3000x2000. Procesador: Intel Core i7-1165G7. Memoria RAM: 16 GB. Almacenamiento: 512GB SSD. Sistema Operativo: Windows 11",
+  "cantidad": 7,
+  "variantes": [
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "negro",
+          "aumento": 0
+        },
+        {
+          "valor": "plata",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224e0ab346d2d2123f2740"
+  },
+  "id": 14,
+  "nombre": "Acer Swift 3",
+  "precio": 1100,
+  "categoria_id": 3,
+  "url_imagen": "027.jpg, 028.jpg",
+  "detalle": "Pantalla: 14 pulgadas, IPS, resolución 1920x1080. Procesador: AMD Ryzen 7 5700U. Memoria RAM: 8 GB. Almacenamiento: 512GB SSD. Sistema Operativo: Windows 10",
+  "cantidad": 10,
+  "variantes": [
+    {
+      "nombre": "Almacenamiento",
+      "valores": [
+        {
+          "valor": "512GB",
+          "aumento": 0
+        },
+        {
+          "valor": "1TB",
+          "aumento": 150
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224e0ab346d2d2123f2741"
+  },
+  "id": 15,
+  "nombre": "Lenovo IdeaPad 5",
+  "precio": 1000,
+  "categoria_id": 3,
+  "url_imagen": "029.jpg, 030.jpg",
+  "detalle": "Pantalla: 15.6 pulgadas, IPS, resolución 1920x1080. Procesador: Intel Core i5-1135G7. Memoria RAM: 8 GB. Almacenamiento: 256GB SSD. Sistema Operativo: Windows 10",
+  "cantidad": 10,
+  "variantes": [
+    {
+      "nombre": "Procesador",
+      "valores": [
+        {
+          "valor": "Intel Core i5-1135G7",
+          "aumento": 0
+        },
+        {
+          "valor": "AMD Ryzen 5 5500U",
+          "aumento": 50
+        }
+      ]
+    },
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "gris",
+          "aumento": 0
+        },
+        {
+          "valor": "plata",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224e0ab346d2d2123f2742"
+  },
+  "id": 16,
+  "nombre": "ASUS VivoBook 14",
+  "precio": 950,
+  "categoria_id": 3,
+  "url_imagen": "031.jpg, 032.jpg",
+  "detalle": "Pantalla: 14 pulgadas, IPS, resolución 1920x1080. Procesador: AMD Ryzen 5 4500U. Memoria RAM: 8 GB. Almacenamiento: 512GB SSD. Sistema Operativo: Windows 10",
+  "cantidad": 8,
+  "variantes": [
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "negro",
+          "aumento": 0
+        },
+        {
+          "valor": "plata",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224e0ab346d2d2123f2743"
+  },
+  "id": 17,
+  "nombre": "HP 14z",
+  "precio": 500,
+  "categoria_id": 3,
+  "url_imagen": "033.jpg, 034.jpg",
+  "detalle": "Pantalla: 14 pulgadas, IPS, resolución 1366x768. Procesador: AMD Ryzen 3 3250U. Memoria RAM: 4 GB. Almacenamiento: 128GB SSD. Sistema Operativo: Windows 10",
+  "cantidad": 15,
+  "variantes": []
+},
+{
+  "_id": {
+    "$oid": "67224e0ab346d2d2123f2744"
+  },
+  "id": 18,
+  "nombre": "Lenovo IdeaPad 3",
+  "precio": 550,
+  "categoria_id": 3,
+  "url_imagen": "035.jpg, 036.jpg",
+  "detalle": "Pantalla: 15.6 pulgadas, TN, resolución 1366x768. Procesador: Intel Core i3-1005G1. Memoria RAM: 4 GB. Almacenamiento: 256GB SSD. Sistema Operativo: Windows 10",
+  "cantidad": 15,
+  "variantes": []
+},
+{
+  "_id": {
+    "$oid": "67224e0ab346d2d2123f2745"
+  },
+  "id": 19,
+  "nombre": "Acer Aspire 5",
+  "precio": 600,
+  "categoria_id": 3,
+  "url_imagen": "037.jpg, 038.jpg",
+  "detalle": "Pantalla: 15.6 pulgadas, IPS, resolución 1920x1080. Procesador: Intel Pentium Gold 7505. Memoria RAM: 4 GB. Almacenamiento: 128GB SSD. Sistema Operativo: Windows 10",
+  "cantidad": 10,
+  "variantes": []
+},
+{
+  "_id": {
+    "$oid": "67224e0ab346d2d2123f2746"
+  },
+  "id": 20,
+  "nombre": "Dell Inspiron 3000",
+  "precio": 650,
+  "categoria_id": 3,
+  "url_imagen": "039.jpg, 040.jpg",
+  "detalle": "Pantalla: 15.6 pulgadas, TN, resolución 1366x768. Procesador: Intel Core i3-1115G4. Memoria RAM: 4 GB. Almacenamiento: 128GB SSD. Sistema Operativo: Windows 10",
+  "cantidad": 10,
+  "variantes": []
+},
+{
+  "_id": {
+    "$oid": "67224e13b346d2d2123f2747"
+  },
+  "id": 21,
+  "nombre": "Apple iPad Pro 12.9 (6ª generación)",
+  "precio": 1400,
+  "categoria_id": 2,
+  "url_imagen": "041.jpg, 042.jpg",
+  "detalle": "Pantalla: 12.9 pulgadas, Liquid Retina XDR, 2732x2048. Procesador: Apple M2. Memoria RAM: 8/16 GB. Cámaras: 12 MP principal, 12 MP frontal. Batería: 10758 mAh. Sistema Operativo: iPadOS 16",
+  "cantidad": 5,
+  "variantes": [
+    {
+      "nombre": "Almacenamiento",
+      "valores": [
+        {
+          "valor": "128GB",
+          "aumento": 0
+        },
+        {
+          "valor": "512GB",
+          "aumento": 300
+        },
+        {
+          "valor": "1TB",
+          "aumento": 600
+        }
+      ]
+    },
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "gris espacial",
+          "aumento": 0
+        },
+        {
+          "valor": "plata",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224e13b346d2d2123f2748"
+  },
+  "id": 22,
+  "nombre": "Samsung Galaxy Tab S9 Ultra",
+  "precio": 1300,
+  "categoria_id": 2,
+  "url_imagen": "043.jpg, 044.jpg",
+  "detalle": "Pantalla: 14.6 pulgadas, Dynamic AMOLED, 2960x1848. Procesador: Snapdragon 8 Gen 2. Memoria RAM: 12/16 GB. Cámaras: 13 MP principal, 12 MP frontal. Batería: 11200 mAh. Sistema Operativo: Android 13",
+  "cantidad": 5,
+  "variantes": [
+    {
+      "nombre": "Almacenamiento",
+      "valores": [
+        {
+          "valor": "256GB",
+          "aumento": 0
+        },
+        {
+          "valor": "512GB",
+          "aumento": 250
+        },
+        {
+          "valor": "1TB",
+          "aumento": 500
+        }
+      ]
+    },
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "grafito",
+          "aumento": 0
+        },
+        {
+          "valor": "plata",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224e13b346d2d2123f2749"
+  },
+  "id": 23,
+  "nombre": "Microsoft Surface Pro 9",
+  "precio": 1200,
+  "categoria_id": 2,
+  "url_imagen": "045.jpg, 046.jpg",
+  "detalle": "Pantalla: 13 pulgadas, PixelSense Flow, 2880x1920. Procesador: Intel Core i5/i7 de 12ª generación. Memoria RAM: 8/16 GB. Cámaras: 10 MP principal, 5 MP frontal. Batería: hasta 15.5 horas. Sistema Operativo: Windows 11",
+  "cantidad": 8,
+  "variantes": [
+    {
+      "nombre": "Procesador",
+      "valores": [
+        {
+          "valor": "Intel Core i5",
+          "aumento": 0
+        },
+        {
+          "valor": "Intel Core i7",
+          "aumento": 200
+        }
+      ]
+    },
+    {
+      "nombre": "Almacenamiento",
+      "valores": [
+        {
+          "valor": "256GB",
+          "aumento": 0
+        },
+        {
+          "valor": "512GB",
+          "aumento": 300
+        }
+      ]
+    },
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "platino",
+          "aumento": 0
+        },
+        {
+          "valor": "grafito",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224e13b346d2d2123f274a"
+  },
+  "id": 24,
+  "nombre": "Apple iPad Air (5ª generación)",
+  "precio": 750,
+  "categoria_id": 2,
+  "url_imagen": "047.jpg, 048.jpg",
+  "detalle": "Pantalla: 10.9 pulgadas, Liquid Retina, 2360x1640. Procesador: Apple M1. Memoria RAM: 8 GB. Cámaras: 12 MP principal, 12 MP frontal. Batería: 7600 mAh. Sistema Operativo: iPadOS 15",
+  "cantidad": 12,
+  "variantes": [
+    {
+      "nombre": "Almacenamiento",
+      "valores": [
+        {
+          "valor": "64GB",
+          "aumento": 0
+        },
+        {
+          "valor": "256GB",
+          "aumento": 200
+        }
+      ]
+    },
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "gris espacial",
+          "aumento": 0
+        },
+        {
+          "valor": "plata",
+          "aumento": 0
+        },
+        {
+          "valor": "rosa",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224e13b346d2d2123f274b"
+  },
+  "id": 25,
+  "nombre": "Samsung Galaxy Tab S7 FE",
+  "precio": 700,
+  "categoria_id": 2,
+  "url_imagen": "049.jpg, 050.jpg",
+  "detalle": "Pantalla: 12.4 pulgadas, TFT LCD, 2560x1600. Procesador: Snapdragon 750G. Memoria RAM: 4/6 GB. Cámaras: 8 MP principal, 5 MP frontal. Batería: 10090 mAh. Sistema Operativo: Android 11",
+  "cantidad": 10,
+  "variantes": [
+    {
+      "nombre": "Almacenamiento",
+      "valores": [
+        {
+          "valor": "64GB",
+          "aumento": 0
+        },
+        {
+          "valor": "128GB",
+          "aumento": 100
+        }
+      ]
+    },
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "negro",
+          "aumento": 0
+        },
+        {
+          "valor": "plata",
+          "aumento": 0
+        },
+        {
+          "valor": "verde",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224e13b346d2d2123f274c"
+  },
+  "id": 26,
+  "nombre": "Lenovo Tab P11 Pro Gen 2",
+  "precio": 650,
+  "categoria_id": 2,
+  "url_imagen": "051.jpg, 052.jpg",
+  "detalle": "Pantalla: 11.2 pulgadas, OLED, 2560x1536. Procesador: MediaTek Kompanio 1300T. Memoria RAM: 6/8 GB. Cámaras: 13 MP principal, 8 MP frontal. Batería: 8000 mAh. Sistema Operativo: Android 12",
+  "cantidad": 8,
+  "variantes": [
+    {
+      "nombre": "Almacenamiento",
+      "valores": [
+        {
+          "valor": "128GB",
+          "aumento": 0
+        },
+        {
+          "valor": "256GB",
+          "aumento": 100
+        }
+      ]
+    },
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "gris tormenta",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224e13b346d2d2123f274d"
+  },
+  "id": 27,
+  "nombre": "Samsung Galaxy Tab A8",
+  "precio": 250,
+  "categoria_id": 2,
+  "url_imagen": "053.jpg, 054.jpg",
+  "detalle": "Pantalla: 10.5 pulgadas, TFT, 1920x1200. Procesador: Unisoc Tiger T618. Memoria RAM: 3/4 GB. Cámaras: 8 MP principal, 5 MP frontal. Batería: 7040 mAh. Sistema Operativo: Android 11",
+  "cantidad": 20,
+  "variantes": [
+    {
+      "nombre": "Almacenamiento",
+      "valores": [
+        {
+          "valor": "32GB",
+          "aumento": 0
+        },
+        {
+          "valor": "64GB",
+          "aumento": 50
+        }
+      ]
+    },
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "gris oscuro",
+          "aumento": 0
+        },
+        {
+          "valor": "plata",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$ ": "67224e13b346d2d2123f274e"
+  },
+  "id": 28,
+  "nombre": "Lenovo Tab M10 Plus (3ª generación)",
+  "precio": 230,
+  "categoria_id": 2,
+  "url_imagen": "055.jpg, 056.jpg",
+  "detalle": "Pantalla: 10.6 pulgadas, IPS, 2000x1200. Procesador: MediaTek Helio G80. Memoria RAM: 4 GB. Cámaras: 8 MP principal, 5 MP frontal. Batería: 7700 mAh. Sistema Operativo: Android 12",
+  "cantidad": 15,
+  "variantes": [
+    {
+      "nombre": "Almacenamiento",
+      "valores": [
+        {
+          "valor": "64GB",
+          "aumento": 0
+        },
+        {
+          "valor": "128GB",
+          "aumento": 40
+        }
+      ]
+    },
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "gris",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224e13b346d2d2123f274f"
+  },
+  "id": 29,
+  "nombre": "Huawei MatePad T10",
+  "precio": 200,
+  "categoria_id": 2,
+  "url_imagen": "057.jpg, 058.jpg",
+  "detalle": "Pantalla: 9.7 pulgadas, IPS, 1280x800. Procesador: Kirin 710A. Memoria RAM: 2/3 GB. Cámaras: 5 MP principal, 2 MP frontal. Batería: 5100 mAh. Sistema Operativo: EMUI 10.1",
+  "cantidad": 18,
+  "variantes": [
+    {
+      "nombre": "Almacenamiento",
+      "valores": [
+        {
+          "valor": "16GB",
+          "aumento": 0
+        },
+        {
+          "valor": "32GB",
+          "aumento": 20
+        }
+      ]
+    },
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "azul",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67224e13b346d2d2123f2750"
+  },
+  "id": 30,
+  "nombre": "Amazon Fire HD 10",
+  "precio": 150,
+  "categoria_id": 2,
+  "url_imagen": "059.jpg, 060.jpg",
+  "detalle": "Pantalla: 10.1 pulgadas, IPS, 1920x1200. Procesador: MediaTek MT8183. Memoria RAM: 3 GB. Cámaras: 5 MP principal, 2 MP frontal. Batería: hasta 12 horas de uso. Sistema Operativo: Fire OS",
+  "cantidad": 20,
+  "variantes": [
+    {
+      "nombre": "Almacenamiento",
+      "valores": [
+        {
+          "valor": "32GB",
+          "aumento": 0
+        },
+        {
+          "valor": "64GB",
+          "aumento": 20
+        }
+      ]
+    },
+    {
+      "nombre": "Color",
+      "valores": [
+        {
+          "valor": "negro",
+          "aumento": 0
+        },
+        {
+          "valor": "blanco",
+          "aumento": 0
+        }
+      ]
+    }
+  ]
+}]
