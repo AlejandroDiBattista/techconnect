@@ -3,7 +3,7 @@ import express from 'express';
 const router = express.Router();
 import { traerCategorias, traerProducto, crearCompra, agregarDatosCliente } from '../controllers/controlador.js';
 import { agregarProducto, verCarrito, borrarCarrito, confirmarCompra, eliminarProducto } from '../controllers/carritoControlador.js';
-import {traerProductos} from "../models/producto.js"
+import Producto from "../models/producto.js"
 
 router.get('/', (req,res) => {
     res.send('Servidor en Funcionamiento');
@@ -11,7 +11,14 @@ router.get('/', (req,res) => {
 
 // Rutas
 router.get('/categoria', traerCategorias);
-router.get('/producto', traerProductos);
+router.get('/producto', async (req, res) => {
+    try{
+        const productos = await Producto.traerProductos();
+        res.json(productos);
+    }catch(error){
+        res.status(500).json({ message: 'Error interno del servidor' });
+    }
+});
 router.get('/producto/:id', traerProducto);
 router.post('/compra', crearCompra);
 
