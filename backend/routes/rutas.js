@@ -12,11 +12,12 @@ router.get('/', (req,res) => {
 // Rutas
 router.get('/categoria', traerCategorias);
 router.get('/producto', async (req, res) => {
-    try{
-        const productos = await Producto.traerProductos();
+    try {
+        const productos = await Producto.find().populate('categoria');
         res.json(productos);
-    }catch(error){
-        res.status(500).json({ message: 'Error interno del servidor' });
+    } catch(error) {
+        console.error('Error al obtener productos:', error);
+        res.status(500).json({ message: 'Error interno del servidor', error: error.message });
     }
 });
 router.get('/producto/:id', traerProducto);
