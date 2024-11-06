@@ -5,7 +5,8 @@ import { Layout } from './componentes/Layout';
 import { Inicio } from './paginas/Inicio';
 import { Elegir } from './paginas/Elegir';
 import { Detalle } from './paginas/Detalle';
-import { Carrito } from './paginas/Carrito';
+import Carrito from './paginas/Carrito'; // Asegúrate de que la ruta es correcta
+
 
 export function App() {
     return (
