@@ -34,12 +34,12 @@ carritoSchema.statics.agregarProducto = async function (userId, productoId, cant
   return carrito;
 }
 // Método para ver carrito
-CarritoSchema.statics.verCarrito = async function(userId) {
+carritoSchema.statics.verCarrito = async function(userId) {
   return this.findOne({ userId, estado: 'pendiente' }).populate('productos.productoId');
 };
 
 // Método para confirmar compra
-CarritoSchema.statics.confirmarCompra = async function(userId) {
+carritoSchema.statics.confirmarCompra = async function(userId) {
   const carrito = await this.findOne({ userId, estado: 'pendiente' });
   if (carrito) {
     carrito.estado = 'confirmado';
@@ -49,7 +49,7 @@ CarritoSchema.statics.confirmarCompra = async function(userId) {
 };
 
 // Método para eliminar producto
-CarritoSchema.statics.eliminarProducto = async function(userId, productoId) {
+carritoSchema.statics.eliminarProducto = async function(userId, productoId) {
   const carrito = await this.findOne({ userId, estado: 'pendiente' });
   if (!carrito) return null;
 
@@ -62,10 +62,10 @@ CarritoSchema.statics.eliminarProducto = async function(userId, productoId) {
 };
 
 // Método para borrar carrito
-CarritoSchema.statics.borrarCarrito = async function(id) {
+carritoSchema.statics.borrarCarrito = async function(id) {
   return this.findByIdAndDelete(id);
 };
 
-const Carrito = mongoose.model('Carrito', CarritoSchema);
+const Carrito = mongoose.model('Carrito', carritoSchema);
 export default Carrito;
 
