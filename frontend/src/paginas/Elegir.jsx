@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { useParams, Link } from "react-router-dom";
 import Datos from "../datos/datos.js";
+
   
 function addToCart() {
   alert("Producto añadido al carrito"); 
@@ -16,8 +17,8 @@ function addToCart() {
 export function Elegir() {
   const { id } = useParams();
 
-  let productos = Datos.traerCategoria(id);
-  console.log("Elegir", id, productos);
+  let productos = Datos.traerProductos(id);
+
   if (productos === null) {
     return (
       <Typography variant="h4" style={{ margin: "20px" }}>
