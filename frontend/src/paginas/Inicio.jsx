@@ -1,5 +1,4 @@
 import { Link as RouterLink } from "react-router-dom";
-import Carousel from "react-material-ui-carousel";
 import {
   Typography,
   Container,
@@ -8,16 +7,13 @@ import {
   CardContent,
   CardMedia,
   Button,
-  Paper,
 } from "@mui/material";
 
-const carouselImages = [
-  "./public/images/Carrusel-1.jpeg",
-  "./public/images/Carrusel-2.jpeg",
-  "./public/images/Carrusel-3.jpeg",
-];
+import Datos from "../datos/datos.js";
+
 
 export function Inicio() {
+  const categorias = Datos.traerCaterorias();
   return (
     <Container
       maxWidth="lg"
@@ -56,24 +52,26 @@ export function Inicio() {
             Nuestros productos
           </Typography>
           <Grid container spacing={4} justifyContent="center">
+            {categorias.map((categoria, index) => (
             <Grid item xs={12} sm={4}>
               <Card>
                 <CardMedia
                   component="img"
-                  alt="Notebook"
+                  alt=""
                   height="140"
-                  image="./public/images/034.jpg"
+                  width="140"
+                  image={"./public/images/" + categoria.url_imagen}
                 />
                 <CardContent>
                   <Typography variant="h6" align="center">
-                    Notebooks
+                    {categoria.nombre}
                   </Typography>
                   <Button
                     variant="contained"
                     color="primary"
                     fullWidth
                     component={RouterLink}
-                    to="/elegir/3"
+                    to={"/elegir/" + categoria.id}
                     style={{ marginTop: "10px" }}
                   >
                     Ver más
@@ -81,56 +79,8 @@ export function Inicio() {
                 </CardContent>
               </Card>
             </Grid>
-            <Grid item xs={12} sm={4}>
-              <Card>
-                <CardMedia
-                  component="img"
-                  alt="Celulares"
-                  height="140"
-                  image="./public/images/002.jpg"
-                />
-                <CardContent>
-                  <Typography variant="h6" align="center">
-                    Celulares
-                  </Typography>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    fullWidth
-                    component={RouterLink}
-                    to="/elegir/1"
-                    style={{ marginTop: "10px" }}
-                  >
-                    Ver más
-                  </Button>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Card>
-                <CardMedia
-                  component="img"
-                  alt="Tablets"
-                  height="140"
-                  image="./public/images/044.jpg"
-                />
-                <CardContent>
-                  <Typography variant="h6" align="center">
-                    Tablets
-                  </Typography>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    fullWidth
-                    component={RouterLink}
-                    to="/elegir/2"
-                    style={{ marginTop: "10px" }}
-                  >
-                    Ver más
-                  </Button>
-                </CardContent>
-              </Card>
-            </Grid>
+            ))}
+           
           </Grid>
         </Grid>
 
