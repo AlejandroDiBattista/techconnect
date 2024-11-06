@@ -3,7 +3,7 @@ import Carousel from "react-material-ui-carousel";
 import {
   Typography,
   Container,
-  Grid2,
+  Grid2 as Grid,
   Card,
   CardContent,
   CardMedia,
@@ -28,48 +28,9 @@ export function Inicio() {
         justifyContent: "center",
       }}
     >
-      <Grid2 container direction="column" alignItems="center" spacing={4}>
-        {/* Carrusel de imágenes con margen superior */}
-        <Grid2 item xs={12} style={{ width: "100%", marginTop: "250px" }}>
-          <Carousel>
-            {carouselImages.map((image, i) => (
-              <Paper
-                key={i}
-                style={{ position: "relative", textAlign: "center" }}
-              >
-                <img
-                  src={image}
-                  alt={`Imagen ${i + 1}`}
-                  style={{
-                    width: "100%",
-                    height: "400px",
-                    objectFit: "cover",
-                  }}
-                />
-                {/* Fondo negro transparente */}
-                <div
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    backgroundColor: "rgba(0, 0, 0, 0.5)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "white",
-                  }}
-                >
-                  {/* <Typography variant="h5">Texto sobre el carrusel</Typography> */}
-                </div>
-              </Paper>
-            ))}
-          </Carousel>
-        </Grid2>
-
+      <Grid container direction="column" alignItems="center" spacing={4}>
         {/* Encabezado */}
-        <Grid2 item>
+        <Grid item>
           <Typography variant="h3" gutterBottom align="center">
             Bienvenido a Techconnect
           </Typography>
@@ -83,10 +44,10 @@ export function Inicio() {
             Descubre nuestra amplia gama de productos y disfruta de la
             tecnología al alcance de tu mano.
           </Typography>
-        </Grid2>
+        </Grid>
 
         {/* Sección de productos con fondo gris */}
-        <Grid2
+        <Grid
           item
           xs={12}
           style={{ width: "100%", backgroundColor: "#f0f0f0", padding: "20px" }}
@@ -94,8 +55,8 @@ export function Inicio() {
           <Typography variant="h4" gutterBottom align="center">
             Nuestros productos
           </Typography>
-          <Grid2 container spacing={4} justifyContent="center">
-            <Grid2 item xs={12} sm={4}>
+          <Grid container spacing={4} justifyContent="center">
+            <Grid item xs={12} sm={4}>
               <Card>
                 <CardMedia
                   component="img"
@@ -119,8 +80,8 @@ export function Inicio() {
                   </Button>
                 </CardContent>
               </Card>
-            </Grid2>
-            <Grid2 item xs={12} sm={4}>
+            </Grid>
+            <Grid item xs={12} sm={4}>
               <Card>
                 <CardMedia
                   component="img"
@@ -144,8 +105,8 @@ export function Inicio() {
                   </Button>
                 </CardContent>
               </Card>
-            </Grid2>
-            <Grid2 item xs={12} sm={4}>
+            </Grid>
+            <Grid item xs={12} sm={4}>
               <Card>
                 <CardMedia
                   component="img"
@@ -169,12 +130,12 @@ export function Inicio() {
                   </Button>
                 </CardContent>
               </Card>
-            </Grid2>
-          </Grid2>
-        </Grid2>
+            </Grid>
+          </Grid>
+        </Grid>
 
         {/* Sección "Sobre nosotros" */}
-        <Grid2 item xs={12} style={{ width: "100%", padding: "20px" }}>
+        <Grid item xs={12} style={{ width: "100%", padding: "20px" }}>
           <Typography variant="h4" gutterBottom align="center">
             Sobre nosotros
           </Typography>
@@ -194,8 +155,8 @@ export function Inicio() {
             Techconnet, la satisfacción del cliente es nuestra prioridad, y
             trabajamos arduamente para superar tus expectativas.
           </Typography>
-        </Grid2>
-      </Grid2>
+        </Grid>
+      </Grid>
     </Container>
   );
 }
