@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Datos from "../datos/productos.json";
+import Datos from "../datos/datos.js";
+
 import {
   Typography,
   Button,
@@ -9,6 +10,10 @@ import {
   Container,
   ButtonGroup,
 } from "@mui/material";
+
+function traerImagen(url){
+  return url.split(",")[0];
+}
 
 export function Detalle() {
   const { id } = useParams();
@@ -84,7 +89,7 @@ export function Detalle() {
       <Card>
         <CardContent>
           <img
-            src={`/images/${producto.url_imagen}`}
+            src={`/images/${traerImagen(producto.url_imagen)}`}
             alt={producto.nombre}
             style={{ width: "600px", height: "600px", objectFit: "cover" }}
           />
