@@ -1,4 +1,4 @@
-import Carrito from '../models/carrito.js';
+import Carrito from '../models/Carrito.js';
 
 // Agregar producto al carrito
 export const agregarProducto = async (req, res) => {
@@ -29,64 +29,63 @@ export const agregarProducto = async (req, res) => {
   }
 };
 
-// Ver carrito
+// ver el carrito
 export const verCarrito = async (req, res) => {
   const { userId } = req.params;
 
   try {
-    const carrito = await Carrito.findOne({ userId, estado: 'pendiente' }).populate('productos.productoId');
-    if (!carrito) return res.status(404).json({ error: 'Carrito no encontrado' });
-
+    const carrito = await Carrito.verCarrito(userId);
+    if (!carrito) {
+      return res.status(404).json({ message: 'Carrito no encontrado' });
+    }
     res.status(200).json(carrito);
   } catch (error) {
-    res.status(500).json({ error: 'Error al obtener carrito' });
+    res.status(500).json({ message: 'Error al obtener el carrito', error });
   }
 };
 
-// Confirmar compra
+// confirmar la compra
 export const confirmarCompra = async (req, res) => {
   const { userId } = req.params;
 
   try {
-    const carrito = await Carrito.findOne({ userId, estado: 'pendiente' });
-    if (!carrito) return res.status(404).json({ error: 'Carrito no encontrado' });
-
-    carrito.estado = 'confirmado';
-    await carrito.save();
-
-    res.status(200).json({ message: 'Compra confirmada' });
+    const carrito = await Carrito.confirmarCompra(userId);
+    if (!carrito) {
+      return res.status(404).json({ message: 'Carrito no encontrado o ya confirmado' });
+    }
+    res.status(200).json({ message: 'Compra confirmada', carrito });
   } catch (error) {
-    res.status(500).json({ error: 'Error al confirmar compra' });
+    res.status(500).json({ message: 'Error al confirmar la compra', error });
   }
 };
 
-// Eliminar producto del carrito
+// eliminar un producto del carrito
 export const eliminarProducto = async (req, res) => {
   const { userId } = req.params;
   const { productoId } = req.body;
 
   try {
-    const carrito = await Carrito.findOne({ userId, estado: 'pendiente' });
-    if (!carrito) return res.status(404).json({ error: 'Carrito no encontrado' });
-
-    carrito.productos = carrito.productos.filter(
-      (prod) => prod.productoId.toString() !== productoId
-    );
-
-    await carrito.save();
+    const carrito = await Carrito.eliminarProducto(userId, productoId);
+    if (!carrito) {
+      return res.status(404).json({ message: 'Producto no encontrado en el carrito' });
+    }
     res.status(200).json(carrito);
   } catch (error) {
-    res.status(500).json({ error: 'Error al eliminar producto' });
+    res.status(500).json({ message: 'Error al eliminar el producto del carrito', error });
   }
 };
 
+// borrar el carrito completo
 export const borrarCarrito = async (req, res) => {
-  // Lógica para eliminar el carrito
   const { id } = req.params;
 
-  //Eliminar el carrito 
-  const carritoEliminado = await Compra.findByIdAndDelete(id);
-  if (!carritoEliminado) {
-    return res.status(404).json({ message: 'No se encontro el carrito' });
+  try {
+    const carrito = await Carrito.borrarCarrito(id);
+    if (!carrito) {
+      return res.status(404).json({ message: 'Carrito no encontrado' });
+    }
+    res.status(200).json({ message: 'Carrito eliminado exitosamente' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error al borrar el carrito', error });
   }
 };
