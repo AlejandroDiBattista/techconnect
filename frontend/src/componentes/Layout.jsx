@@ -1,6 +1,7 @@
 import React from 'react';
-import { Container } from '@mui/material';
-import Menu from '../componentes/Menu'
+import { Container, Typography, Box } from '@mui/material';
+import Menu from '../componentes/Menu';
+
 export function Layout({ children }) {
   return (
     <Container
@@ -12,13 +13,24 @@ export function Layout({ children }) {
         justifyContent: 'flex-start',
         minHeight: '100vh',
         paddingTop: '20px',
-        maxWidth: '800px',
-        margin: '0 auto',
       }}
     >
       <Menu />
       {children}
-      <footer>Este es el footer</footer>
+      
+      <Box
+        component="footer"
+        sx={{
+          width: '100%',
+          backgroundColor: '#1976d2', // Color azul
+          padding: '20px',
+          marginTop: '350px', // Mueve el footer hacia abajo
+        }}
+      >
+        <Typography variant="body1" align="center" style={{ color: 'white' }}>
+          este es el footer
+        </Typography>
+      </Box>
     </Container>
   );
 }
