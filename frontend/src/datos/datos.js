@@ -1,7 +1,12 @@
 import productos from './productos.json';
+import categorias from './categorias.json';
 
-function traerCategoria(id) {
+function traerProductos(id) {
     return productos.filter(producto => producto.categoria === id);
 }
 
-export default { traerCategoria };
+function traerCaterorias() {
+    return categorias;
+}
+
+export default { traerProductos, traerCaterorias};
