@@ -50,7 +50,7 @@ const Carrito = () => {
         </Button>
       )}
     </Box>
-  );
+  );//hola aca estoy
 };
 
 export default Carrito; // Asegúrate de tener esta línea para exportar el componente
