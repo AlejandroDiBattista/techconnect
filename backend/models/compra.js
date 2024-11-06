@@ -30,6 +30,11 @@ CompraSchema.methods.agregarProducto = async function(productoId, cantidad, vari
     this.items.push(item);
     await this.save();
 };
+
+CompraSchema.methods.crear = async function(clienteId) {
+    let compra = new Compra({ cliente: clienteId, estado: 'pendiente'});
+    return compra.save();
+}
 const Compra = mongoose.model('Compra', CompraSchema);
 
 export default Compra;

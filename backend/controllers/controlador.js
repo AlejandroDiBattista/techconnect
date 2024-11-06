@@ -24,19 +24,22 @@ export const traerProductos = async (req, res) => {
 
 export const traerProducto = async (req, res) => {
   const { id } = req.params;
-  const producto = await Producto.findById(id);
+  const producto = await Producto.traerProducto(id);
   res.json(producto);
 };
 
 export const crearCompra = async (req, res) => {
-  const compra = new Compra({ cliente_id: req.body.cliente_id });
-  await compra.save();
+  const id = req.body.cliente_id;
+  const compra = await Compra.crear(id);
   res.json({ compra_id: compra._id });
 };
 
-
 export const agregarDatosCliente = async (req, res) => {
-  const cliente = new Cliente(req.body);
-  await cliente.save();
-  res.json({ cliente_id: cliente._id });
+  const datos = req.body;
+  try {
+    const cliente = await Cliente.agregar(datos);
+    res.json({ cliente_id: cliente._id });
+  } catch (error) {
+    res.status(400).json({ mensaje: error.message });
+  }
 };

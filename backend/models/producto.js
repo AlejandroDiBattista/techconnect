@@ -24,6 +24,10 @@ ProductoSchema.statics.traerProductos = async function(clasificacion) {
     return this.find(filtro).populate('clasificacion');
 };
 
+ProductoSchema.statics.traerProducto = async function(id) {
+    return this.findById(id);
+};
+
 const Producto = mongoose.model('Producto', ProductoSchema);
 
 export default Producto;
