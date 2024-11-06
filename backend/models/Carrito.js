@@ -13,5 +13,26 @@ const carritoSchema = new mongoose.Schema({
   estado: { type: String, default: 'pendiente' } // 'pendiente', 'confirmado'
 });
 
+//Metodo para agregar un producto al carrito
+carritoSchema.statics.agregarProducto = async function (userId, productoId, cantidad, variante) {
+  let carrito = await this.findOne({ userId, estado: 'pendiente' });
+
+  if (!carrito) {
+    carrito = new this({ userId, productos: [] });
+  }
+  
+  const productoExistente = carrito.productos.find( (prod) => prod.productoId.toString() === productoId && prod.variante === variante );
+
+  if (productoExistente) {
+    productoExistente.cantidad += cantidad;
+  } else {
+    carrito.productos.push({ productoId, cantidad, variante });
+  }
+
+  await carrito.save();
+
+  return carrito;
+}
+
 const Carrito = mongoose.model('Carrito', carritoSchema);
 export default Carrito;
