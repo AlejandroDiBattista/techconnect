@@ -7,7 +7,7 @@ import {
   CardActions,
 } from "@mui/material";
 import { useParams, Link } from "react-router-dom";
-import Datos from "../datos/categorias.json";
+import Datos from "../datos/datos.js";
   
 function addToCart() {
   alert("Producto añadido al carrito"); 
