@@ -15,6 +15,10 @@ function traerImagen(url){
   return url.split(",")[0];
 }
 
+function traerImagenes(urls){
+  return urls.split(",").map(url => `/images/${url.strip()}`);
+}
+
 export function Detalle() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -88,6 +92,18 @@ export function Detalle() {
     <Container>
       <Card>
         <CardContent>
+          {producto.url_imagen.split(",").map((url, index) => (
+            <img
+              key={index}
+              src={`/images/${url}`}
+              alt={producto.nombre}
+              style={{ width: "600px", height: "600px", objectFit: "cover" }}
+            />
+          ))}
+          {/* <img
+            src={`/images/${traerImagen(producto.url_imagen)}`}
+            alt={producto.nombre}
+            style={{ width: "600px", height: "600px", objectFit: "cover" }}
           <img
             src={`/images/${traerImagen(producto.url_imagen)}`}
             alt={producto.nombre}

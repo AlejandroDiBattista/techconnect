@@ -28,7 +28,7 @@ carritoSchema.statics.agregarProducto = async function (userId, productoId, cant
   } else {
     carrito.productos.push({ productoId, cantidad, variante });
   }
-
+  
   await carrito.save();
 
   return carrito;
