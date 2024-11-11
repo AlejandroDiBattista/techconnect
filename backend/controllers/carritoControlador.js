@@ -5,27 +5,11 @@ export const agregarProducto = async (req, res) => {
   const { userId } = req.params;
   const { productoId, cantidad, variante } = req.body;
 
-  try {
-    let carrito = await Carrito.findOne({ userId, estado: 'pendiente' });
-
-    if (!carrito) {
-      carrito = new Carrito({ userId, productos: [] });
-    }
-
-    const productoExistente = carrito.productos.find(
-      (prod) => prod.productoId.toString() === productoId && prod.variante === variante
-    );
-
-    if (productoExistente) {
-      productoExistente.cantidad += cantidad;
-    } else {
-      carrito.productos.push({ productoId, cantidad, variante });
-    }
-
-    await carrito.save();
-    res.status(200).json(carrito);
-  } catch (error) {
-    res.status(500).json({ error: 'Error al agregar producto' });
+  const result = await Carrito.agregarProducto(userId, productoId, cantidad, variante);
+  if (result.success) {
+    res.status(200).json(result.data);
+  } else {
+    res.status(500).json({ error: result.error });
   }
 };
 
@@ -33,14 +17,11 @@ export const agregarProducto = async (req, res) => {
 export const verCarrito = async (req, res) => {
   const { userId } = req.params;
 
-  try {
-    const carrito = await Carrito.verCarrito(userId);
-    if (!carrito) {
-      return res.status(404).json({ message: 'Carrito no encontrado' });
-    }
-    res.status(200).json(carrito);
-  } catch (error) {
-    res.status(500).json({ message: 'Error al obtener el carrito', error });
+  const result = await Carrito.verCarrito(userId);
+  if (result.success) {
+    res.status(200).json(result.data);
+  } else {
+    res.status(404).json({ message: result.error });
   }
 };
 
@@ -48,30 +29,24 @@ export const verCarrito = async (req, res) => {
 export const confirmarCompra = async (req, res) => {
   const { userId } = req.params;
 
-  try {
-    const carrito = await Carrito.confirmarCompra(userId);
-    if (!carrito) {
-      return res.status(404).json({ message: 'Carrito no encontrado o ya confirmado' });
-    }
-    res.status(200).json({ message: 'Compra confirmada', carrito });
-  } catch (error) {
-    res.status(500).json({ message: 'Error al confirmar la compra', error });
+  const result = await Carrito.confirmarCompra(userId);
+  if (result.success) {
+    res.status(200).json({ message: 'Compra confirmada', carrito: result.data });
+  } else {
+    res.status(404).json({ message: result.error });
   }
 };
 
 // eliminar un producto del carrito
 export const eliminarProducto = async (req, res) => {
   const { userId } = req.params;
-  const { productoId } = req.body;
+  const { productoId, cantidad, variante } = req.body;
 
-  try {
-    const carrito = await Carrito.eliminarProducto(userId, productoId);
-    if (!carrito) {
-      return res.status(404).json({ message: 'Producto no encontrado en el carrito' });
-    }
-    res.status(200).json(carrito);
-  } catch (error) {
-    res.status(500).json({ message: 'Error al eliminar el producto del carrito', error });
+  const result = await Carrito.eliminarProducto(userId, productoId, cantidad, variante);
+  if (result.success) {
+    res.status(200).json(result.data);
+  } else {
+    res.status(404).json({ message: result.error });
   }
 };
 
@@ -79,13 +54,10 @@ export const eliminarProducto = async (req, res) => {
 export const borrarCarrito = async (req, res) => {
   const { id } = req.params;
 
-  try {
-    const carrito = await Carrito.borrarCarrito(id);
-    if (!carrito) {
-      return res.status(404).json({ message: 'Carrito no encontrado' });
-    }
-    res.status(200).json({ message: 'Carrito eliminado exitosamente' });
-  } catch (error) {
-    res.status(500).json({ message: 'Error al borrar el carrito', error });
+  const result = await Carrito.borrarCarrito(id);
+  if (result.success) {
+    res.status(200).json({ message: result.message });
+  } else {
+    res.status(404).json({ message: result.error });
   }
 };

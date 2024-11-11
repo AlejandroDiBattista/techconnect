@@ -19,13 +19,20 @@ const ProductoSchema = new Schema({
 
 
 // Métodos estáticos para el modelo de producto
-ProductoSchema.statics.traerProductos = async function(clasificacion) {
-    const filtro = clasificacion ? { clasificacion } : {};
-    return this.find(filtro).populate('clasificacion');
+ProductoSchema.statics.traerProductos = async function(categoria) {
+    const filtro = categoria ? { categoria } : {};
+    return this.find(filtro)
+               .populate('categoria')
+               .sort({ nombre: 1 });
 };
 
 ProductoSchema.statics.traerProducto = async function(id) {
-    return this.findById(id);
+    const producto = await this.findById(id)
+                              .populate('categoria');
+    if (!producto) {
+        throw new Error('Producto no encontrado');
+    }
+    return producto;
 };
 
 const Producto = mongoose.model('Producto', ProductoSchema);

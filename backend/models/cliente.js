@@ -14,11 +14,17 @@ const ClienteSchema = new Schema({
     tarjeta: { type: String, required: true },
 }, { timestamps: true });
 
-
-export const agregar = async (datos) => {
+ClienteSchema.statics.agregar = async function(datos) {
     const email = datos.email;
     assert(validarEmail(email), 'Email es requerido');
-    const cliente = new Cliente(datos);
+    
+    // Verificar si ya existe el email
+    const clienteExistente = await this.findOne({ email });
+    if (clienteExistente) {
+        throw new Error('El email ya está registrado');
+    }
+    
+    const cliente = new this(datos);
     return cliente.save();
 };
 
