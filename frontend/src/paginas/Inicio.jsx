@@ -11,25 +11,13 @@ import {
 
 // import Datos from "../datos/datos.js";
 import { useEffect, useState } from "react";
-
-async function traerCategorias() {
-  try {
-    console.log("Fetching categories...");
-    const response = await fetch("http://localhost:3000/categorias");
-    const data = await response.json();
-    console.log("Categories fetched:", data);
-    return data;
-  } catch (error) {
-    console.error("Error fetching categories:", error);
-    return [];
-  }
-}
+import DataService from "../datos/datos.js";
 
 export function Inicio() {
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
-    traerCategorias().then((data) => setCategorias(data));
+    DataService.traerCategorias().then(setCategorias);
   }, []);
 
   return (

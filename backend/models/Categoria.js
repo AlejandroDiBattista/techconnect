@@ -12,10 +12,9 @@ const CategoriaSchema = new Schema({
 // Trae todas las categorias
 CategoriaSchema.statics.traer = async function() {
     const categorias = await this.find().sort({ nombre: 1 });
+
+    if (!categorias.length) return { success: false, error: `No hay categorias disponibles ${categorias.length}` };
     
-    if (!categorias.length) {
-        return { success: false, error: `No hay categorias disponibles ${categorias.length}` };
-    }
     return { success: true, data: categorias };
 };
 

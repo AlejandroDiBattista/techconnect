@@ -19,29 +19,28 @@ const ProductoSchema = new Schema({
     }],
 }, { timestamps: true });
 
-// Crear un producto
-ProductoSchema.statics.crear = async function(datos) {
-    const producto = new this(datos);
-    await producto.save();
-    return { success: true, data: producto };
-};
+// // Crear un producto (no implementado aun)
+// ProductoSchema.statics.crear = async function(datos) {
+//     const producto = new this(datos);
+//     await producto.save();
+//     return { success: true, data: producto };
+// };
 
 // Traer todos los productos o los de una categoría específica
 ProductoSchema.statics.traerTodos = async function(categoria) {
-    const filtro = categoria ? { categoria: ObjectId(categoria) } : {};
-    const productos = await this.find(filtro)
-    if(!productos.length) {
-        return { success: false, error: 'No hay productos disponibles' };
-    }
+    const productos = await this.find({ categoria: ObjectId(categoria) })
+    
+    if(!productos.length) return { success: false, error: 'No hay productos disponibles' };
+
     return { success: true, data: productos };
 };
 
 // Traer un producto específico
 ProductoSchema.statics.traer = async function(id) {
     const producto = await this.findById(id)
-    if (!producto) {
-        return { success: false, error: 'Producto no encontrado' };
-    }
+    
+    if (!producto) return { success: false, error: 'Producto no encontrado' };
+    
     return { success: true, data: producto };
 };
 

@@ -10,27 +10,7 @@ import {
   ButtonGroup,
   Snackbar,
 } from "@mui/material";
-
-function traerImagen(url){
-  return url.split(",")[0];
-}
-
-function traerImagenes(urls){
-  return urls.split(",").map(url => `/images/${url.strip()}`);
-}
-
-async function traerProducto(id) {
-  try {
-    console.log(`Fetching productos... ${id ? `for category ${id}` : "(none)"}`);
-    const response = await fetch(`http://localhost:3000/productos`);
-    const data = await response.json();
-    console.log("productos fetched:", data);
-    return data.filter((producto) => id ? producto._id == id : true)[0];
-  } catch (error) {
-    console.error("Error fetching productos:", error);
-    return [];
-  }
-}
+import DataService from "../datos/datos.js";
 
 export function Detalle() {
   const { id } = useParams();
@@ -60,9 +40,10 @@ export function Detalle() {
   }
 
   useEffect(() => {
-    traerProducto(id).then((data) => ponerProducto(data));
+    DataService.traerProducto(id).then((data) => ponerProducto(data));
   }, [id]);
 
+  const traerImagen = DataService.traerImagen;
 
   function handleClick() {
     navigate(-1); // Esto hace que se navegue a la página anterior
@@ -106,17 +87,8 @@ export function Detalle() {
     <Container>
       <Card>
         <CardContent>
-          {producto.url_imagen.split(",").map((url, index) => (
-            <img
-              key={index}
-              src={`/images/${url}`}
-              alt={producto.nombre}
-              style={{ width: "600px", height: "600px", objectFit: "cover" }}
-            />
-          ))}
-       
           <img
-            src={`/images/${traerImagen(producto.url_imagen)}`}
+            src={traerImagen(producto.url_imagen)}
             alt={producto.nombre}
             style={{ width: "600px", height: "600px", objectFit: "cover" }}
           />

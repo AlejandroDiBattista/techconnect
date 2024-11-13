@@ -1,6 +1,7 @@
 import React from 'react';
-import { Box, Typography, List, ListItem, ListItemText, Button, IconButton, Divider } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { Box, Typography, List, ListItem, ListItemText, Button, IconButton, Divider, Card, CardMedia, CardContent } from '@mui/material';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import { useNavigate } from 'react-router-dom';
 
 export function Carrito(){
@@ -12,7 +13,11 @@ export function Carrito(){
     { id: 3, nombre: 'Producto 3', cantidad: 3 },
   ];
 
-  const handleEliminar = (id) => {
+  const handleAgregar = (id) => {
+    // Lógica para eliminar el producto del carrito
+    console.log(`Eliminar producto con id: ${id}`);
+  };
+  const handleQuitar = (id) => {
     // Lógica para eliminar el producto del carrito
     console.log(`Eliminar producto con id: ${id}`);
   };
@@ -35,29 +40,40 @@ export function Carrito(){
         <>
           <List>
             {productos.map((producto) => (
-              <ListItem key={producto.id} secondaryAction={
-                <IconButton edge="end" aria-label="delete" onClick={() => handleEliminar(producto.id)}>
-                  <DeleteIcon />
-                </IconButton>
-              }>
-                <ListItemText
-                  primary={producto.nombre}
-                  secondary={`Cantidad: ${producto.cantidad}`}
-                />
-              </ListItem>
+                <Card sx={{ maxWidth: 345, display: 'flex', flexDirection: 'row', alignItems: 'center', padding: 2 }}>
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image="/images/001.jpg" // Aquí puedes colocar la URL de la imagen del producto
+                    alt="Producto"
+                 />
+                 <CardContent>
+                    <Typography variant="h6" component="div">
+                      Descripción del producto
+                   </Typography>
+                   <Typography variant="h5" color="text.secondary">
+                     $50,000
+                   </Typography>
+                   <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
+                     <Button variant="outlined" onClick={handleQuitar} sx={{ minWidth: 40 }}>
+                       -
+                     </Button>
+                     <Typography variant="h6" sx={{ mx: 2 }}>
+                       3
+                     </Typography>
+                     <Button variant="outlined" onClick={handleAgregar} sx={{ minWidth: 40 }}>
+                       +
+                     </Button>
+                   </Box>
+                 </CardContent>
+               </Card>
             ))}
           </List>
           <Divider />
           <Typography variant="h6" sx={{ mt: 2 }}>
             Total: ${total}
           </Typography>
-          <Button
-            variant="contained"
-            color="primary"
-            fullWidth
-            sx={{ mt: 2 }}
-            onClick={handleConfirmarCompra}
-          >
+          <Button variant="contained" color="primary" sx={{ mt: 2 }} onClick={handleConfirmarCompra}>
             Continuar Compra
           </Button>
         </>

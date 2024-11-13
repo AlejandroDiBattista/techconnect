@@ -8,41 +8,22 @@ import {
 } from "@mui/material";
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-  
+import DataService from "../datos/datos.js";
+
 function addToCart() {
   alert("Producto añadido al carrito"); 
 }
 
-function imagen(url) {
-  // Verifica si url es una cadena de texto válida antes de hacer split
-  return typeof url === "string" && url
-    ? url.split(",")[0]
-    : "imagen-predeterminada.jpg";
-}
-
-async function traerProductos(id) {
-  try {
-    console.log(`Fetching productos... ${id ? `for category ${id}` : "(none)"}`);
-    const response = await fetch(`http://localhost:3000/productos`);
-    const data = await response.json();
-    console.log("productos fetched:", data);
-    return data.filter((producto) => id ? producto.categoria == id : true);
-  } catch (error) {
-    console.error("Error fetching productos:", error);
-    return [];
-  }
-}
-
-
 export function Elegir() {
   const { id } = useParams();
-
-  console.log("Elegir > id:", id);
   const [productos, setProductos] = useState([]);
 
   useEffect(() => {
-    traerProductos(id).then((data) => setProductos(data));
-  }, []);
+    DataService.traerProductos(id).then(setProductos);
+  }, [id]);
+
+  // Reemplazar la función imagen con DataService.traerImagen
+  const traerImagen = DataService.traerImagen;
 
   if (productos === null) {
     return (
@@ -64,7 +45,7 @@ export function Elegir() {
             >
               <CardContent style={{ cursor: "pointer" }}>
                 <img
-                  src={`/images/${imagen(producto.url_imagen)}`}
+                  src={traerImagen(producto.url_imagen)}
                   alt={producto.nombre}
                   style={{
                     width: "300px",

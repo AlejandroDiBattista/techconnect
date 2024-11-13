@@ -1,4 +1,4 @@
-import Carrito from '../models/Carrito.js';
+import Carrito from '../models/Compra.js';
 
 // Crear un carrito nuevo
 async function crearCompra(req, res) {
