@@ -59,7 +59,7 @@ export function Elegir() {
         <Grid xs={12} sm={6} md={4} key={index}>
           <Card style={{ maxWidth: "300px", margin: "auto" }}>
             <Link
-              to={`/detalle/${producto.id}`}
+              to={`/detalle/${producto._id}`}
               style={{ textDecoration: "none", color: "inherit" }}
             >
               <CardContent style={{ cursor: "pointer" }}>

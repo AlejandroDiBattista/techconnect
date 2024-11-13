@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Datos from "../datos/datos.js";
 
 import {
   Typography,
@@ -19,42 +18,56 @@ function traerImagenes(urls){
   return urls.split(",").map(url => `/images/${url.strip()}`);
 }
 
+async function traerProducto(id) {
+  try {
+    console.log(`Fetching productos... ${id ? `for category ${id}` : "(none)"}`);
+    const response = await fetch(`http://localhost:3000/productos`);
+    const data = await response.json();
+    console.log("productos fetched:", data);
+    return data.filter((producto) => id ? producto._id == id : true)[0];
+  } catch (error) {
+    console.error("Error fetching productos:", error);
+    return [];
+  }
+}
+
 export function Detalle() {
   const { id } = useParams();
   const navigate = useNavigate();
+
   const [precio, setPrecio] = useState(0);
   const [aumentos, setAumentos] = useState({});
   const [seleccionadas, setSeleccionadas] = useState({});
   const [producto, setProducto] = useState(null);
 
-  useEffect(() => {
-    let tmpProducto = Datos.traerProducto(id);
-    setProducto(tmpProducto);
-    const aumentosIniciales = tmpProducto.variantes.reduce(
+  function ponerProducto(producto) {
+    setProducto(producto);
+    const aumentosIniciales = producto.variantes.reduce(
       (acc, variante, index) => {
         acc[index] = variante.valores[0].aumento;
         return acc;
       },
       {}
     );
-
-    const seleccionadasIniciales = tmpProducto.variantes.reduce(
+    const seleccionadasIniciales = producto.variantes.reduce(
       (acc, variante, index) => {
         acc[index] = 0; // Selecciona la primera opción por defecto
         return acc;
       },
       {}
     );
-
-    setAumentos(aumentosIniciales);
-    setSeleccionadas(seleccionadasIniciales);
-
     const precioInicial = Object.values(aumentosIniciales).reduce(
-      (acc, curr) => acc + curr,
-      tmpProducto.precio
+      (acc, curr) => acc + curr, producto.precio
     );
     setPrecio(precioInicial);
+    setAumentos(aumentosIniciales);
+    setSeleccionadas(seleccionadasIniciales);
+  }
+
+  useEffect(() => {
+    traerProducto(id).then((data) => ponerProducto(data));
   }, [id]);
+
 
   function handleClick() {
     navigate(-1); // Esto hace que se navegue a la página anterior
