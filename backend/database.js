@@ -14,7 +14,7 @@ const connectDB = async () => {
     } catch (error) {
         console.error('Error connecting to MongoDB', error);
         process.exit(1);
-    } 
+    }
 };
 
 const cargarDatosIniciales = async () => {
@@ -22,15 +22,15 @@ const cargarDatosIniciales = async () => {
     const categoriaCount = await Categoria.cantidad();
 
     console.log(`hay ${productoCount} productos y ${categoriaCount} categorias en la base de datos`);
-    const __dirname = path.dirname(new URL(import.meta.url).pathname);
-    
+    const __dirname = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]):\//, '$1:/'));
+
     if (categoriaCount === 0) {
         const categorias = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/categorias.json'), 'utf-8'));
         console.log(`>> Cargando ${categorias.length} categorias`);
 
         await Categoria.insertMany(categorias);
     }
-    
+
     if (productoCount === 0) {
         const productos = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/productos.json'), 'utf-8'));
         console.log(`>> Cargando ${productos.length} productos`);
