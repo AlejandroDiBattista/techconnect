@@ -100,10 +100,7 @@ export function Detalle() {
               style={{ width: "600px", height: "600px", objectFit: "cover" }}
             />
           ))}
-          {/* <img
-            src={`/images/${traerImagen(producto.url_imagen)}`}
-            alt={producto.nombre}
-            style={{ width: "600px", height: "600px", objectFit: "cover" }}
+       
           <img
             src={`/images/${traerImagen(producto.url_imagen)}`}
             alt={producto.nombre}

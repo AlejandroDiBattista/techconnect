@@ -23,8 +23,8 @@ router.get('/', (req,res) => {
 
 // Rutas
 router.get('/categorias', traerCategorias);
+router.get('/productos/:id', traerProducto);
 router.get('/productos', traerProductos);
-router.get('/producto/:id', traerProducto);
 
 //rutas del carrito
 router.post('/compra/:usuario', crearCompra);

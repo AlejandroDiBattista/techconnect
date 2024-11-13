@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
+const { ObjectId } = mongoose.Types;
 
 const ProductoSchema = new Schema({
     id: Number,
@@ -21,7 +22,8 @@ const ProductoSchema = new Schema({
 
 // Traer todos los productos o los de una categoría específica
 ProductoSchema.statics.traerTodos = async function(categoria) {
-    const filtro = categoria ? { categoria } : {};
+    const filtro = categoria ? { categoria: ObjectId(categoria) } : {};
+    console.log('TraerTodos >', filtro);
     const productos = await this.find(filtro)
     if(!productos.length) {
         return { success: false, error: 'No hay productos disponibles' };

@@ -2,12 +2,17 @@ import mongoose from 'mongoose';
 import Producto from '../models/producto.js';
 import Cliente from '../models/cliente.js';
 import Categoria from '../models/categoria.js';
+import e from 'express';
 
 // Traer categorías
 async function traerCategorias(req, res) {
     try {
         const categorias = await Categoria.traer();
-        res.status(200).json(categorias);
+        if(!categorias.success) {
+            res.status(404).json({ mensaje: 'No hay categorías disponibles' });
+        } else {
+            res.status(200).json(categorias.data);
+        }
     } catch (error) {
         res.status(500).json({ mensaje: 'Error al traer las categorías' });
     }
@@ -16,8 +21,14 @@ async function traerCategorias(req, res) {
 // Traer productos
 async function traerProductos(req, res) {
     try {
-        const productos = await Producto.traerTodos();
-        res.status(200).json(productos);
+        const { id } = req.params;
+        console.log(`id: ${id} ${id ? 'con id' : 'sin id'}`);
+        const productos = await Producto.traerTodos(id);
+        if (!productos.success) {
+            res.status(404).json({ mensaje: 'No hay productos disponibles' });
+        } else {
+            res.status(200).json(productos.data);
+        }
     } catch (error) {
         res.status(500).json({ mensaje: 'Error al traer los productos' });
     }
@@ -28,13 +39,13 @@ async function traerProducto(req, res) {
     const { id } = req.params;
     try {
         const producto = await Producto.traer(id);
-        res.json(producto);
-    } catch (error) {
-        if (error.message === 'Producto no encontrado') {
-            res.status(404).json({ mensaje: error.message });
+        if (!producto.success) {
+            res.status(404).json({ mensaje: 'Producto no encontrado' });
         } else {
-            res.status(500).json({ mensaje: 'Error interno del servidor' });
+            res.status(200).json(producto.data);
         }
+    } catch (error) {
+        res.status(500).json({ mensaje: 'Error interno del servidor' });
     }
 }
 
@@ -43,13 +54,13 @@ async function agregarDatosCliente(req, res) {
     try {
         const datos = req.body;
         const cliente = await Cliente.crear(datos);
-        res.status(201).json({ cliente_id: cliente.data._id });
-    } catch (error) {
-        if (error.message === 'El email ya está registrado') {
-            res.status(400).json({ mensaje: error.message });
+        if(!cliente.success) {
+            res.status(400).json({ mensaje: cliente.error });
         } else {
-            res.status(500).json({ mensaje: 'Error al agregar el cliente' });
+            res.status(201).json({ cliente_id: cliente.data._id });
         }
+    } catch (error) {
+        res.status(500).json({ mensaje: 'Error al agregar el cliente' });
     }
 }
 

@@ -4,4 +4,8 @@ GET http://localhost:3000/categorias
 GET http://localhost:3000/productos
 
 ###
-GET http://localhost:3000/producto/6734509dde17837783f1be6d
+GET http://localhost:3000/producto/2
+
+
+### 
+GET http://localhost:3000/productos/6734509dde17837783f1be68

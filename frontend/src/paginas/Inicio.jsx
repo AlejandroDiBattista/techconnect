@@ -9,11 +9,29 @@ import {
   Button,
 } from "@mui/material";
 
-import Datos from "../datos/datos.js";
+// import Datos from "../datos/datos.js";
+import { useEffect, useState } from "react";
 
+async function traerCategorias() {
+  try {
+    console.log("Fetching categories...");
+    const response = await fetch("http://localhost:3000/categorias");
+    const data = await response.json();
+    console.log("Categories fetched:", data);
+    return data;
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    return [];
+  }
+}
 
 export function Inicio() {
-  const categorias = Datos.traerCaterorias();
+  const [categorias, setCategorias] = useState([]);
+
+  useEffect(() => {
+    traerCategorias().then((data) => setCategorias(data));
+  }, []);
+
   return (
     <Container
       maxWidth="lg"
@@ -71,7 +89,7 @@ export function Inicio() {
                     color="primary"
                     fullWidth
                     component={RouterLink}
-                    to={"/elegir/" + categoria.id}
+                    to={"/elegir/" + categoria._id}
                     style={{ marginTop: "10px" }}
                   >
                     Ver más
