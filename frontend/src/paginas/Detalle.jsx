@@ -8,6 +8,7 @@ import {
   CardContent,
   Container,
   ButtonGroup,
+  Snackbar,
 } from "@mui/material";
 
 function traerImagen(url){
@@ -39,6 +40,8 @@ export function Detalle() {
   const [aumentos, setAumentos] = useState({});
   const [seleccionadas, setSeleccionadas] = useState({});
   const [producto, setProducto] = useState(null);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
 
   function ponerProducto(producto) {
     setProducto(producto);
@@ -79,6 +82,12 @@ export function Detalle() {
       ...prevSeleccionadas,
       [varianteIndex]: valorIndex,
     }));
+  };
+
+  const agregarAlCarrito = () => {
+    // Lógica para agregar el producto al carrito
+    setOpenSnackbar(true);
+    setSnackbarMessage("Producto agregado al carrito");
   };
 
   if (producto == null) {
@@ -158,6 +167,22 @@ export function Detalle() {
               </CardContent>
             </Card>
           ))}
+
+          <Button 
+            variant="contained" 
+            color="primary" 
+            onClick={agregarAlCarrito}
+            style={{ marginTop: '20px' }}
+          >
+            Agregar al Carrito
+          </Button>
+
+          <Snackbar
+            open={openSnackbar}
+            autoHideDuration={6000}
+            onClose={() => setOpenSnackbar(false)}
+            message={snackbarMessage}
+          />
         </CardContent>
       </Card>
     </Container>
