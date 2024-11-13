@@ -42,19 +42,11 @@ export function Detalle() {
 
   function ponerProducto(producto) {
     setProducto(producto);
-    const aumentosIniciales = producto.variantes.reduce(
-      (acc, variante, index) => {
-        acc[index] = variante.valores[0].aumento;
-        return acc;
-      },
-      {}
+    const aumentosIniciales = Object.fromEntries(
+      producto.variantes.map((variante, index) => [index, variante.valores[0].aumento])
     );
-    const seleccionadasIniciales = producto.variantes.reduce(
-      (acc, variante, index) => {
-        acc[index] = 0; // Selecciona la primera opción por defecto
-        return acc;
-      },
-      {}
+    const seleccionadasIniciales = Object.fromEntries(
+      producto.variantes.map((_, index) => [index, 0]) // Selecciona la primera opción por defecto
     );
     const precioInicial = Object.values(aumentosIniciales).reduce(
       (acc, curr) => acc + curr, producto.precio
