@@ -1,13 +1,27 @@
 import React from 'react';
 import { Box, Typography, List, ListItem, ListItemText, Button, IconButton, Divider } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useNavigate } from 'react-router-dom';
 
-const Carrito = () => {
+export function Carrito(){
+  const navigate = useNavigate(); // Inicializar el hook useNavigate
+
   const productos = [
     { id: 1, nombre: 'Producto 1', cantidad: 2 },
     { id: 2, nombre: 'Producto 2', cantidad: 1 },
     { id: 3, nombre: 'Producto 3', cantidad: 3 },
   ];
+
+  const handleEliminar = (id) => {
+    // Lógica para eliminar el producto del carrito
+    console.log(`Eliminar producto con id: ${id}`);
+  };
+
+  const handleConfirmarCompra = () => {
+    navigate('/cliente'); // Navegar a la página /cliente
+  };
+
+  const total = productos.reduce((acc, producto) => acc + producto.cantidad * 100, 0); // Ejemplo de cálculo de total
 
   return (
     <Box sx={{ p: 3, maxWidth: 500, mx: 'auto' }}>
@@ -18,39 +32,38 @@ const Carrito = () => {
       {productos.length === 0 ? (
         <Typography>No hay productos en el carrito</Typography>
       ) : (
-        <List>
-          {productos.map((producto) => (
-            <React.Fragment key={producto.id}>
-              <ListItem
-                secondaryAction={
-                  <IconButton edge="end">
-                    <DeleteIcon />
-                  </IconButton>
-                }
-              >
+        <>
+          <List>
+            {productos.map((producto) => (
+              <ListItem key={producto.id} secondaryAction={
+                <IconButton edge="end" aria-label="delete" onClick={() => handleEliminar(producto.id)}>
+                  <DeleteIcon />
+                </IconButton>
+              }>
                 <ListItemText
                   primary={producto.nombre}
                   secondary={`Cantidad: ${producto.cantidad}`}
                 />
               </ListItem>
-              <Divider />
-            </React.Fragment>
-          ))}
-        </List>
-      )}
-
-      {productos.length > 0 && (
-        <Button
-          variant="contained"
-          color="primary"
-          fullWidth
-          sx={{ mt: 2 }}
-        >
-          Confirmar Compra
-        </Button>
+            ))}
+          </List>
+          <Divider />
+          <Typography variant="h6" sx={{ mt: 2 }}>
+            Total: ${total}
+          </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            sx={{ mt: 2 }}
+            onClick={handleConfirmarCompra}
+          >
+            Continuar Compra
+          </Button>
+        </>
       )}
     </Box>
-  );//hola aca estoy
-};
+  );
+}
 
-export default Carrito; // Asegúrate de tener esta línea para exportar el componente
+export default Carrito;
