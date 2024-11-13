@@ -1,20 +1,44 @@
 // models/Carrito.js
 import mongoose from 'mongoose';
 
-const productoSchema = new mongoose.Schema({
+const ProductoSchema = new mongoose.Schema({
   productoId: { type: mongoose.Schema.Types.ObjectId, ref: 'Producto', required: true },
   cantidad: { type: Number, required: true, min: 1 },
   variante: { type: String }
 });
 
-const carritoSchema = new mongoose.Schema({
+const CarritoSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }, //userId: { type: String, required: true } (prueba)
-  productos: [productoSchema],
+  productos: [ProductoSchema],
   estado: { type: String, default: 'pendiente' } // 'pendiente', 'confirmado'
 });
 
+// Crea un carrito nuevo 
+CarritoSchema.statics.crear = async function(userId) {
+  try {
+    const carrito = await this.create({ userId , estado: 'pendiente' });
+    return { success: true, data: carrito };
+  } catch (error) {
+    return { success: false, error: 'Error al crear el carrito' };
+  }
+};
+// Método para ver carrito
+CarritoSchema.statics.traer = async function(userId) {
+  try {
+    const carrito = await this.findOne({ userId, estado: 'pendiente' })
+      .populate('productos.productoId');
+    
+    if (!carrito) {
+      return { success: false, error: 'Carrito no encontrado' };
+    }
+    return { success: true, data: carrito };
+  } catch (error) {
+    return { success: false, error: 'Error al obtener el carrito' };
+  }
+};
+
 //Metodo para agregar un producto al carrito
-carritoSchema.statics.agregarProducto = async function (userId, productoId, cantidad, variante) {
+CarritoSchema.statics.agregar = async function (userId, productoId, cantidad, variante) {
   try {
     let carrito = await this.findOne({ userId, estado: 'pendiente' });
 
@@ -39,39 +63,8 @@ carritoSchema.statics.agregarProducto = async function (userId, productoId, cant
   }
 };
 
-// Método para ver carrito
-carritoSchema.statics.verCarrito = async function(userId) {
-  try {
-    const carrito = await this.findOne({ userId, estado: 'pendiente' })
-      .populate('productos.productoId');
-    
-    if (!carrito) {
-      return { success: false, error: 'Carrito no encontrado' };
-    }
-    return { success: true, data: carrito };
-  } catch (error) {
-    return { success: false, error: 'Error al obtener el carrito' };
-  }
-};
-
-// Método para confirmar compra
-carritoSchema.statics.confirmarCompra = async function(userId) {
-  try {
-    const carrito = await this.findOne({ userId, estado: 'pendiente' });
-    if (!carrito) {
-      return { success: false, error: 'Carrito no encontrado o ya confirmado' };
-    }
-    
-    carrito.estado = 'confirmado';
-    await carrito.save();
-    return { success: true, data: carrito };
-  } catch (error) {
-    return { success: false, error: 'Error al confirmar la compra' };
-  }
-};
-
 // Método para eliminar producto
-carritoSchema.statics.eliminarProducto = async function(userId, productoId, cantidad, variante) {
+CarritoSchema.statics.quitar = async function(userId, productoId, cantidad, variante) {
   try {
     const carrito = await this.findOne({ userId, estado: 'pendiente' });
     if (!carrito) {
@@ -102,8 +95,25 @@ carritoSchema.statics.eliminarProducto = async function(userId, productoId, cant
   }
 };
 
+
+// Método para confirmar compra
+CarritoSchema.statics.confirmar = async function(userId) {
+  try {
+    const carrito = await this.findOne({ userId, estado: 'pendiente' });
+    if (!carrito) {
+      return { success: false, error: 'Carrito no encontrado o ya confirmado' };
+    }
+    
+    carrito.estado = 'confirmado';
+    await carrito.save();
+    return { success: true, data: carrito };
+  } catch (error) {
+    return { success: false, error: 'Error al confirmar la compra' };
+  }
+};
+
 // Método para borrar carrito
-carritoSchema.statics.borrarCarrito = async function(userId) {
+CarritoSchema.statics.cancelar = async function(userId) {
   try {
     const carrito = await this.findOneAndDelete({ userId, estado: 'pendiente' });
     if (!carrito) {
@@ -115,6 +125,11 @@ carritoSchema.statics.borrarCarrito = async function(userId) {
   }
 };
 
-const Carrito = mongoose.model('Carrito', carritoSchema);
+// Cuenta la cantidad de carritos
+CarritoSchema.statics.cantidad = async function() {
+  return await this.countDocuments();
+};
+
+const Carrito = mongoose.model('Carrito', CarritoSchema);
 export default Carrito;
 

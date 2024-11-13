@@ -14,20 +14,38 @@ const ClienteSchema = new Schema({
     tarjeta: { type: String, required: true },
 }, { timestamps: true });
 
-ClienteSchema.statics.agregar = async function(datos) {
+// Agregar un cliente
+ClienteSchema.statics.crear = async function(datos) {
     const email = datos.email;
-    assert(validarEmail(email), 'Email es requerido');
+    if (!email || !validarEmail(email)) {
+        return { success: false, error: 'Email es requerido' };
+    }
     
-    // Verificar si ya existe el email
     const clienteExistente = await this.findOne({ email });
     if (clienteExistente) {
-        throw new Error('El email ya está registrado');
+        return { success: false, error: 'El email ya está registrado' };
     }
     
     const cliente = new this(datos);
-    return cliente.save();
+    await cliente.save();
+    return { success: true, data: cliente };
 };
 
+// Trae un cliente especifico
+ClienteSchema.statics.traer = async function(id) {
+    const cliente = await this.findById(id);
+    if (!cliente) {
+        return { success: false, error: 'Cliente no encontrado' };
+    }
+    return { success: true, data: cliente };
+}
+
+// Cuenta la cantidad de clientes 
+ClienteSchema.statics.cantidad = async function() {
+    return await this.countDocuments();
+};
+
+// Validar email
 function validarEmail(email) {
     const re = /\S+@\S+\.\S+/;
     return re.test(email);

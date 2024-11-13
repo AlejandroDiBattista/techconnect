@@ -3,6 +3,9 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import rutas from './routes/rutas.js';
 
+// import productos  from './data/productos.json';
+// import categorias from './data/categorias.json';
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -11,12 +14,12 @@ app.use(express.json());
 app.use(cors());
 
 //Utilizacion de rutas
-app.use('/', rutas);
+app.use('', rutas);
 
 // Conexión
 const ConectarDB = async () => {
     try {
-        await mongoose.connect('mongodb://localhost:27017/Techconnect');
+        await mongoose.connect('mongodb://localhost:27017/techconnect');
         console.log("Se conecto a la Base de datos");
         app.listen(PORT, () => { console.log(`Servidor escuchando en el puerto ${PORT}`); });
     } catch (error) {

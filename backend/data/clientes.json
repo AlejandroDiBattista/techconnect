@@ -1,0 +1,12 @@
+[
+    {
+        "domicilio": {
+            "calle": "Calle Falsa 123",
+            "localidad": "Springfield",
+            "cp": 12345
+        },
+        "email": "cliente1@example.com",
+        "telefono": "123456789",
+        "tarjeta": "4111111111111111"
+    }
+]

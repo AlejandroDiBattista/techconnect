@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const ProductoSchema = new Schema({
+    id: Number,
     nombre: { type: String, required: true },
     precio: { type: Number, required: true },
     categoria: { type: Schema.Types.ObjectId, ref: 'Clasificacion', required: true },
@@ -18,21 +19,29 @@ const ProductoSchema = new Schema({
 }, { timestamps: true });
 
 
-// Métodos estáticos para el modelo de producto
-ProductoSchema.statics.traerProductos = async function(categoria) {
+// Traer todos los productos o los de una categoría específica
+ProductoSchema.statics.traerTodos = async function(categoria) {
     const filtro = categoria ? { categoria } : {};
-    return this.find(filtro)
-               .populate('categoria')
-               .sort({ nombre: 1 });
+    const productos = await this.find(filtro)
+    if(!productos.length) {
+        return { success: false, error: 'No hay productos disponibles' };
+    }
+    return { success: true, data: productos };
 };
 
-ProductoSchema.statics.traerProducto = async function(id) {
+// Traer un producto específico
+ProductoSchema.statics.traer = async function(id) {
     const producto = await this.findById(id)
-                              .populate('categoria');
     if (!producto) {
-        throw new Error('Producto no encontrado');
+        return { success: false, error: 'Producto no encontrado' };
     }
-    return producto;
+    return { success: true, data: producto };
+};
+
+
+// Me dice cuantos productos hay en la tabla 
+ProductoSchema.statics.cantidad = async function() {
+    return await this.countDocuments();
 };
 
 const Producto = mongoose.model('Producto', ProductoSchema);

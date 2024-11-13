@@ -1,36 +1,40 @@
 // routes/api.js
 import express from 'express';
 const router = express.Router();
-import { 
-    traerCategorias, 
-    traerProductos, 
-    traerProducto,  
+import {  
+    traerCategorias,
+    traerProductos,
+    traerProducto,
     agregarDatosCliente 
-} from '../controllers/controlador.js';
+} from '../controllers/ProductoControlador.js';
+
 import { 
-    agregarProducto, 
-    verCarrito, 
-    borrarCarrito, 
-    confirmarCompra, 
-    eliminarProducto 
-} from '../controllers/carritoControlador.js';
+    crearCompra,
+    traerCompra,
+    agregarProducto,
+    quitarProducto,
+    confirmarCompra,
+    cancelarCompra
+  } from '../controllers/CompraControlador.js';
 
 router.get('/', (req,res) => {
     res.send('Servidor en Funcionamiento');
 });
 
 // Rutas
-router.get('/categoria', traerCategorias);
-router.get('/producto', traerProductos);
+router.get('/categorias', traerCategorias);
+router.get('/productos', traerProductos);
 router.get('/producto/:id', traerProducto);
 
-
 //rutas del carrito
-router.post('/carrito/:userId/producto', agregarProducto);
-router.get('/carrito/:userId', verCarrito);
-router.delete('/carrito/:userId/producto', eliminarProducto);
-router.delete('/carrito/:userId', borrarCarrito);
-router.post('/carrito/:userId/confirmar', confirmarCompra);
-router.post('/cliente', agregarDatosCliente);
+router.post('/compra/:usuario', crearCompra);
+router.get('/compra/:usuario', traerCompra);
+router.post('/compra/:usuario/:producto/:variante', agregarProducto);
+router.delete('/compra/:usuario/:producto/:variante', quitarProducto);
+router.put('/compra/:usuario', confirmarCompra);
+router.delete('/compra/:usuario', cancelarCompra);
+
+//rutas del cliente
+router.post('/clientes', agregarDatosCliente);
 
 export default router;

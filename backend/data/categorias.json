@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "nombre": "Celulares",
+        "url_imagen":"celular.webp"
+    },
+    {
+        "id": 2,
+        "nombre": "tablet",
+        "url_imagen":"tablet.webp"
+    },
+    {
+        "id": 3,
+        "nombre": "notebook",
+        "url_imagen":"notebook.webp"
+    }
+]
