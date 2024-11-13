@@ -26,8 +26,8 @@ router.get('/producto/:id', traerProducto);
 
 
 //rutas del carrito
-router.post('/compra/:userId/producto', agregarProducto);
-router.get('/carrito', verCarrito);
+router.post('/carrito/:userId/producto', agregarProducto);
+router.get('/carrito/:userId', verCarrito);
 router.delete('/carrito/:userId/producto', eliminarProducto);
 router.delete('/carrito/:userId', borrarCarrito);
 router.post('/carrito/:userId/confirmar', confirmarCompra);

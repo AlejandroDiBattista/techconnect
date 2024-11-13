@@ -52,9 +52,9 @@ export const eliminarProducto = async (req, res) => {
 
 // borrar el carrito completo
 export const borrarCarrito = async (req, res) => {
-  const { id } = req.params;
+  const { userId } = req.params;
 
-  const result = await Carrito.borrarCarrito(id);
+  const result = await Carrito.borrarCarrito(userId);
   if (result.success) {
     res.status(200).json({ message: result.message });
   } else {

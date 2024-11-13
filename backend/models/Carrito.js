@@ -8,7 +8,7 @@ const productoSchema = new mongoose.Schema({
 });
 
 const carritoSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }, //userId: { type: String, required: true } (prueba)
   productos: [productoSchema],
   estado: { type: String, default: 'pendiente' } // 'pendiente', 'confirmado'
 });
@@ -103,9 +103,9 @@ carritoSchema.statics.eliminarProducto = async function(userId, productoId, cant
 };
 
 // Método para borrar carrito
-carritoSchema.statics.borrarCarrito = async function(id) {
+carritoSchema.statics.borrarCarrito = async function(userId) {
   try {
-    const carrito = await this.findByIdAndDelete(id);
+    const carrito = await this.findOneAndDelete({ userId, estado: 'pendiente' });
     if (!carrito) {
       return { success: false, error: 'Carrito no encontrado' };
     }
