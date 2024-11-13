@@ -26,7 +26,7 @@ async function traerProductos(id) {
     const response = await fetch(`http://localhost:3000/productos`);
     const data = await response.json();
     console.log("productos fetched:", data);
-    return data.filter((producto) => id ? producto.categoria === id : true);
+    return data.filter((producto) => id ? producto.categoria == id : true);
   } catch (error) {
     console.error("Error fetching productos:", error);
     return [];

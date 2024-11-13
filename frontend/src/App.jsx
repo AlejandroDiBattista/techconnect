@@ -24,6 +24,5 @@ export function App() {
             </Layout>
         </Router>
         </>
-
     );
 }

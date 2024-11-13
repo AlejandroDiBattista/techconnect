@@ -19,11 +19,16 @@ const ProductoSchema = new Schema({
     }],
 }, { timestamps: true });
 
+// Crear un producto
+ProductoSchema.statics.crear = async function(datos) {
+    const producto = new this(datos);
+    await producto.save();
+    return { success: true, data: producto };
+};
 
 // Traer todos los productos o los de una categoría específica
 ProductoSchema.statics.traerTodos = async function(categoria) {
     const filtro = categoria ? { categoria: ObjectId(categoria) } : {};
-    console.log('TraerTodos >', filtro);
     const productos = await this.find(filtro)
     if(!productos.length) {
         return { success: false, error: 'No hay productos disponibles' };

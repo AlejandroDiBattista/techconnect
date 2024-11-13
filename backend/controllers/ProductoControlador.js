@@ -22,7 +22,6 @@ async function traerCategorias(req, res) {
 async function traerProductos(req, res) {
     try {
         const { id } = req.params;
-        console.log(`id: ${id} ${id ? 'con id' : 'sin id'}`);
         const productos = await Producto.traerTodos(id);
         if (!productos.success) {
             res.status(404).json({ mensaje: 'No hay productos disponibles' });
@@ -68,7 +67,7 @@ export const agregarProducto = async (req, res) => {
   try {
     const { nombre, precio, categoria, url_imagen, detalle, cantidad, variantes } = req.body;
     const categoriaObjectId = mongoose.Types.ObjectId(categoria);
-    const nuevoProducto = new Producto({
+    const producto = Producto.crear({
       nombre,
       precio,
       categoria: categoriaObjectId,
@@ -77,8 +76,7 @@ export const agregarProducto = async (req, res) => {
       cantidad,
       variantes
     });
-    await nuevoProducto.save();
-    res.status(201).json({ success: true, data: nuevoProducto });
+    res.status(201).json({ success: true, data: producto });
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });
   }
