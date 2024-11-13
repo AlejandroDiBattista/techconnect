@@ -19,4 +19,26 @@
   "productos": [],
   "estado": "pendiente",
   "__v": 1
+},
+{
+  "_id": {
+    "$oid": "6734c1e927d953e1d86c95fc"
+  },
+  "userId": {
+    "$oid": "6734a67810597a9851b99b2b"
+  },
+  "productos": [
+    {
+      "productoId": {
+        "$oid": "6734a28631372a30cd193287"
+      },
+      "cantidad": 1,
+      "variante": "1",
+      "_id": {
+        "$oid": "6734c1e927d953e1d86c95fd"
+      }
+    }
+  ],
+  "estado": "pendiente",
+  "__v": 0
 }]
