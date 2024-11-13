@@ -1,0 +1,22 @@
+[{
+  "_id": {
+    "$oid": "6734a6de5a3b484778a7759a"
+  },
+  "userId": {
+    "$oid": "6734a67810597a9851b99b2b"
+  },
+  "estado": "confirmado",
+  "productos": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6734a8535a3b484778a775a4"
+  },
+  "userId": {
+    "$oid": "6734a6de5a3b484778a7759a"
+  },
+  "productos": [],
+  "estado": "pendiente",
+  "__v": 1
+}]
