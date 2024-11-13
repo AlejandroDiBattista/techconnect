@@ -4,8 +4,7 @@ const router = express.Router();
 import { 
     traerCategorias, 
     traerProductos, 
-    traerProducto, 
-    crearCompra, 
+    traerProducto,  
     agregarDatosCliente 
 } from '../controllers/controlador.js';
 import { 
@@ -24,7 +23,7 @@ router.get('/', (req,res) => {
 router.get('/categoria', traerCategorias);
 router.get('/producto', traerProductos);
 router.get('/producto/:id', traerProducto);
-router.post('/compra', crearCompra);
+
 
 //rutas del carrito
 router.post('/compra/:userId/producto', agregarProducto);

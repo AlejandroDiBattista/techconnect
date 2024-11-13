@@ -35,12 +35,6 @@ export const traerProducto = async (req, res) => {
   }
 };
 
-export const crearCompra = async (req, res) => {
-  const id = req.body.cliente_id;
-  const compra = await Compra.crear(id);
-  res.json({ compra_id: compra._id });
-};
-
 export const agregarDatosCliente = async (req, res) => {
   try {
       const datos = req.body;
