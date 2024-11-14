@@ -22,11 +22,11 @@ router.get('/producto/:id', traerProducto);
 router.get('/productos/:id', traerProductos);
 
 // Rutas de la compra
-router.post(  '/compra', crearCompra);
-router.get(   '/compra/:id', traerCompra);
-router.post(  '/compra/:id/:producto/:variante',   agregarProducto);
+router.post('/compra', crearCompra);
+router.get('/compra/:id', traerCompra);
+router.post('/compra/:id/:producto/:variante', agregarProducto);
 router.delete('/compra/:id/:producto/:variante', quitarProducto);
-router.put('   /compra/:id', confirmarCompra);
-router.delete('/compra/:id', cancelarCompra);
+router.put('/compra-confirmar/:id', confirmarCompra);
+router.delete('/compra-cancelar/:id', cancelarCompra);
 
 export default router;

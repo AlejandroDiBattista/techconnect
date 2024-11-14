@@ -6,7 +6,8 @@ const ProductoSchema = new Schema({
     id: Number,
     nombre: { type: String, required: true },
     precio: { type: Number, required: true },
-    categoria: { type: Schema.Types.ObjectId, ref: 'Clasificacion', required: true },
+    categoria: { type: Schema.Types.ObjectId, ref: 'Categoria', required: true },
+    categoria_id: { type: Number, required: true },
     url_imagen: { type: String, required: true },
     detalle: { type: String, required: true },
     cantidad: { type: Number, required: true },
@@ -19,37 +20,37 @@ const ProductoSchema = new Schema({
     }],
 }, { timestamps: true });
 
-// // Crear un producto (no implementado aun)
+// Crear un producto (no implementado aún)
 // ProductoSchema.statics.crear = async function(datos) {
 //     const producto = new this(datos);
 //     await producto.save();
 //     return { success: true, data: producto };
 // };
 
-// Traer todos los productos o los de una categoría específica
+// Obtener todos los productos o los de una categoría específica
 ProductoSchema.statics.traerTodos = async function(categoria) {
-    const productos = await this.find({ categoria: ObjectId(categoria) })
+    const productos = await this.find({ categoria_id: categoria })
+        .populate('categoria');
     
     if(!productos.length) return { success: false, error: 'No hay productos disponibles' };
 
     return { success: true, data: productos };
 };
 
-// Traer un producto específico
+// Obtener un producto específico
 ProductoSchema.statics.traer = async function(id) {
-    const producto = await this.findById(id)
+    const producto = await this.findOne({ id }).populate('categoria');
     
     if (!producto) return { success: false, error: 'Producto no encontrado' };
     
     return { success: true, data: producto };
 };
 
-
-// Me dice cuantos productos hay en la tabla 
+// Obtener la cantidad de productos en la base de datos
 ProductoSchema.statics.cantidad = async function() {
     return await this.countDocuments();
 };
 
-const Producto = mongoose.model('Producto', ProductoSchema);
+const Producto = mongoose.models.Producto || mongoose.model('Producto', ProductoSchema);
 
 export default Producto;

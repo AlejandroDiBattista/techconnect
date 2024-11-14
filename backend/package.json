@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "nodemon server.js",
+    "cargar": "node cargar_datos.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

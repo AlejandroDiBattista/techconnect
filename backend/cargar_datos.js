@@ -45,6 +45,7 @@ const cargarDatosIniciales = async () => {
         // Reemplazar los id de categoria por _id
         for (let producto of productos) {
             if (categoriaMap[producto.categoria]) {
+                producto.categoria_id = producto.categoria;
                 producto.categoria = categoriaMap[producto.categoria];
             }
         }

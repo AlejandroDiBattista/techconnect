@@ -18,10 +18,10 @@ async function crearCompra(req, res) {
 
 // Ver el carrito
 async function traerCompra(req, res) {
-  const { usuario } = req.params;
+  const { id } = req.params;
 
   try {
-    const result = await Carrito.traer(usuario);
+    const result = await Carrito.traer(id);
     if (result.success) {
       res.status(200).json(result.data);
     } else {
@@ -34,11 +34,10 @@ async function traerCompra(req, res) {
 
 // Agregar producto al carrito
 async function agregarProducto(req, res) {
-  const { usuario, producto, variante } = req.params;
-  const { cantidad } = req.body;
-
+  const { id, producto, variante } = req.params;
+  console.log(`> agregarProducto = id: ${id}, producto: ${producto}, variante: ${variante}`);
   try {
-    const result = await Carrito.agregar(usuario, producto, cantidad, variante);
+    const result = await Carrito.agregar(id, producto, 1, variante);
     if (result.success) {
       res.status(200).json(result.data);
     } else {
@@ -51,10 +50,9 @@ async function agregarProducto(req, res) {
 
 // eliminar un producto del carrito
 const quitarProducto = async (req, res) => {
-  const { usuario, producto, variante } = req.params;
-  const { cantidad } = req.body;
-
-  const result = await Carrito.quitar(usuario, producto, cantidad, variante);
+  const { id, producto, variante } = req.params;
+  console.log(`> quitarProducto = id: ${id}, producto: ${producto}, variante: ${variante}`);
+  const result = await Carrito.quitar(id, producto, 1, variante);
   if (result.success) {
     res.status(200).json(result.data);
   } else {
@@ -65,9 +63,9 @@ const quitarProducto = async (req, res) => {
 
 // confirmar la compra
 const confirmarCompra = async (req, res) => {
-  const { usuario } = req.params;
+  const { id } = req.params;
 
-  const result = await Carrito.confirmar(usuario);
+  const result = await Carrito.confirmar(id);
   if (result.success) {
     res.status(200).json({ message: 'Compra confirmada', carrito: result.data });
   } else {
@@ -78,9 +76,9 @@ const confirmarCompra = async (req, res) => {
 
 // borrar el carrito completo
 const cancelarCompra = async (req, res) => {
-  const { usuario } = req.params;
+  const { id } = req.params;
 
-  const result = await Carrito.cancelar(usuario);
+  const result = await Carrito.cancelar(id);
   if (result.success) {
     res.status(200).json({ message: result.message });
   } else {

@@ -1,11 +1,35 @@
+### Trae todas las categorias 
 GET http://localhost:3000/categorias
 
-###
-GET http://localhost:3000/productos
-
-###
-GET http://localhost:3000/producto/2
 
 
-### 
-GET http://localhost:3000/productos/6734509dde17837783f1be6d
+### Trae todos los productos de una categoria (tomar el id de la categoria de la respuesta anterior)
+GET http://localhost:3000/productos/1
+
+### Prueba de traer una categoria que no existe
+GET http://localhost:3000/productos/4
+
+
+### Trae un producto por id
+GET http://localhost:3000/producto/1
+
+### Prueba de traer un producto que no existe
+GET http://localhost:3000/producto/200
+
+### Crea una nueva compra 
+POST http://localhost:3000/compra
+
+### Trae una compra por id
+GET http://localhost:3000/compra/5
+
+### Agregar un producto a la compra
+POST http://localhost:3000/compra/5/2/Memoria:128GB
+
+### Quitar un producto de la compra
+DELETE http://localhost:3000/compra/5/2/Memoria:128GB
+
+### Confirmar la compra
+PUT http://localhost:3000/compra-confirmar/5
+
+### Cancelar la compra
+DELETE http://localhost:3000/compra-cancelar/5

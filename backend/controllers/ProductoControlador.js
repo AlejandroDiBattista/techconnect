@@ -1,8 +1,7 @@
 import mongoose from 'mongoose';
+
 import Producto from '../models/producto.js';
-import Cliente from '../models/cliente.js';
 import Categoria from '../models/categoria.js';
-import e from 'express';
 
 // Traer categorías
 async function traerCategorias(req, res) {
