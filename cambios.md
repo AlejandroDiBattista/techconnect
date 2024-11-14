@@ -4,17 +4,20 @@
 
     Asumimos que cada compra es espontanea asi que la informacion del clientes se guarda en la compra.
 
-2. Cambiamos a que el acceso se haga mediante id (en vez de _id)
-    
-    Esto es para que sea mas facil de entender y probar. Aprovechamos que no estamos haciendo altas de clasificacion ni de productos.
+## Cambios
 
-    Cuando usamos _id al cargar nuevos productos cambia lo que hace dificil probar el sistema.
+### 1. Uso de `id` en vez de `_id`
 
-3. Se automatiza la carga de datos.
+Esto se hace para que sea más fácil de entender y probar. Aprovechamos que no estamos realizando altas de clasificación ni de productos.
 
-    Ahora para cargar los datos se debe usar 'npm run cargar'. 
-    Esto carga los datos de prueba que estan en data/categoria y data/producto mediante el ar
-    archivo 'cargar_datos.js' (antes database.js)
-    
+Cuando usamos `_id`, al cargar nuevos productos, cambia lo que dificulta probar el sistema.
 
-   
+### 2. Automatización de la carga de datos
+
+Ahora, para cargar los datos se debe usar `npm run cargar`.  
+Esto carga los datos de prueba que están en `data/categoria` y `data/producto` mediante el archivo `cargar_datos.js` (antes `database.js`).
+
+### 3. Implementación de las funciones agregar y quitar
+
+    Ahora se pueden agregar y quitar productos de la compra. 
+    Esto se hace mediante los metodos agregarProducto y quitarProducto de la clase Compra.
