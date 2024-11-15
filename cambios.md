@@ -21,3 +21,7 @@ Esto carga los datos de prueba que están en `data/categoria` y `data/producto` 
 
     Ahora se pueden agregar y quitar productos de la compra. 
     Esto se hace mediante los metodos agregarProducto y quitarProducto de la clase Compra.
+
+### 5. Agregamos pruebas para el api 
+
+    

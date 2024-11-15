@@ -20,16 +20,16 @@ GET http://localhost:3000/producto/200
 POST http://localhost:3000/compra
 
 ### Trae una compra por id
-GET http://localhost:3000/compra/5
+GET http://localhost:3000/compra/1
 
 ### Agregar un producto a la compra
-POST http://localhost:3000/compra/5/2/Memoria:128GB
+POST http://localhost:3000/compra/1/2/Memoria:128GB
 
 ### Quitar un producto de la compra
-DELETE http://localhost:3000/compra/5/2/Memoria:128GB
+DELETE http://localhost:3000/compra/1/2/Memoria:128GB
 
 ### Confirmar la compra
-PUT http://localhost:3000/compra-confirmar/5
+PUT http://localhost:3000/compra-confirmar/1
 
 ### Cancelar la compra
-DELETE http://localhost:3000/compra-cancelar/5
+DELETE http://localhost:3000/compra-cancelar/1
