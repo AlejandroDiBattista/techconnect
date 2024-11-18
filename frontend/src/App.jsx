@@ -5,7 +5,7 @@ import { Inicio } from './paginas/Inicio';
 import { Elegir } from './paginas/Elegir';
 import { Detalle } from './paginas/Detalle';
 import { Cliente } from './paginas/Cliente';
-import { Carrito } from './paginas/Carrito'; // Asegúrate de que la ruta es correcta
+import { Carrito } from './paginas/Compra'; // Asegúrate de que la ruta es correcta
 
 
 export function App() {
@@ -20,6 +20,7 @@ export function App() {
                         <Route path="/detalle/:id" element={<Detalle />} />
                         <Route path="/carrito" element={<Carrito />} />
                         <Route path="/cliente" element={<Cliente />} />
+                        <Route path="/compra" element={<Carrito />} />
                     </Routes>
                 </Container>
             </Layout>

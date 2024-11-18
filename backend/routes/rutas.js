@@ -10,7 +10,8 @@ import {
 import { 
     crearCompra, traerCompra,
     agregarProducto, quitarProducto,
-    confirmarCompra, cancelarCompra
+    confirmarCompra, cancelarCompra,
+    actualizarCliente
   } from '../controllers/CompraControlador.js';
 
 // Solo para verificar que el servidor esta en funcionamiento
@@ -24,9 +25,10 @@ router.get('/productos/:id', traerProductos);
 // Rutas de la compra
 router.post('/compra', crearCompra);
 router.get('/compra/:id', traerCompra);
-router.post('/compra/:id/:producto/:variante', agregarProducto);
+router.post('/compra/:id/:producto/:variante', agregarProducto); // Usar POST para agregar
 router.delete('/compra/:id/:producto/:variante', quitarProducto);
-router.put('/compra-confirmar/:id', confirmarCompra);
-router.delete('/compra-cancelar/:id', cancelarCompra);
+router.post('/compra/:id/cliente', actualizarCliente); // Nueva ruta
+router.post('/compra/:id/confirmar', confirmarCompra); // Usar POST para confirmar
+router.delete('/compra/:id/cancelar', cancelarCompra);
 
 export default router;

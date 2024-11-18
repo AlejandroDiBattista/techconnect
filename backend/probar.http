@@ -4,7 +4,7 @@ GET http://localhost:3000/categorias
 
 
 ### Trae todos los productos de una categoria (tomar el id de la categoria de la respuesta anterior)
-GET http://localhost:3000/productos/1
+GET http://localhost:3000/productos/2
 
 ### Prueba de traer una categoria que no existe
 GET http://localhost:3000/productos/4
@@ -29,7 +29,33 @@ POST http://localhost:3000/compra/1/2/Memoria:128GB
 DELETE http://localhost:3000/compra/1/2/Memoria:128GB
 
 ### Confirmar la compra
-PUT http://localhost:3000/compra-confirmar/1
+PUT http://localhost:3000/compra/1/confirmar
 
 ### Cancelar la compra
-DELETE http://localhost:3000/compra-cancelar/1
+DELETE http://localhost:3000/compra/1/cancelar
+
+### Actualizar datos del cliente en una compra
+POST http://localhost:3000/compra/2/cliente
+Content-Type: application/json
+
+{
+    "domicilio": "Calle Falsa 123",
+    "localidad": "Springfield",
+    "codigoPostal": "12345",
+    "gmail": "cliente@example.com",
+    "telefono": "1234567890",
+    "tarjeta": "4111111111111111"
+}
+
+### Intentar actualizar cliente en una compra que no existe
+POST http://localhost:3000/compra/999/cliente
+Content-Type: application/json
+
+{
+    "domicilio": "Calle Falsa 123",
+    "localidad": "Springfield",
+    "codigoPostal": "12345",
+    "gmail": "cliente@example.com",
+    "telefono": "1234567890",
+    "tarjeta": "4111111111111111"
+}

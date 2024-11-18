@@ -24,4 +24,5 @@ Esto carga los datos de prueba que están en `data/categoria` y `data/producto` 
 
 ### 5. Agregamos pruebas para el api 
 
-    
+    En Probar.http se puede verificiar que el api funciona correctamente.
+

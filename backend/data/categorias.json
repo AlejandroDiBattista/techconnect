@@ -6,12 +6,12 @@
     },
     {
         "id": 2,
-        "nombre": "tablet",
+        "nombre": "Tablas",
         "url_imagen":"tablet.webp"
     },
     {
         "id": 3,
-        "nombre": "notebook",
+        "nombre": "Notebooks",
         "url_imagen":"notebook.webp"
     }
 ]

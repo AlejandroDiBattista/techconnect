@@ -37,7 +37,7 @@ CompraSchema.statics.crear = async function() {
 
 // Obtener una compra específica
 CompraSchema.statics.traer = async function(id) {
-    const compra = await this.find({ id }).populate('items.productoId');
+    const compra = await this.findOne({ id }).populate('items.productoId');
     if (!compra) return { success: false, error: 'Compra no encontrada' };
     return { success: true, data: compra };
 };
@@ -69,12 +69,13 @@ CompraSchema.statics.agregar = async function(id, productoId, cantidad, variante
       // Agregar un nuevo ítem si no existe
       compra.items.push({ productoId: producto._id, cantidad, variante });
     }
-    
+
     // Guardar la compra actualizada
     await compra.save();
 
     return { success: true, data: compra };
   } catch (error) {
+    console.error('Error al agregar el producto a la compra:', error);
     return { success: false, error: 'Error al guardar la compra' };
   }
 };
@@ -117,17 +118,52 @@ CompraSchema.statics.quitar = async function(id, productoId, cantidad, variante)
 };
 
 // Confirmar la compra
-CompraSchema.statics.confirmar = async function(id, cliente) {
+CompraSchema.statics.confirmar = async function(id) {
   try {
-    const compra = await this.findOne({ id, estado: 'pendiente' });
-    if (!compra) return { success: false, error: 'Compra no encontrada o ya confirmada' };
-    
-    compra.cliente = cliente;
-    compra.estado = 'confirmado';
-    await compra.save();
+    const compra = await this.findOneAndUpdate(
+      { id: id },
+      { $set: { estado: 'confirmado' } },
+      { new: true }
+    );
+
+    if (!compra) {
+      return { success: false, error: 'Compra no encontrada' };
+    }
+
     return { success: true, data: compra };
   } catch (error) {
+    console.error('Error en confirmar:', error);
     return { success: false, error: 'Error al confirmar la compra' };
+  }
+};
+
+// Actualizar datos del cliente
+CompraSchema.statics.actualizarCliente = async function(id, datosCliente) {
+  try {
+    // Buscar y actualizar en una sola operación
+    const compra = await this.findOneAndUpdate(
+      { id: id },
+      {
+        $set: {
+          'cliente.domicilio.calle': datosCliente.domicilio,
+          'cliente.domicilio.localidad': datosCliente.localidad,
+          'cliente.domicilio.cp': datosCliente.codigoPostal,
+          'cliente.email': datosCliente.gmail,
+          'cliente.telefono': datosCliente.telefono,
+          'cliente.tarjeta': datosCliente.tarjeta
+        }
+      },
+      { new: true } // Retorna el documento actualizado
+    );
+
+    if (!compra) {
+      return { success: false, error: 'Compra no encontrada' };
+    }
+
+    return { success: true, data: compra };
+  } catch (error) {
+    console.error('Error en actualizarCliente:', error);
+    return { success: false, error: 'Error al actualizar los datos del cliente' };
   }
 };
 

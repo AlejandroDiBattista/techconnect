@@ -8,39 +8,39 @@ import {
   CardMedia,
   Button,
 } from "@mui/material";
-
-// import Datos from "../datos/datos.js";
 import { useEffect, useState } from "react";
 import DataService from "../datos/datos.js";
+
+function MostrarCategoria({ categoria }) {
+  return (
+    <Grid item xs={12} md={4}>
+      <Card component={RouterLink} to={`/elegir/${categoria.id}`} >
+        <CardMedia
+          component="img"
+          height="200"
+          width="200"
+          image={`./public/images/${categoria.url_imagen}`}
+        />
+        <CardContent>
+          <Typography variant="h6">{categoria.nombre}</Typography>
+        </CardContent>
+      </Card>
+    </Grid>
+  );
+}
 
 export function Inicio() {
   const [categorias, setCategorias] = useState([]);
 
-  useEffect(() => {
-    DataService.traerCategorias().then(setCategorias);
-  }, []);
+  useEffect(() => { DataService.traerCategorias().then(setCategorias);}, []);
 
   return (
-    <Container
-      maxWidth="lg"
-      style={{
-        height: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
+    <Container maxWidth="lg">
       <Grid container direction="column" alignItems="center" spacing={4}>
         {/* Encabezado */}
         <Grid item>
-          <Typography variant="h3" gutterBottom align="center">
-            Bienvenido a Techconnect
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            align="center"
-            style={{ maxWidth: "600px" }}
-          >
+          <Typography variant="h3" gutterBottom align="center">Bienvenido a Techconnect</Typography>
+          <Typography variant="subtitle1" align="center" style={{ maxWidth: "600px" }}>
             En Techconnect, nos dedicamos a ofrecerte los mejores celulares,
             notebooks y tablets para mantenerte conectado en todo momento.
             Descubre nuestra amplia gama de productos y disfruta de la
@@ -49,44 +49,12 @@ export function Inicio() {
         </Grid>
 
         {/* Sección de productos con fondo gris */}
-        <Grid
-          item
-          xs={12}
-          style={{ width: "100%", backgroundColor: "#f0f0f0", padding: "20px" }}
-        >
-          <Typography variant="h4" gutterBottom align="center">
-            Nuestros productos
-          </Typography>
+        <Grid item xs={12} >
+          <Typography variant="h4" gutterBottom align="center">Nuestros productos</Typography>
           <Grid container spacing={4} justifyContent="center">
-            {categorias.map((categoria, index) => (
-            <Grid item xs={12} sm={4}>
-              <Card>
-                <CardMedia
-                  component="img"
-                  alt=""
-                  height="140"
-                  width="140"
-                  image={"./public/images/" + categoria.url_imagen}
-                />
-                <CardContent>
-                  <Typography variant="h6" align="center">
-                    {categoria.nombre}
-                  </Typography>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    fullWidth
-                    component={RouterLink}
-                    to={"/elegir/" + categoria._id}
-                    style={{ marginTop: "10px" }}
-                  >
-                    Ver más
-                  </Button>
-                </CardContent>
-              </Card>
-            </Grid>
+            {categorias.map((categoria) => (
+              <MostrarCategoria key={categoria.id} categoria={categoria} />
             ))}
-           
           </Grid>
         </Grid>
 

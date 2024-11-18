@@ -3,7 +3,6 @@ import fs from 'fs';
 import path from 'path';
 import Producto from './models/producto.js';
 import Categoria from './models/categoria.js';
-import Compra from './models/compra.js';
 
 
 const connectDB = async () => {

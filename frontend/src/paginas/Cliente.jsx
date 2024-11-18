@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { TextField, Button, Container, Typography, Box } from "@mui/material";
+import DataService from "../datos/datos";
+import { useNavigate } from "react-router-dom";
 
-export function Cliente(){
+export function Cliente() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     domicilio: "",
     localidad: "",
@@ -10,18 +13,61 @@ export function Cliente(){
     telefono: "",
     tarjeta: "",
   });
+  const [formErrors, setFormErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (name=='domicilio'  && value === "*") {
+      setFormData({
+        domicilio: "Av Jujuy 337",
+        localidad: "San Miguel de Tucuman",
+        codigoPostal: "4000",
+        gmail: "example@gmail.com",
+        telefono: "(381) 555-1234",
+        tarjeta: "4567 1234 5678 9012",
+      });
+      return;
+    }
+
     setFormData({ ...formData, [name]: value });
+    // Limpiar error cuando el usuario empiece a escribir
+    if (formErrors[name]) {
+      setFormErrors({...formErrors, [name]: ""});
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Datos del formulario:", formData);
-    // Aquí puedes agregar lógica para enviar los datos
+    let errors = {};
+    let hasErrors = false;
+
+
+    // Validar cada campo
+    Object.keys(formData).forEach(field => {
+      if (!formData[field].trim()) {
+        errors[field] = "Este campo es obligatorio";
+        hasErrors = true;
+      }
+    });
+
+    if (hasErrors) {
+      setFormErrors(errors);
+      return;
+    }
+
+    try {
+      const {compraId} = await DataService.traerCompraActiva();
+      if (!compraId) throw new Error("No hay compra activa");
+
+      await DataService.actualizarCliente(compraId, formData);
+      await DataService.confirmarCompra(compraId);
+      navigate('/');
+    } catch (error) {
+      console.error("Error al guardar los datos del cliente:", error);
+      setFormErrors({ submit: "Error al enviar los datos. Por favor, intente nuevamente." });
+    }
   };
-  console.log("Estoy en cliente")
+
   return (
     <Container maxWidth="sm">
       <Box sx={{ mt: 4 }}>
@@ -29,70 +75,27 @@ export function Cliente(){
           Ingrese sus datos
         </Typography>
         <form onSubmit={handleSubmit}>
-          <TextField
-            label="Domicilio"
-            name="domicilio"
-            variant="outlined"
-            fullWidth
-            required
-            margin="normal"
-            value={formData.domicilio}
-            onChange={handleChange}
-          />
-          <TextField
-            label="Localidad"
-            name="localidad"
-            variant="outlined"
-            fullWidth
-            required
-            margin="normal"
-            value={formData.localidad}
-            onChange={handleChange}
-          />
-          <TextField
-            label="Código Postal"
-            name="codigoPostal"
-            variant="outlined"
-            fullWidth
-            required
-            margin="normal"
-            value={formData.codigoPostal}
-            onChange={handleChange}
-          />
-          <TextField
-            label="Gmail"
-            name="gmail"
-            variant="outlined"
-            type="email"
-            fullWidth
-            required
-            margin="normal"
-            value={formData.gmail}
-            onChange={handleChange}
-          />
-          <TextField
-            label="Teléfono"
-            name="telefono"
-            variant="outlined"
-            type="tel"
-            fullWidth
-            required
-            margin="normal"
-            value={formData.telefono}
-            onChange={handleChange}
-          />
-          <TextField
-            label="Número de Tarjeta"
-            name="tarjeta"
-            variant="outlined"
-            type="number"
-            fullWidth
-            required
-            margin="normal"
-            inputProps={{ maxLength: 16 }}
-            value={formData.tarjeta}
-            onChange={handleChange}
-          />
+          {Object.keys(formData).map((field) => (
+            <TextField
+              key={field}
+              label={field.charAt(0).toUpperCase() + field.slice(1)}
+              name={field}
+              variant="outlined"
+              fullWidth
+              required
+              margin="normal"
+              value={formData[field]}
+              onChange={handleChange}
+              error={!!formErrors[field]}
+              helperText={formErrors[field] || ""}
+              type={
+                field === "gmail" ? "email" :
+                field === "telefono" ? "tel" :
+                field === "tarjeta" ? "number" : "text"
+              }
+              inputProps={field === "tarjeta" ? { maxLength: 16 } : {}}
+            />
+          ))}
           <Button
             type="submit"
             variant="contained"
