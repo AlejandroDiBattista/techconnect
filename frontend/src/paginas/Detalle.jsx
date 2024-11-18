@@ -2,16 +2,14 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import {
-    Typography,
-    Button,
-    Card,
-    CardContent,
     Container,
     Snackbar,
+    Box,
 } from "@mui/material";
 import DataService from "../datos/datos.js";
 import { BotonRegresar } from "../components/BotonRegresar";
 import { SelectorVariante } from "../components/SelectorVariante";
+import { Card, Flex, Text , Button} from "@radix-ui/themes";
 
 export function Detalle() {
     const { id } = useParams();
@@ -41,9 +39,7 @@ export function Detalle() {
         setSeleccionadas(seleccion);
     }
 
-    useEffect(() => {
-        DataService.traerProducto(id).then((data) => ponerProducto(data));
-    }, [id]);
+    useEffect(() => { DataService.traerProducto(id).then((data) => ponerProducto(data)) }, [id]);
 
     const elegirVariante = (varianteIndex, valorIndex) => {
         setSeleccionadas((prevSeleccionadas) => ({ ...prevSeleccionadas, [varianteIndex]: valorIndex }));
@@ -72,29 +68,31 @@ export function Detalle() {
         return (
             <Container>
                 <BotonRegresar />
-                <Typography variant="h4" gutterBottom>Producto no encontrado</Typography>
+                <Text size="h4" gutterBottom>Producto no encontrado</Text>
             </Container>
         );
     }
     return (
-        <Container>
-            <BotonRegresar />
-            <Card>
-                <CardContent>
-                    <img src={DataService.traerImagen(producto.url_imagen)} alt={producto.nombre} style={{ width: "600px", height: "600px", objectFit: "cover" }} />
-                    <Typography variant="h4" gutterBottom>Producto {producto.nombre}</Typography>
-                    <Typography variant="body1">{producto.detalle}</Typography>
-                    <Typography variant="h2" color="secondary">Precio: ${calcularPrecio()}</Typography>
-                    <Typography variant="h5" gutterBottom>Variantes</Typography>
-                    {producto.variantes.map((variante, i) => (
-                        <SelectorVariante key={i} variante={variante} varianteIndex={i} seleccionado={seleccionadas[i]} onClick={elegirVariante} />
-                    ))}
-                    <Typography variant="body1" gutterBottom>Seleccionado: {calcularVariantes()}</Typography>
-                    <Button variant="contained" color="primary" onClick={comprarProducto} style={{ marginTop: '20px' }}>Comprar</Button>
-                    <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={() => setOpenSnackbar(false)} message={snackbarMessage} />
-                </CardContent>
-            </Card>
-        </Container>
+            <>
+                <BotonRegresar />
+                <Card>
+                        <img src={DataService.traerImagen(producto.url_imagen)} alt={producto.nombre} style={{ width: "600px", height: "600px", objectFit: "cover" }} />
+                        <Flex direction="column" gap="2" align="start" justify="between" >
+                        <Text size="4" as="p">{producto.nombre}</Text>
+                        <Text size="1" as="p">{producto.detalle}</Text>
+                        <Text size="3" as="p">Precio: ${calcularPrecio()}</Text>
+                        <Text size="1" as="p">Variantes</Text>
+                        <Flex direction="column" gap="2" align="start" justify="between" >
+                        {producto.variantes.map((variante, i) => (
+                            <SelectorVariante key={i} variante={variante} varianteIndex={i} seleccionado={seleccionadas[i]} onClick={elegirVariante} />
+                        ))}
+                        </Flex>
+                        <Text size="1"  as="p">Seleccionado: {calcularVariantes()}</Text>
+                        <Button size="2" variant="soft" onClick={comprarProducto}>Agregar al Carrito</Button>
+                        </Flex>
+                        <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={() => setOpenSnackbar(false)} message={snackbarMessage} />
+                </Card>
+            </>
     );
 }
 

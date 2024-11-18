@@ -1,5 +1,5 @@
 import { Container, Typography, Box } from "@mui/material";
-import Menu from "../componentes/Menu";
+import Menu from "../components/Menu";
 
 export function Layout({ children }) {
   return (

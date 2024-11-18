@@ -1,23 +1,19 @@
-import { Card, CardContent, Typography, ButtonGroup, Button } from "@mui/material";
+// import { Card, CardContent, Typography, ButtonGroup, Button } from "@mui/material";
+import { SegmentedControl, Card, Text } from "@radix-ui/themes";
 
 export function SelectorVariante({variante, varianteIndex, seleccionado, onClick}) {
     return (
-        <Card variant="outlined" style={{ marginBottom: "16px" }}>
-            <CardContent>
-                <Typography variant="h6">{variante.nombre}</Typography>
-                <ButtonGroup variant="outlined" style={{ display: "flex", flexWrap: "wrap" }}>
+        <Card>
+                {/* <h5 variant="h6">{variante.nombre}</h5> */}
+                <Text size="3" as="div">{variante.nombre}</Text>
+                <SegmentedControl.Root defaultValue={seleccionado} radius="full">
                     {variante.valores.map((valor, valorIndex) => (
-                        <Button
-                            key={valorIndex}
-                            value={valor.valor}
-                            onClick={() => onClick(varianteIndex, valorIndex)}
-                            variant={seleccionado === valorIndex ? "contained" : "outlined"}
-                        >
-                            {`${valor.valor} ${valor.aumento > 0 ? `+ $${valor.aumento}` : ""}`}
-                        </Button>
+                        <SegmentedControl.Item key={valorIndex} value={valor.valor}
+                            onClick={() => onClick(varianteIndex, valorIndex)} >
+                                <Text>{`${valor.valor} ${valor.aumento > 0 ? `+ $${valor.aumento}` : ""}`}</Text>
+                        </SegmentedControl.Item>
                     ))}
-                </ButtonGroup>
-            </CardContent>
+                </SegmentedControl.Root>
         </Card>
     );
 }

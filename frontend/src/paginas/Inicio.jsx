@@ -10,24 +10,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import DataService from "../datos/datos.js";
-
-function MostrarCategoria({ categoria }) {
-  return (
-    <Grid item xs={12} md={4}>
-      <Card component={RouterLink} to={`/elegir/${categoria.id}`} >
-        <CardMedia
-          component="img"
-          height="200"
-          width="200"
-          image={`./public/images/${categoria.url_imagen}`}
-        />
-        <CardContent>
-          <Typography variant="h6">{categoria.nombre}</Typography>
-        </CardContent>
-      </Card>
-    </Grid>
-  );
-}
+import MostrarCategoria from "../components/MostrarCategoria";
 
 export function Inicio() {
   const [categorias, setCategorias] = useState([]);

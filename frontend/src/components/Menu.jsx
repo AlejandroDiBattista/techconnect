@@ -1,19 +1,13 @@
-import React, { useState, useEffect } from 'react';
 import { AppBar, Toolbar, Button, IconButton, Container } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import Logo from './Logo';
+import Logo from '../components/Logo';
 
 export function Menu() {
     const navigate = useNavigate();
     
-    const handleCarritoClick = () => {
-        navigate('/compra');
-    };
-
-    const handleBackClick = () => {
-        navigate(-1);
-    };
+    const handleCarritoClick = () => navigate('/compra');
+    const handleBackClick    = () => navigate(-1);
 
     return (
         <Container>
