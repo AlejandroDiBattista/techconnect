@@ -26,3 +26,6 @@ Esto carga los datos de prueba que están en `data/categoria` y `data/producto` 
 
     En Probar.http se puede verificiar que el api funciona correctamente.
 
+### 6. Agregamos la registracion de los clientes
+
+    Ahora se pueden registrar clientes mediante el metodo `actualizarCliente` de la clase Compra.
