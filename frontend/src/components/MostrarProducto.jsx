@@ -1,9 +1,11 @@
-import React from 'react';
 import DataService from '../datos/datos';
+
+import React from 'react';
+
 import { Card, Flex, Text, IconButton} from '@radix-ui/themes';
 import { PlusCircledIcon, MinusCircledIcon, TrashIcon } from '@radix-ui/react-icons';
 
-function MostrarProducto({ producto, onAgregar, onQuitar }) {
+export function MostrarProducto({ producto, onAgregar, onQuitar }) {
   const size='40px'
   return (
     <Card>
@@ -33,4 +35,3 @@ function MostrarProducto({ producto, onAgregar, onQuitar }) {
   );
 }
 
-export default MostrarProducto;

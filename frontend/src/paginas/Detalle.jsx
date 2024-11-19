@@ -1,7 +1,8 @@
+import DataService from "../datos/datos.js";
+
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-import DataService from "../datos/datos.js";
 import { SelectorVariante } from "../components/SelectorVariante";
 import { Card, Flex, Text, Button, Container } from "@radix-ui/themes";
 
@@ -9,7 +10,7 @@ export function Detalle() {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const [seleccionadas, setSeleccionadas] = useState(null);
+    const [seleccionadas, setSeleccionadas] = useState([]);
     const [producto, setProducto] = useState(null);
 
     function calcularPrecio() {
@@ -17,24 +18,22 @@ export function Detalle() {
     }
 
     function calcularVariantes() {
-        return producto.variantes.map(({ nombre, valores }, index) =>
-            `${nombre}${valores[seleccionadas[index]].valor}`
-        ).join("").toLowerCase().replace(/[^a-z0-9]/g, '');
+        return producto.variantes
+            .map(({ nombre, valores }, index) =>`${nombre}${valores[seleccionadas[index]].valor}`)
+            .join("")
+            .toLowerCase()
+            .replace(/[^a-z0-9]/g, '');
     }
 
     function ponerProducto(producto) {
-        console.error("Producto", producto);
         setProducto(producto);
-        const seleccion = Object.fromEntries(
-            producto.variantes.map((_, index) => [index, 0]) // Selecciona la primera opción por defecto
-        );
-        setSeleccionadas(seleccion);
+        setSeleccionadas(new Array(producto.variantes.length).fill(0));
     }
 
     useEffect(() => { DataService.traerProducto(id).then((data) => ponerProducto(data)) }, [id]);
 
-    const elegirVariante = (varianteIndex, valorIndex) => {
-        setSeleccionadas((prevSeleccionadas) => ({ ...prevSeleccionadas, [varianteIndex]: valorIndex }));
+    const elegirVariante = (variante, valor) => {
+        setSeleccionadas(prev => prev.map((v, i) => i === variante ? valor : v));
     };
 
     const comprarProducto = async () => {
@@ -55,7 +54,7 @@ export function Detalle() {
     if (producto == null) {
         return (
             <Container>
-                <Text size="h4" gutterBottom>Producto no encontrado</Text>
+                <Text size="4">Producto no encontrado</Text>
             </Container>
         );
     }
@@ -64,16 +63,15 @@ export function Detalle() {
             <Card>
                 <img src={DataService.traerImagen(producto.url_imagen)} alt={producto.nombre} style={{ width: "400px", height: "400px", objectFit: "cover" }} />
                 <Flex direction="column" gap="2" align="start" justify="between" >
-                    <Text size="4" as="p">{producto.nombre}</Text>
+                    <Text size="6" as="p" weight="bold">{producto.nombre}</Text>
                     <Text size="1" as="p">{producto.detalle}</Text>
-                    <Text size="3" as="p">Precio: ${calcularPrecio()}</Text>
+                    <Text size="3" as="p" weight="bold">Precio: ${calcularPrecio()}</Text>
                     <Text size="1" as="p">Variantes</Text>
                     <Flex direction="column" gap="2" align="start" justify="between" >
                         {producto.variantes.map((variante, i) => (
-                            <SelectorVariante key={i} variante={variante} varianteIndex={i} seleccionado={i} onClick={elegirVariante} />
+                            <SelectorVariante key={i} variante={variante} seleccion={seleccionadas[i]} onClick={valor => elegirVariante(i, valor) } />
                         ))}
                     </Flex>
-                    <Text size="1" as="p">Seleccionado: {calcularVariantes()}</Text>
                     <Button size="2" variant="soft" onClick={comprarProducto}>Agregar al Carrito</Button>
                 </Flex>
             </Card>

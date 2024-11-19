@@ -1,7 +1,9 @@
-import React, { useState } from "react";
 import DataService from "../datos/datos";
+
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Text, TextField, Flex } from "@radix-ui/themes";
+
+import { Card, Text, TextField, Flex } from "@radix-ui/themes";
 import { Accion } from "../components/Accion";
 
 function nombre(texto) {
@@ -80,7 +82,7 @@ export function Cliente() {
   };
 
   return (
-    <Container>
+    <Card>
       <Text size="4" as="p" weight="bold">Ingrese sus datos</Text>
       <form onSubmit={handleSubmit}>
         <Flex direction="column" gap="4" style={{ width: '100%' }}>
@@ -109,7 +111,7 @@ export function Cliente() {
         </Flex>
         <Accion texto="Confirmar Compra" onClick={handleSubmit} />
       </form>
-    </Container>
+    </Card>
   );
 };
 

@@ -1,7 +1,7 @@
-import { Link as RouterLink } from "react-router-dom";
+import DataService from "../datos/datos.js";
 
 import { useEffect, useState } from "react";
-import DataService from "../datos/datos.js";
+
 import MostrarCategoria from "../components/MostrarCategoria";
 import { Text, Flex , Grid} from "@radix-ui/themes";
 

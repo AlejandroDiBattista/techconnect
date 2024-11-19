@@ -1,8 +1,9 @@
 import DataService from "../datos/datos.js";
+
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Text, Card, Flex, Inset, Grid} from "@radix-ui/themes"
 
+import { Text, Card, Flex, Inset, Grid} from "@radix-ui/themes"
 import { Accion } from "../components/Accion";
 import { Expandir } from "../components/Expandir.jsx";
 
@@ -17,7 +18,7 @@ export function Elegir() {
 
   return (
     <>
-      <Grid columns="3" gap="3" width="auto" height="auto">
+      <Grid columns="3" gap="3">
         {productos.map((producto, index) => (
           <Card size="2" key={index} style={{height: '100%'}}>
             <Link to={`/detalle/${producto.id}`} style={{ color: "inherit", textDecoration: "none" }} >

@@ -1,19 +1,30 @@
 // import { Card, CardContent, Typography, ButtonGroup, Button } from "@mui/material";
 import { SegmentedControl, Card, Text } from "@radix-ui/themes";
 
-export function SelectorVariante({variante, varianteIndex, seleccionado, onClick}) {
+function nombre(texto) {
+    // Separar palabras que tienen mezcla de mayúsculas/minúsculas
+    const palabras = texto
+      .split(/(?=[A-Z])|[\s_-]/) // Separa por mayúsculas, espacios, guiones o guiones bajos
+      .filter(word => word.length > 0) // Eliminar elementos vacíos
+      .map(word => word.toLowerCase()); // Convertir todo a minúsculas
+  
+    // Convertir primera letra de cada palabra a mayúscula
+    return palabras
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }
+  
+export function SelectorVariante({variante, seleccion, onClick}) {
     return (
         <Card>
-                {/* <h5 variant="h6">{variante.nombre}</h5> */}
-                <Text size="3" as="div">{variante.nombre}</Text>
-                <SegmentedControl.Root defaultValue={seleccionado} radius="full">
-                    {variante.valores.map((valor, valorIndex) => (
-                        <SegmentedControl.Item key={valorIndex} value={valor.valor}
-                            onClick={() => onClick(varianteIndex, valorIndex)} >
-                                <Text>{`${valor.valor} ${valor.aumento > 0 ? `+ $${valor.aumento}` : ""}`}</Text>
-                        </SegmentedControl.Item>
-                    ))}
-                </SegmentedControl.Root>
+            <Text size="3" as="p">{variante.nombre}</Text>
+            <SegmentedControl.Root defaultValue={seleccion+1} >
+                {variante.valores.map(({valor, aumento}, i) => (
+                    <SegmentedControl.Item key={i} value={i+1} onClick={() => onClick(i)} >
+                        <Text>{`${nombre(valor)} ${aumento > 0 ? ` + $${aumento}` : ""}`}</Text>
+                    </SegmentedControl.Item>
+                ))}
+            </SegmentedControl.Root>
         </Card>
     );
 }

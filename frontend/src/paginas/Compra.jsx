@@ -1,9 +1,11 @@
+import DataService from '../datos/datos'; // Importar DataService
+
 import React, { useState, useEffect } from 'react'; // Añadir useState y useEffect
 import { useNavigate } from 'react-router-dom';
-import DataService from '../datos/datos'; // Importar DataService
-import MostrarProducto from '../components/MostrarProducto'; // Importar el nuevo componente
-import { Text, Flex, Box } from '@radix-ui/themes';
+
+import { MostrarProducto } from '../components/MostrarProducto'; // Importar el nuevo componente
 import { Accion } from '../components/Accion';
+import { Text, Flex, Box } from '@radix-ui/themes';
 
 export function Carrito() {
   const navigate = useNavigate(); // Inicializar el hook useNavigate
