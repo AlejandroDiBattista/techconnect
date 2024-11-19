@@ -29,3 +29,7 @@ Esto carga los datos de prueba que están en `data/categoria` y `data/producto` 
 ### 6. Agregamos la registracion de los clientes
 
     Ahora se pueden registrar clientes mediante el metodo `actualizarCliente` de la clase Compra.
+
+### 7. Cambiamos el estilo de Material-UI a Radix-Ui
+
+    Cambiamos el estilo de Material-UI a Radix-Ui para que sea mas facil de personalizar.
