@@ -106,15 +106,17 @@ async function cancelarCompra(req, res) {
 
 // Actualizar datos del cliente
 async function actualizarCliente(req, res) {
-  console.log('------------------------------------------------------------')
-  console.debug('CompraControlador.actualizarCliente',req.params,  req.body);
+  console.log('CompraControlador.actualizarCliente', req.params, req.body);
   const { id } = req.params;
-  const datosCliente = req.body;
+  const datosCliente = {
+    ...req.body,
+    email:  req.body.email // Aceptar cualquiera de los dos campos
+  };
 
   try {
     // Verificar que tengamos todos los datos necesarios
     if (!datosCliente.domicilio || !datosCliente.localidad || 
-        !datosCliente.codigoPostal || !datosCliente.gmail || 
+        !datosCliente.codigoPostal || !datosCliente.email || 
         !datosCliente.telefono || !datosCliente.tarjeta) {
       return res.status(400).json({ error: 'Faltan datos del cliente' });
     }

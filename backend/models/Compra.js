@@ -148,7 +148,7 @@ CompraSchema.statics.actualizarCliente = async function(id, datosCliente) {
           'cliente.domicilio.calle': datosCliente.domicilio,
           'cliente.domicilio.localidad': datosCliente.localidad,
           'cliente.domicilio.cp': datosCliente.codigoPostal,
-          'cliente.email': datosCliente.gmail,
+          'cliente.email': datosCliente.email,
           'cliente.telefono': datosCliente.telefono,
           'cliente.tarjeta': datosCliente.tarjeta
         }

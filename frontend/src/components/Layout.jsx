@@ -1,39 +1,54 @@
-import { Container, Typography, Box } from "@mui/material";
-import Menu from "../components/Menu";
+import { Flex } from "@radix-ui/themes"
+import BotonRegresar from "./BotonRegresar";
+import Logo from "./Logo";
+import { useNavigate } from "react-router-dom";
+import { Accion } from "./Accion";
+
+const estiloCabecera = {
+  position: 'fixed',
+  top: 0,
+  width: "100%",
+  backgroundColor: '#f8f8f8',
+  boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+  padding: '8px 16px',
+
+  zIndex: 1000,
+  display: 'flex',
+  justifyContent: 'space-between',
+}
+
+const estiloPie = {
+  position: 'fixed',
+  bottom: 0,
+  width: "100%",
+  backgroundColor: '#f8f8f8',
+  boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+  padding: '8px 16px',
+
+  zIndex: 1000,
+  display: 'flex',
+  justifyContent: 'space-between',
+
+}
 
 export function Layout({ children }) {
-  return (
-    <Box sx={{ backgroundColor: '#f5f5f5', minHeight: '100vh' }}>
-      <Container
-        maxWidth={false}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: "100vh",
-          paddingTop: "20px",
-          backgroundColor: "#d3d3d3", // Fondo gris claro
-          maxWidth: "800px", // Ancho máximo de 800px
-        }}
-      >
-        <Menu />
-        {children}
+  const navigate = useNavigate();
 
-        <Box
-          component="footer"
-          sx={{
-            width: "100%",
-            backgroundColor: "#1976d2", // Color azul
-            padding: "20px",
-            marginTop: "auto", // Mueve el footer hacia abajo
-          }}
-        >
-          <Typography variant="body1" align="center" style={{ color: "white" }}>
-            este es el footer
-          </Typography>
-        </Box>
-      </Container>
-    </Box>
-  );
+  return (
+    <Flex direction="column" >
+      <Flex as="header" style={estiloCabecera} justify="between" >
+        <BotonRegresar soloIcono />
+        <Logo />
+        <Accion texto="Ver Compra actual" onClick= {() => navigate('/compra')}/>
+      </Flex>
+
+      <Flex as="main" justify="center" align="center"  style={{margin:"0 auto"}}>
+          {children}
+      </Flex>
+
+      <footer style={estiloPie}>
+      <p>© 2024 Mi Sitio Web</p>
+      </footer>
+    </Flex>
+  )
 }

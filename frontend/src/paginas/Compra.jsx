@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react'; // Añadir useState y useEffect
-import { Box, Typography, List, ListItem, ListItemText, Button, IconButton, Divider, Card, CardMedia, CardContent } from '@mui/material';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import { useNavigate } from 'react-router-dom';
 import DataService from '../datos/datos'; // Importar DataService
-import BotonRegresar from '../components/BotonRegresar';
 import MostrarProducto from '../components/MostrarProducto'; // Importar el nuevo componente
+import { Text, Flex, Box } from '@radix-ui/themes';
+import { Accion } from '../components/Accion';
 
-export function Carrito(){
+export function Carrito() {
   const navigate = useNavigate(); // Inicializar el hook useNavigate
 
   const [productos, setProductos] = useState([]); // Estado para productos
@@ -83,56 +81,44 @@ export function Carrito(){
   };
 
   if (loading) {
-    return (
-      <Box sx={{ p: 3, textAlign: 'center' }}>
-        <Typography>Cargando carrito...</Typography>
-      </Box>
-    );
+    return <Text>Cargando carrito...</Text>;
   }
 
   if (error) {
-    return (
-      <Box sx={{ p: 3, textAlign: 'center' }}>
-        <Typography color="error">{error}</Typography>
-      </Box>
-    );
+    return <Text color="error">{error}</Text>;
   }
 
   if (productos.length === 0) {
-    
-    return (<>
-      <BotonRegresar />
-      <Typography>El carrito está vacío</Typography>
-    </>)
+    return (
+      <>
+        <Text>El carrito está vacío</Text>
+      </>)
   }
 
   return (
-    <Box sx={{ p: 3, maxWidth: 500, mx: 'auto' }}>
-      <BotonRegresar />
-      <Typography variant="h5" gutterBottom>Carrito de Compras</Typography>
-
-      <List>
-        {productos.map((producto) => (
+    <>
+      <Box style={{ margin: '0 auto', width: "800px" }}>
+        <Text size="5" weight="bold">Carrito de Compras</Text>
+        <Flex gap="3" direction="column">
+          {productos.map((producto) => (
             <MostrarProducto
-              key={producto.id + producto.variante} sx={{ mb: '20px' }}
-              producto={producto}
-              onAgregar={onAgregar}
-              onQuitar={onQuitar}
+              key={producto.id + producto.variante}
+              producto={producto} onAgregar={onAgregar} onQuitar={onQuitar}
             />
-        ))}
-      </List>
-      <Divider />
-      <Typography variant="h6" sx={{ mt: 2 }}>
-        Total: ${calcularTotal()}
-      </Typography>
-      <Button variant="contained" color="primary" sx={{ mt: 2, mr: 2}} onClick={handleConfirmarCompra}>
-        Confirmar Compra
-      </Button>
-      <Button variant="contained" color="secondary" sx={{ mt: 2 }}  onClick={handlerCancelarCompra}>
-        Cancelar Compra
-      </Button>
-    </Box>
+          ))}
+        </Flex>
+        <Box my="5">
+          <Text size="6" align="right" weight="bold" >Total: ${calcularTotal()}</Text>
+        </Box>
+        <Flex direction="row" gap="2" justify="between">
+          <Accion texto="Cancelar Compra" onClick={handlerCancelarCompra} />
+          <Accion texto="Confirmar Compra" onClick={handleConfirmarCompra} />
+        </Flex>
+      </Box>
+    </>
   );
+
+
 }
 
 export default Carrito;

@@ -1,16 +1,9 @@
 import { Link as RouterLink } from "react-router-dom";
-import {
-  Typography,
-  Container,
-  Grid2 as Grid,
-  Card,
-  CardContent,
-  CardMedia,
-  Button,
-} from "@mui/material";
+
 import { useEffect, useState } from "react";
 import DataService from "../datos/datos.js";
 import MostrarCategoria from "../components/MostrarCategoria";
+import { Text, Flex , Grid} from "@radix-ui/themes";
 
 export function Inicio() {
   const [categorias, setCategorias] = useState([]);
@@ -18,39 +11,21 @@ export function Inicio() {
   useEffect(() => { DataService.traerCategorias().then(setCategorias);}, []);
 
   return (
-    <Container maxWidth="lg">
-      <Grid container direction="column" alignItems="center" spacing={4}>
-        {/* Encabezado */}
-        <Grid item>
-          <Typography variant="h3" gutterBottom align="center">Bienvenido a Techconnect</Typography>
-          <Typography variant="subtitle1" align="center" style={{ maxWidth: "600px" }}>
+    <Flex direction="column" justify="start" gap="3">
+          <Text size="6" as="p">Bienvenido a Techconnect</Text>
+          <Text size="1" as="p">
             En Techconnect, nos dedicamos a ofrecerte los mejores celulares,
             notebooks y tablets para mantenerte conectado en todo momento.
             Descubre nuestra amplia gama de productos y disfruta de la
             tecnología al alcance de tu mano.
-          </Typography>
-        </Grid>
+          </Text>
 
-        {/* Sección de productos con fondo gris */}
-        <Grid item xs={12} >
-          <Typography variant="h4" gutterBottom align="center">Nuestros productos</Typography>
-          <Grid container spacing={4} justifyContent="center">
-            {categorias.map((categoria) => (
-              <MostrarCategoria key={categoria.id} categoria={categoria} />
-            ))}
+          <Text size="4" >Nuestros productos</Text>
+          <Grid columns="3" gap="3">
+            {categorias.map(categoria => <MostrarCategoria key={categoria.id} categoria={categoria} />)}
           </Grid>
-        </Grid>
-
-        {/* Sección "Sobre nosotros" */}
-        <Grid item xs={12} style={{ width: "100%", padding: "20px" }}>
-          <Typography variant="h4" gutterBottom align="center">
-            Sobre nosotros
-          </Typography>
-          <Typography
-            variant="body1"
-            align="center"
-            style={{ maxWidth: "800px", margin: "0 auto" }}
-          >
+          <Text size="4" as="p">Sobre nosotros</Text>
+          <Text size="1" as="p" color="gray">
             Techconnet es una tienda en línea dedicada a ofrecer una amplia gama
             de productos tecnológicos, incluyendo celulares, tablets y
             notebooks. Nuestro objetivo es proporcionar a nuestros clientes
@@ -61,10 +36,8 @@ export function Inicio() {
             segura para que puedas disfrutar de tus compras sin demoras. En
             Techconnet, la satisfacción del cliente es nuestra prioridad, y
             trabajamos arduamente para superar tus expectativas.
-          </Typography>
-        </Grid>
-      </Grid>
-    </Container>
+          </Text>
+    </Flex>
   );
 }
 

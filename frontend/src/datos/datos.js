@@ -133,8 +133,6 @@ class DataService {
 
     static async actualizarCliente(compraId, datosCliente) {
         console.log('DataService.actualizarDatosCliente', { compraId, datosCliente });
-        // Log adicional para depuración
-        console.log('Datos enviados al servidor:', JSON.stringify(datosCliente, null, 2));
         return await pedir(`POST /compra/${compraId}/cliente`, datosCliente);
     }
 

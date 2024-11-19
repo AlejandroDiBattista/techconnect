@@ -1,23 +1,23 @@
 // components/MostrarCategoria.jsx
-import { Grid2 as Grid, Card, CardMedia, CardContent, Typography } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { Card, Inset, Flex } from '@radix-ui/themes';
+import { Accion } from "./Accion";
 
 function MostrarCategoria({ categoria }) {
-  return (
-    <Grid item xs={12} md={4}>
-      <Card component={RouterLink} to={`/elegir/${categoria.id}`}>
-        <CardMedia
-          component="img"
-          height="200"
-          width="200"
-          image={`./public/images/${categoria.url_imagen}`}
-        />
-        <CardContent>
-          <Typography variant="h6">{categoria.nombre}</Typography>
-        </CardContent>
-      </Card>
-    </Grid>
-  );
+    return (
+        <>
+            <Link to={`/elegir/${categoria.id}`}>
+                <Card>
+                    <Flex direction="column" gap="1" align="start">
+                        <Inset clip="padding-box" side="top" pb="current">
+                            <img src={`./public/images/${categoria.url_imagen}`} alt={categoria.nombre} width="100%" />
+                        </Inset>
+                        <Accion texto={`Ver ${categoria.nombre}`} />
+                    </Flex>
+                </Card>
+            </Link>
+        </>
+    );
 }
 
 export default MostrarCategoria;

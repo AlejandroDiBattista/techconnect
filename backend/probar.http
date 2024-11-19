@@ -42,7 +42,7 @@ Content-Type: application/json
     "domicilio": "Calle Falsa 123",
     "localidad": "Springfield",
     "codigoPostal": "12345",
-    "gmail": "cliente@example.com",
+    "email": "cliente@example.com",
     "telefono": "1234567890",
     "tarjeta": "4111111111111111"
 }
@@ -55,7 +55,7 @@ Content-Type: application/json
     "domicilio": "Calle Falsa 123",
     "localidad": "Springfield",
     "codigoPostal": "12345",
-    "gmail": "cliente@example.com",
+    "email": "cliente@example.com",
     "telefono": "1234567890",
     "tarjeta": "4111111111111111"
 }

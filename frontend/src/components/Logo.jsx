@@ -1,19 +1,11 @@
 import React from 'react';
-import { Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-
+import { Text } from '@radix-ui/themes';
 const Logo = () => {
-    const navigate = useNavigate();
-
-    const handleHomeClick = () => {
-        navigate('/');
-    };
-
-    return (
-        <Typography variant="h4" style={{ cursor: 'pointer' }} onClick={handleHomeClick}>
-            TecnoConnet
-        </Typography>
-    );
+    const navigate = useNavigate();    
+    return <>
+        <Text size="6"  onClick={() => navigate('/')}>Tecno Connet</Text>
+    </>
 };
 
 export default Logo;
