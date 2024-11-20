@@ -137,6 +137,17 @@ CompraSchema.statics.confirmar = async function(id) {
   }
 };
 
+// Cancelar la compra
+CompraSchema.statics.cancelar = async function(id) {
+  try {
+    const compra = await this.findOneAndDelete({ id, estado: 'pendiente' });
+    if (!compra) return { success: false, error: 'Compra no encontrada' };
+    return { success: true, message: 'Compra eliminada exitosamente' };
+  } catch (error) {
+    return { success: false, error: 'Error al borrar la compra' };
+  }
+};
+
 // Actualizar datos del cliente
 CompraSchema.statics.actualizarCliente = async function(id, datosCliente) {
   try {
@@ -164,17 +175,6 @@ CompraSchema.statics.actualizarCliente = async function(id, datosCliente) {
   } catch (error) {
     console.error('Error en actualizarCliente:', error);
     return { success: false, error: 'Error al actualizar los datos del cliente' };
-  }
-};
-
-// Cancelar la compra
-CompraSchema.statics.cancelar = async function(id) {
-  try {
-    const compra = await this.findOneAndDelete({ id, estado: 'pendiente' });
-    if (!compra) return { success: false, error: 'Compra no encontrada' };
-    return { success: true, message: 'Compra eliminada exitosamente' };
-  } catch (error) {
-    return { success: false, error: 'Error al borrar la compra' };
   }
 };
 

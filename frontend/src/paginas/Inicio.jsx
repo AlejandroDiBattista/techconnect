@@ -19,7 +19,6 @@ export function Inicio() {
             Descubre nuestra amplia gama de productos y disfruta de la
             tecnología al alcance de tu mano.
           </Text>
-
           <Text size="4" >Nuestros productos</Text>
           <Grid columns="3" gap="3">
             {categorias.map(categoria => <MostrarCategoria key={categoria.id} categoria={categoria} />)}

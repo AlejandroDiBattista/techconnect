@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { SelectorVariante } from "../components/SelectorVariante";
-import { Card, Flex, Text, Button, Container } from "@radix-ui/themes";
+import { Accion } from "../components/Accion";
+import { Card, Flex, Text, Container } from "@radix-ui/themes";
 
 export function Detalle() {
     const { id } = useParams();
@@ -18,11 +19,7 @@ export function Detalle() {
     }
 
     function calcularVariantes() {
-        return producto.variantes
-            .map(({ nombre, valores }, index) =>`${nombre}${valores[seleccionadas[index]].valor}`)
-            .join("")
-            .toLowerCase()
-            .replace(/[^a-z0-9]/g, '');
+        return seleccionadas.map(p => p.toString()).join(',');
     }
 
     function ponerProducto(producto) {
@@ -69,10 +66,10 @@ export function Detalle() {
                     <Text size="1" as="p">Variantes</Text>
                     <Flex direction="column" gap="2" align="start" justify="between" >
                         {producto.variantes.map((variante, i) => (
-                            <SelectorVariante key={i} variante={variante} seleccion={seleccionadas[i]} onClick={valor => elegirVariante(i, valor) } />
+                            <SelectorVariante key={i} variante={variante} seleccion={seleccionadas[i]} onClick={valor => elegirVariante(i, valor)} />
                         ))}
                     </Flex>
-                    <Button size="2" variant="soft" onClick={comprarProducto}>Agregar al Carrito</Button>
+                    <Accion texto="Agregar al Carrito" onClick={comprarProducto} />
                 </Flex>
             </Card>
         </>

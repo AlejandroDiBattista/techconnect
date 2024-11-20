@@ -1,20 +1,20 @@
 # Cambios realizados al proyecto
 
 
-### 2. Unificamos la clase compra y cliente.
+### 1. Unificamos la clase compra y cliente.
 
     Asumimos que cada compra es espontanea asi que la informacion del clientes se guarda en la compra.
 
 ### 2. Uso de `id` en vez de `_id`
 
-Esto se hace para que sea más fácil de entender y probar. Aprovechamos que no estamos realizando altas de clasificación ni de productos.
+    Esto se hace para que sea más fácil de entender y probar. Aprovechamos que no estamos realizando altas de clasificación ni de productos.
 
-Cuando usamos `_id`, al cargar nuevos productos, cambia lo que dificulta probar el sistema.
+    Cuando usamos `_id`, al cargar nuevos productos, cambia lo que dificulta probar el sistema.
 
 ### 3. Automatización de la carga de datos
 
-Ahora, para cargar los datos se debe usar `npm run cargar`.  
-Esto carga los datos de prueba que están en `data/categoria` y `data/producto` mediante el archivo `cargar_datos.js` (antes `database.js`).
+    Ahora, para cargar los datos se debe usar `npm run cargar`.  
+    Esto carga los datos de prueba que están en `data/categoria` y `data/producto` mediante el archivo `cargar_datos.js` (antes `database.js`).
 
 ### 4. Implementación de las funciones agregar y quitar
 

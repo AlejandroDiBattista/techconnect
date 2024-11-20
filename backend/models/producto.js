@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
-const { ObjectId } = mongoose.Types;
 
 const ProductoSchema = new Schema({
     id: Number,
@@ -19,13 +18,6 @@ const ProductoSchema = new Schema({
         }],
     }],
 }, { timestamps: true });
-
-// Crear un producto (no implementado aún)
-// ProductoSchema.statics.crear = async function(datos) {
-//     const producto = new this(datos);
-//     await producto.save();
-//     return { success: true, data: producto };
-// };
 
 // Obtener todos los productos o los de una categoría específica
 ProductoSchema.statics.traerTodos = async function(categoria) {

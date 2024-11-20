@@ -1,20 +1,19 @@
+@baseUrl = http://localhost:3000
+
 ### Trae todas las categorias 
-GET http://localhost:3000/categorias
+GET {{baseUrl}}/categorias
 
-
-
-### Trae todos los productos de una categoria (tomar el id de la categoria de la respuesta anterior)
-GET http://localhost:3000/productos/2
+### Trae todos los productos de una categoria
+GET {{baseUrl}}/productos/2
 
 ### Prueba de traer una categoria que no existe
-GET http://localhost:3000/productos/4
-
+GET {{baseUrl}}/productos/4
 
 ### Trae un producto por id
-GET http://localhost:3000/producto/1
+GET {{baseUrl}}/producto/1
 
 ### Prueba de traer un producto que no existe
-GET http://localhost:3000/producto/200
+GET {{baseUrl}}/producto/200
 
 ### Crea una nueva compra 
 POST http://localhost:3000/compra

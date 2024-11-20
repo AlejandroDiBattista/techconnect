@@ -6,7 +6,7 @@ import { Detalle } from './paginas/Detalle';
 import { Cliente } from './paginas/Cliente';
 import { Carrito } from './paginas/Compra'; // Asegúrate de que la ruta es correcta
 // import "@radix-ui/themes/styles.css";
-import { Theme, Container, Box } from "@radix-ui/themes";
+import { Theme, Box } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import "@radix-ui/themes/layout.css";
 
@@ -14,7 +14,13 @@ import "@radix-ui/themes/layout.css";
 export function App() {
     return (
         <>
-            <Theme accentColor="mint" grayColor="gray" panelBackground="solid" scaling="110%" radius="full">
+            <Theme 
+                accentColor="red" 
+                grayColor="gray" 
+                panelBackground="solid" 
+                scaling="110%" 
+                scheme="light"
+                radius="full">
                 <Router>
                     <Layout>
                         <Box style={{margin:'0 auto', width:'1000px', padding:"100px 50px"}}>
@@ -22,7 +28,6 @@ export function App() {
                                 <Route path="/" element={<Inicio />} />
                                 <Route path="/elegir/:id" element={<Elegir />} />
                                 <Route path="/detalle/:id" element={<Detalle />} />
-                                <Route path="/carrito" element={<Carrito />} />
                                 <Route path="/cliente" element={<Cliente />} />
                                 <Route path="/compra" element={<Carrito />} />
                             </Routes>

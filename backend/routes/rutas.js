@@ -1,19 +1,19 @@
 // routes/api.js
 import express from 'express';
-const router = express.Router();
 import {  
-    traerCategorias,
-    traerProducto,
-    traerProductos,
+  traerCategorias,
+  traerProducto,
+  traerProductos,
 } from '../controllers/ProductoControlador.js';
 
 import { 
-    crearCompra, traerCompra,
-    agregarProducto, quitarProducto,
-    confirmarCompra, cancelarCompra,
-    actualizarCliente
-  } from '../controllers/CompraControlador.js';
+  crearCompra, traerCompra,
+  agregarProducto, quitarProducto,
+  confirmarCompra, cancelarCompra,
+  actualizarCliente
+} from '../controllers/CompraControlador.js';
 
+const router = express.Router();
 // Solo para verificar que el servidor esta en funcionamiento
 router.get('/', (req,res) => res.send('Servidor en Funcionamiento'));
 

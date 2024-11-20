@@ -1,6 +1,10 @@
 const BASE_URL = typeof process !== 'undefined' && process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : 'http://localhost:3000';
 
 async function pedir(url, data = null) {
+    // generar el request al API
+    // la peticion tiene la firma POST /cliente
+    // y las respuesta esta en JSON 
+    // 
   const [method, camino] = url.split(' ');
   let salida = null;
   try {
@@ -36,6 +40,7 @@ class DataService {
         return await pedir(`GET /productos/${categoriaId}`) || [];
     }
 
+    // Funciones para manejar la 'session' de compra
     static setCompraId(compraId) {
         localStorage.setItem('compraId', compraId);
     }
@@ -49,25 +54,18 @@ class DataService {
     }
 
     static async traerCompraActiva() {
-        console.log('DataService.traerCompraActiva');
-
         let compraId = DataService.getCompraId(); // Usar getCompraId()
-
-        console.log('CompraId en localStorage:', compraId);
 
         if (compraId) {
             const compra = await DataService.traerCompra(compraId);
             if (compra) {
-                console.log('Compra encontrada:', compra);
                 return { compraId, productos: compra.productos };
             } else {
-                console.log('No se encontró la compra, eliminando compraId de localStorage.');
                 DataService.removeCompraId(); // Usar removeCompraId()
             }
         }
 
         // Crear una nueva compra si no existe
-        console.log('Creando nueva compra');
         const nuevaCompra = await DataService.crearCompra();
         if (nuevaCompra && nuevaCompra.id) {
             compraId = nuevaCompra.id;
@@ -79,16 +77,13 @@ class DataService {
     }
 
     static async crearCompra() {
-        console.log('DataService.crearCompra');
         return await pedir('POST /compra');
     }
 
     static async traerCompra(compraId) {
         try {
             const compra = await pedir(`GET /compra/${compraId}`);
-            if (!compra || !compra.id) {
-                return null;
-            }
+            if (!compra || !compra.id) return null;
             return {
                 compraId: compra.id,
                 productos: compra.items?.map(item => ({
@@ -97,42 +92,36 @@ class DataService {
                     precio: item.productoId.precio,
                     url_imagen: item.productoId.url_imagen,
                     cantidad: item.cantidad,
-                    variante: item.variante
+                    variante: item.variante,
+                    variantes: item.productoId.variantes
                 })) || []
             };
         } catch (error) {
-            console.error('Error en traerCompra:', error);
             return null;
         }
     }
 
     static async confirmarCompra(compraId) {
-        console.log('DataService.confirmarCompra', compraId);
         DataService.removeCompraId(); // Mover gestión de localStorage aquí
         return await pedir(`POST /compra/${compraId}/confirmar`);
     }
     
     static async cancelarCompra(compraId) {
-        console.log('DataService.cancelarCompra', compraId);
         DataService.removeCompraId(); // Mover gestión de localStorage aquí
         return await pedir(`DELETE /compra/${compraId}/cancelar`);
     }
 
     static async agregarProducto(compraId, productoId, variante = '') {
-        console.log('DataService.agregarProducto', { compraId, productoId, variante });
         const encodedVariante = encodeURIComponent(variante);
         return await pedir(`POST /compra/${compraId}/${productoId}/${encodedVariante}`);
     }
 
     static async quitarProducto(compraId, productoId, variante = '') {
-        console.log('DataService.quitarProducto', { compraId, productoId, variante });
         const encodedVariante = encodeURIComponent(variante);
-
         return await pedir(`DELETE /compra/${compraId}/${productoId}/${encodedVariante}`);
     }
 
     static async actualizarCliente(compraId, datosCliente) {
-        console.log('DataService.actualizarDatosCliente', { compraId, datosCliente });
         return await pedir(`POST /compra/${compraId}/cliente`, datosCliente);
     }
 

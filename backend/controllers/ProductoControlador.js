@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-import Producto from '../models/producto.js';
+import Producto  from '../models/producto.js';
 import Categoria from '../models/categoria.js';
 
 // Traer categorías

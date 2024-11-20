@@ -15,7 +15,6 @@ export function Elegir() {
 
   if (productos === null) return <Text size="3">Categoría no encontrada</Text>;
 
-
   return (
     <>
       <Grid columns="3" gap="3">

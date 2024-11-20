@@ -16,12 +16,12 @@ app.use(cors());
 //Utilizacion de rutas
 app.use('', rutas);
 
+await mongoose.connect('mongodb://localhost:27017/techconnect');
 // Conexión
 const ConectarDB = async () => {
+    app.listen(PORT, () => { console.log(`Servidor escuchando en el puerto ${PORT}`); });
     try {
-        await mongoose.connect('mongodb://localhost:27017/techconnect');
         console.log("Se conecto a la Base de datos");
-        app.listen(PORT, () => { console.log(`Servidor escuchando en el puerto ${PORT}`); });
     } catch (error) {
         console.error("Fallo la conexion", error);
     }
