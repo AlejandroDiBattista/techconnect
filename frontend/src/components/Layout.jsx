@@ -59,7 +59,7 @@ export function Layout({ children }) {
           {children}
       </main>
       <footer style={estiloPie}>
-      <p>© 2024 TecnoConnect - Tucumán</p>
+      <p>© 2024 TechConnect - Tucumán</p>
       </footer>
     </Flex>
   )

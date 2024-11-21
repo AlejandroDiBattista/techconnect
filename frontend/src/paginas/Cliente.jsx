@@ -11,13 +11,10 @@ const nombre = (texto) =>
 
 export function Cliente() {
 	const navigate = useNavigate();
+
 	const [formData, setFormData] = useState({
-		domicilio: "",
-		localidad: "",
-		codigoPostal: "",
-		email: "",
-		telefono: "",
-		tarjeta: "",
+		domicilio: "", localidad: "", codigoPostal: "",
+		email: "", telefono: "", tarjeta: ""
 	});
 	const [formErrors, setFormErrors] = useState({});
 
@@ -25,12 +22,8 @@ export function Cliente() {
 		const { name, value } = e.target;
 		if (name == 'domicilio' && value === "*") {
 			setFormData({
-				domicilio: "Av Jujuy 337",
-				localidad: "San Miguel de Tucuman",
-				codigoPostal: "4000",
-				email: "example@gmail.com",
-				telefono: "(381) 555-1234",
-				tarjeta: "4567 1234 5678 9012",
+				domicilio: "Av Jujuy 337", localidad: "San Miguel de Tucuman", codigoPostal: "4000",
+				email: "example@gmail.com", telefono: "(381) 555-1234", tarjeta: "4567 1234 5678 9012",
 			});
 			return;
 		}
@@ -71,28 +64,29 @@ export function Cliente() {
 		}
 	};
 
+	console.log(formData)
 	return (
 		<Card>
 			<Text size="4" as="p" weight="bold">Ingrese sus datos</Text>
+			<p></p>
 			<form onSubmit={handleSubmit}>
-				<Flex direction="column" gap="4" style={{ width: '100%' }}>
-					<div></div>
-					{Object.keys(formData).map((field) => (
-						<>
-							<Flex direction="column" gap="1" style={{ width: '100%' }}>
-								<Text size="3" as="label" htmlFor={field}>{nombre(field)}</Text>
-								<TextField.Root
-									key={field} name={field}
-									variant="outlined" style='400px'
-									type={field === "email" ? "email" : field === "telefono" ? "tel" : "text"}
-									value={formData[field]}
-									onChange={handleChange}
+				<Flex direction="column" gap="4" >
+					{/* <div></div> */}
+					{Object.keys(formData).map(field => (
+						<Flex direction="column" gap="1" >
+							<Text size="3" as="label" htmlFor={field}>{nombre(field)}</Text>
+							<TextField.Root
+								key={field} name={field}
+								variant="outlined"
+								type={field === "email" ? "email" : (field === "telefono" ? "tel" : "text")}
+								value={formData[field]}
+								onChange={handleChange}
 								/>
-							</Flex>
-						</>
+						</Flex>
 					))}
-					<div></div>
+					{/* <div></div> */}
 				</Flex>
+				<p></p>
 				<Accion texto="Confirmar Compra" onClick={handleSubmit} />
 			</form>
 		</Card>
