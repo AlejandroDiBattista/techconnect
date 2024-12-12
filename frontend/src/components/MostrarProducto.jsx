@@ -1,17 +1,16 @@
 import DataService from '../datos/datos';
 
-import React from 'react';
-
 import { Card, Flex, Text, IconButton } from '@radix-ui/themes';
 import { PlusCircledIcon, MinusCircledIcon, TrashIcon } from '@radix-ui/react-icons';
 
-const nombre = (texto) => texto.replace(/\b\w/g, char => char.toUpperCase());
+const nombre = (texto) => texto.replace(/\b\w/g, char => char.toUpperCase()); // Función para capitalizar texto
 
 export function MostrarProducto({ producto, onAgregar, onQuitar }) {
     const size = '40px';
 
     const seleccion = producto.variante.split(',').map(s => +s);
     const variantes = producto.variantes.map((v, i) => [v.nombre, v.valores[seleccion[i]].valor]);
+    
     return (
         <Card>
             <Flex gap="2">

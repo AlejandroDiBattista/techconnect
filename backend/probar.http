@@ -1,4 +1,4 @@
-@baseUrl = http://localhost:3000
+@baseUrl = http://localhost:3001
 
 ### Trae todas las categorias 
 GET {{baseUrl}}/categorias
@@ -16,25 +16,25 @@ GET {{baseUrl}}/producto/1
 GET {{baseUrl}}/producto/200
 
 ### Crea una nueva compra 
-POST http://localhost:3000/compra
+POST {{baseUrl}}/compra
 
 ### Trae una compra por id
-GET http://localhost:3000/compra/1
+GET {{baseUrl}}/compra/1
 
 ### Agregar un producto a la compra
-POST http://localhost:3000/compra/1/2/Memoria:128GB
+POST {{baseUrl}}/compra/1/2/Memoria:128GB
 
 ### Quitar un producto de la compra
-DELETE http://localhost:3000/compra/1/2/Memoria:128GB
+DELETE {{baseUrl}}/compra/1/2/Memoria:128GB
 
 ### Confirmar la compra
-PUT http://localhost:3000/compra/1/confirmar
+PUT {{baseUrl}}/compra/1/confirmar
 
 ### Cancelar la compra
-DELETE http://localhost:3000/compra/1/cancelar
+DELETE {{baseUrl}}/compra/1/cancelar
 
 ### Actualizar datos del cliente en una compra
-POST http://localhost:3000/compra/2/cliente
+POST {{baseUrl}}/compra/2/cliente
 Content-Type: application/json
 
 {
@@ -47,7 +47,7 @@ Content-Type: application/json
 }
 
 ### Intentar actualizar cliente en una compra que no existe
-POST http://localhost:3000/compra/999/cliente
+POST {{baseUrl}}/compra/999/cliente
 Content-Type: application/json
 
 {

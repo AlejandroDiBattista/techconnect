@@ -37,13 +37,18 @@ CompraSchema.statics.crear = async function() {
 
 // Obtener una compra específica
 CompraSchema.statics.traer = async function(id) {
+  try {
     const compra = await this.findOne({ id }).populate('items.productoId');
     if (!compra) return { success: false, error: 'Compra no encontrada' };
     return { success: true, data: compra };
+  } catch (error) {
+    console.error('Error al traer la compra:', error);
+    return { success: false, error: 'Error al traer la compra' };
+  }
 };
 
 // Agregar un producto a la compra
-CompraSchema.statics.agregar = async function(id, productoId, cantidad, variante) {
+CompraSchema.statics.agregar = async function(idCompra, productoId, cantidad, variante) {
   try {
     // Buscar el producto por su ID personalizado
     const producto = await Producto.findOne({ id: productoId });
@@ -52,7 +57,7 @@ CompraSchema.statics.agregar = async function(id, productoId, cantidad, variante
     }
 
     // Buscar la compra por su ID
-    const compra = await this.findOne({ id }).populate('items.productoId');
+    const compra = await this.findOne({ id: idCompra }).populate('items.productoId');
     if (!compra) {
       return { success: false, error: 'Compra no encontrada' };
     }
@@ -81,40 +86,40 @@ CompraSchema.statics.agregar = async function(id, productoId, cantidad, variante
 };
 
 // Quitar un producto de la compra
-CompraSchema.statics.quitar = async function(id, productoId, cantidad, variante) {
-    try {
-        // Buscar el producto por su ID personalizado
-        const producto = await Producto.findOne({ id: productoId });
-        if (!producto) {
-            return { success: false, error: 'Producto no encontrado' };
-        }
-
-        // Buscar la compra por su ID
-        const compra = await this.findOne({ id }).populate('items.productoId');
-        if (!compra) {
-            return { success: false, error: 'Compra no encontrada' };
-        }
-
-        // Verificar si el producto y la variante existen en los ítems
-        const existe = compra.items.find(p => p.productoId.equals(producto._id) && p.variante === variante);
-        if (!existe) {
-            return { success: false, error: 'Producto no encontrado en la compra' };
-        }
-
-        // Reducir la cantidad
-        existe.cantidad -= cantidad;
-        if (existe.cantidad <= 0) {
-            compra.items = compra.items.filter(p => !(p.productoId.equals(producto._id) && p.variante === variante));
-        }
-
-        // Guardar la compra actualizada
-        await compra.save();
-
-        return { success: true, data: compra };
-    } catch (error) {
-        console.error('Error al quitar el producto de la compra:', error);
-        return { success: false, error: 'Error al quitar el producto de la compra' };
+CompraSchema.statics.quitar = async function(compraId, productoId, cantidad, variante) {
+  try {
+    // Buscar el producto por su ID personalizado
+    const producto = await Producto.findOne({ id: productoId });
+    if (!producto) {
+      return { success: false, error: 'Producto no encontrado' };
     }
+
+    // Buscar la compra por su ID
+    const compra = await this.findOne({ id: compraId }).populate('items.productoId');
+    if (!compra) {
+      return { success: false, error: 'Compra no encontrada' };
+    }
+
+    // Verificar si el producto y la variante existen en los ítems
+    const existe = compra.items.find(p => p.productoId.equals(producto._id) && p.variante === variante);
+    if (!existe) {
+      return { success: false, error: 'Producto no encontrado en la compra' };
+    }
+
+    // Reducir la cantidad
+    existe.cantidad -= cantidad;
+    if (existe.cantidad <= 0) {
+      compra.items = compra.items.filter(p => !(p.productoId.equals(producto._id) && p.variante === variante));
+    }
+
+    // Guardar la compra actualizada
+    await compra.save();
+
+    return { success: true, data: compra };
+  } catch (error) {
+    console.error('Error al quitar el producto de la compra:', error);
+    return { success: false, error: 'Error al quitar el producto de la compra' };
+  }
 };
 
 // Confirmar la compra
@@ -144,7 +149,8 @@ CompraSchema.statics.cancelar = async function(id) {
     if (!compra) return { success: false, error: 'Compra no encontrada' };
     return { success: true, message: 'Compra eliminada exitosamente' };
   } catch (error) {
-    return { success: false, error: 'Error al borrar la compra' };
+    console.error('Error al cancelar la compra:', error);
+    return { success: false, error: 'Error al cancelar la compra' };
   }
 };
 
@@ -180,7 +186,13 @@ CompraSchema.statics.actualizarCliente = async function(id, datosCliente) {
 
 // Obtener la cantidad total de compras
 CompraSchema.statics.cantidad = async function() {
-  return await this.countDocuments();
+  try {
+    const count = await this.countDocuments();
+    return { success: true, data: count };
+  } catch (error) {
+    console.error('Error al contar compras:', error);
+    return { success: false, error: 'Error al contar las compras' };
+  }
 };
 
 const Compra = mongoose.model('Compra', CompraSchema);

@@ -58,8 +58,9 @@ export function Layout({ children }) {
       <main style={estiloMain}>
           {children}
       </main>
+      
       <footer style={estiloPie}>
-      <p>© 2024 TechConnect - Tucumán</p>
+        <p>© 2024 TechConnect - Tucumán</p>
       </footer>
     </Flex>
   )

@@ -1,7 +1,7 @@
 import { Button } from "@radix-ui/themes"
 
-export function Accion({ texto, onClick=()=>{} }) {
+export function Accion({ texto, onClick = ()=>{} }) {
     return (
-      <Button size="2" onClick={onClick} variant="soft">{texto}</Button>
+      <Button size="5" onClick={onClick} variant="soft">{texto}</Button>
     );
   }

@@ -7,7 +7,7 @@ import rutas from './routes/rutas.js';
 // import categorias from './data/categorias.json';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Middleware para parsear JSON
 app.use(express.json());

@@ -5,17 +5,16 @@ import { Elegir } from './paginas/Elegir';
 import { Detalle } from './paginas/Detalle';
 import { Cliente } from './paginas/Cliente';
 import { Carrito } from './paginas/Compra'; // Asegúrate de que la ruta es correcta
-// import "@radix-ui/themes/styles.css";
+
 import { Theme, Box } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import "@radix-ui/themes/layout.css";
-
 
 export function App() {
     return (
         <>
             <Theme 
-                accentColor="red" 
+                accentColor="green" 
                 grayColor="gray" 
                 panelBackground="solid" 
                 scaling="110%" 

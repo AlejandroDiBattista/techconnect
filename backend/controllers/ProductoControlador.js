@@ -1,19 +1,19 @@
 import mongoose from 'mongoose';
 
 import Producto  from '../models/producto.js';
-import Categoria from '../models/categoria.js';
+import Categoria from '../models/Categoria.js';
 
 // Traer categorías
 async function traerCategorias(req, res) {
     try {
-        const categorias = await Categoria.traer();
-        if(!categorias.success) {
-            res.status(404).json({ mensaje: 'No hay categorías disponibles' });
-        } else {
-            res.status(200).json(categorias.data);
+        const result = await Categoria.traer();
+        if (!result.success) {
+            return res.status(404).json({ error: result.error });
         }
+        res.status(200).json({ success: true, data: result.data });
     } catch (error) {
-        res.status(500).json({ mensaje: 'Error al traer las categorías' });
+        console.error('Error al traer categorías:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
     }
 }
 
@@ -21,29 +21,32 @@ async function traerCategorias(req, res) {
 async function traerProductos(req, res) {
     try {
         const { id } = req.params;
-        const productos = await Producto.traerTodos(id);
-        if (!productos.success) {
-            res.status(404).json({ mensaje: 'No hay productos disponibles' });
-        } else {
-            res.status(200).json(productos.data);
+
+        const result = await Producto.traerTodos(id);
+        
+        if (!result.success) {
+            return res.status(404).json({ error: result.error });
         }
+        res.status(200).json({ success: true, data: result.data });
     } catch (error) {
-        res.status(500).json({ mensaje: 'Error al traer los productos' });
+        console.error('Error al traer productos:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
     }
 }
 
 // Traer un producto específico
 async function traerProducto(req, res) {
-    const { id } = req.params;
     try {
-        const producto = await Producto.traer(id);
-        if (!producto.success) {
-            res.status(404).json({ mensaje: 'Producto no encontrado' });
-        } else {
-            res.status(200).json(producto.data);
+        const { id } = req.params;
+        const result = await Producto.traer(id);
+        
+        if (!result.success) {
+            return res.status(404).json({ error: result.error });
         }
+        res.status(200).json({ success: true, data: result.data });
     } catch (error) {
-        res.status(500).json({ mensaje: 'Error interno del servidor' });
+        console.error('Error al traer producto:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
     }
 }
 
@@ -63,22 +66,29 @@ async function agregarDatosCliente(req, res) {
 }
 
 export const agregarProducto = async (req, res) => {
-  try {
-    const { nombre, precio, categoria, url_imagen, detalle, cantidad, variantes } = req.body;
-    const categoriaObjectId = mongoose.Types.ObjectId(categoria);
-    const producto = Producto.crear({
-      nombre,
-      precio,
-      categoria: categoriaObjectId,
-      url_imagen,
-      detalle,
-      cantidad,
-      variantes
-    });
-    res.status(201).json({ success: true, data: producto });
-  } catch (error) {
-    res.status(400).json({ success: false, error: error.message });
-  }
+    try {
+        const { nombre, precio, categoria, url_imagen, detalle, cantidad, variantes } = req.body;
+        
+        if (!nombre || !precio || !categoria || !url_imagen || !detalle || !cantidad) {
+            return res.status(400).json({ error: 'Faltan campos requeridos' });
+        }
+
+        const categoriaObjectId = mongoose.Types.ObjectId(categoria);
+        const producto = await Producto.crear({
+            nombre,
+            precio,
+            categoria: categoriaObjectId,
+            url_imagen,
+            detalle,
+            cantidad,
+            variantes
+        });
+
+        res.status(201).json({ success: true, data: producto });
+    } catch (error) {
+        console.error('Error al agregar producto:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
 };
 
 export {

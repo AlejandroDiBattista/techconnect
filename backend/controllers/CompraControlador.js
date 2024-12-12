@@ -3,75 +3,80 @@ import decodeURIComponent from 'decode-uri-component';
 
 // Crear una nueva compra
 async function crearCompra(req, res) {
-  const { usuario } = req.params;
-
   try {
+    const { usuario } = req.params;
     const result = await Compra.crear(usuario);
-    if (result.success) {
-      res.status(201).json(result.data);
-    } else {
-      res.status(500).json({ error: result.error });
+    
+    if (!result.success) {
+      return res.status(400).json({ error: result.error });
     }
+    res.status(201).json({ success: true, data: result.data });
+    
   } catch (error) {
-    res.status(500).json({ error: 'Error interno del servidor.' });
+    console.error('Error al crear compra:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
   }
 }
 
 // Ver la compra
 async function traerCompra(req, res) {
-  const { id } = req.params;
-
   try {
+    const { id } = req.params;
     const result = await Compra.traer(id);
-    if (result.success) {
-      res.status(200).json(result.data); // result.data es el objeto compra
-    } else {
-      res.status(404).json({ message: result.error });
+    
+    if (!result.success) {
+      return res.status(404).json({ error: result.error });
     }
+    res.status(200).json({ success: true, data: result.data });
+    
   } catch (error) {
-    res.status(500).json({ error: 'Error interno del servidor.' });
+    console.error('Error al traer compra:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
   }
 }
 
 // Agregar producto a la compra
 async function agregarProducto(req, res) {
-  const { id, producto, variante } = req.params;
   try {
+    const { id, producto, variante } = req.params;
     const varianteDecodificada = decodeURIComponent(variante);
     const result = await Compra.agregar(id, producto, 1, varianteDecodificada);
-    if (result.success) {
-      res.status(200).json(result.data);
-    } else {
-      res.status(400).json({ error: result.error });
+    
+    if (!result.success) {
+      return res.status(400).json({ error: result.error });
     }
+    res.status(200).json({ success: true, data: result.data });
+    
   } catch (error) {
-    res.status(500).json({ error: 'Error interno del servidor.' });
+    console.error('Error al agregar producto:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
   }
 }
 
 // Quitar un producto de la compra
 async function quitarProducto(req, res) {
-  const { id, producto, variante } = req.params;
   try {
+    const { id, producto, variante } = req.params;
     const varianteDecodificada = decodeURIComponent(variante);
     const result = await Compra.quitar(id, producto, 1, varianteDecodificada);
-    if (result.success) {
-      res.status(200).json(result.data);
-    } else {
-      res.status(404).json({ message: result.error });
+    
+    if (!result.success) {
+      return res.status(404).json({ error: result.error });
     }
+    res.status(200).json({ success: true, data: result.data });
+    
   } catch (error) {
-    res.status(500).json({ error: 'Error interno del servidor.' });
+    console.error('Error al quitar producto:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
   }
 }
 
 // Confirmar la compra
 async function confirmarCompra(req, res) {
-  const { id } = req.params;
-
   try {
-    // Primero verificamos que la compra exista y tenga datos de cliente
+    const { id } = req.params;
     const compra = await Compra.findOne({ id });
+    
     if (!compra) {
       return res.status(404).json({ error: 'Compra no encontrada' });
     }
@@ -81,11 +86,12 @@ async function confirmarCompra(req, res) {
     }
 
     const result = await Compra.confirmar(id);
-    if (result.success) {
-      res.status(200).json({ message: 'Compra confirmada', compra: result.data });
-    } else {
-      res.status(400).json({ message: result.error });
+    if (!result.success) {
+      return res.status(400).json({ error: result.error });
     }
+    
+    res.status(200).json({ success: true, data: result.data });
+    
   } catch (error) {
     console.error('Error al confirmar compra:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
@@ -94,13 +100,18 @@ async function confirmarCompra(req, res) {
 
 // Borrar la compra
 async function cancelarCompra(req, res) {
-  const { id } = req.params;
-
-  const result = await Compra.cancelar(id);
-  if (result.success) {
-    res.status(200).json({ message: result.message });
-  } else {
-    res.status(404).json({ message: result.error });
+  try {
+    const { id } = req.params;
+    const result = await Compra.cancelar(id);
+    
+    if (!result.success) {
+      return res.status(404).json({ error: result.error });
+    }
+    res.status(200).json({ success: true, message: result.message });
+    
+  } catch (error) {
+    console.error('Error al cancelar compra:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
   }
 }
 

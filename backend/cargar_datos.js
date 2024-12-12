@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import fs from 'fs';
 import path from 'path';
 import Producto from './models/producto.js';
-import Categoria from './models/categoria.js';
+import Categoria from './models/Categoria.js';
 import Compra from './models/Compra.js';
 
 
@@ -29,11 +29,11 @@ const cargarDatosIniciales = async (borrar=true) => {
         await Compra.deleteMany({});
     }
     
-    const productoCount  = await Producto.cantidad();
-    const categoriaCount = await Categoria.cantidad();
-    const compraCount    = await Compra.cantidad(); 
+    const { data: productoCount }  = await Producto.cantidad();
+    const { data: categoriaCount } = await Categoria.cantidad();
+    const { data: compraCount }    = await Compra.cantidad(); 
 
-    console.log(`  hay ${productoCount} productos, ${categoriaCount} categorias  y ${compraCount} compras en la base de datos`);
+    console.log(`  hay ${productoCount} productos, ${categoriaCount} categorias y ${compraCount} compras en la base de datos`);
 
     if (categoriaCount === 0) {
         const categorias = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/categorias.json'), 'utf-8'));

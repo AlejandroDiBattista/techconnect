@@ -1,6 +1,6 @@
 import DataService from '../datos/datos'; // Importar DataService
 
-import React, { useState, useEffect } from 'react'; // Añadir useState y useEffect
+import { useState, useEffect } from 'react'; // Añadir useState y useEffect
 import { useNavigate } from 'react-router-dom';
 
 import { MostrarProducto } from '../components/MostrarProducto'; // Importar el nuevo componente
@@ -12,28 +12,26 @@ export function Carrito() {
 
 	const [productos, setProductos] = useState([]); // Estado para productos
 	const [compraId, setCompraId] = useState(null); // Estado para compraId
+
 	const [loading, setLoading] = useState(true); // Añadir estado de carga
 	const [error, setError] = useState(null); // Agregar estado para errores
 
 	useEffect(() => {
-		const manejarCompra = async () => {
+		async function manejarCompra() {
 			try {
 				const compraActiva = await DataService.traerCompraActiva();
 				if (compraActiva && compraActiva.compraId) {
 					setCompraId(compraActiva.compraId);
 					setProductos(compraActiva.productos);
-					console.log('-> compraActualizada:', compraActiva);
-
 				} else {
 					setError('No se pudo cargar la compra');
 				}
-			} catch (error) {
-				console.error('Error al manejar la compra:', error);
+			} catch {
 				setError('Error al cargar el carrito');
 			} finally {
 				setLoading(false);
 			}
-		};
+		}
 
 		manejarCompra();
 	}, []);
@@ -60,11 +58,24 @@ export function Carrito() {
 		}
 	};
 
-	const handleConfirmarCompra = async () => {
-		navigate('/cliente'); 
+	const onConfirmar = async () => {
+		try {
+			setLoading(true); // Mostrar estado de carga
+			const resultado = await DataService.confirmarCompra(compraId);
+			if (resultado) { // Asegurarse de que la confirmación fue exitosa
+				navigate('/cliente');
+			} else {
+				setError('No se pudo confirmar la compra');
+			}
+		} catch (error) {
+			console.error('Error al confirmar la compra:', error);
+			setError('Error al confirmar la compra. Por favor, intente nuevamente.');
+		} finally {
+			setLoading(false);
+		}
 	};
 
-	const handlerCancelarCompra = async () => {
+	const onCancelar = async () => {
 		await DataService.cancelarCompra(compraId);
 		navigate('/');
 	};
@@ -75,19 +86,23 @@ export function Carrito() {
 	if (error)             return <Text>{error}</Text>;
 	if (!productos.length) return <Text>El carrito está vacío</Text>
 
+	
 	return (
 		<>
 			<Box style={{ margin: '0 auto', width: "800px" }}>
-				<Text size="5" weight="bold">Carrito de Compras</Text>
+				<Text size="5" weight="bold">Changuito</Text>
 				<Flex gap="3" direction="column">
 					{productos.map((producto) =>
-						<MostrarProducto key={`${producto.id}${producto.variante}`} producto={producto} onAgregar={onAgregar} onQuitar={onQuitar} />)
+						<MostrarProducto key={`${producto.id}${producto.variante}`} 
+							producto={producto}
+						 	onAgregar={onAgregar} 
+							onQuitar={onQuitar} />)
 					}
 				</Flex>
 				<Box my="3"><Text size="6" align="right" weight="bold" >Total: ${calcularTotal()}</Text></Box>
 				<Flex direction="row" gap="2" justify="between">
-					<Accion texto="Cancelar Compra" onClick={handlerCancelarCompra} />
-					<Accion texto="Confirmar Compra" onClick={handleConfirmarCompra} />
+					<Accion texto="Cancelar Compra" onClick={onCancelar} />
+					<Accion texto="Confirmar Compra" onClick={onConfirmar} />
 				</Flex>
 			</Box>
 		</>

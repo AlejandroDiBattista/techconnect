@@ -22,12 +22,15 @@ export function Detalle() {
         return seleccionadas.map(p => p.toString()).join(',');
     }
 
-    function ponerProducto(producto) {
-        setProducto(producto);
-        setSeleccionadas(new Array(producto.variantes.length).fill(0));
+    function ponerProducto(p) {
+        setProducto(p);
+        setSeleccionadas(new Array(p.variantes.length).fill(0));
     }
 
-    useEffect(() => { DataService.traerProducto(id).then((data) => ponerProducto(data)) }, [id]);
+    useEffect(
+        () => { DataService.traerProducto(id).then((data) => ponerProducto(data)) }, 
+        [id]
+    );
 
     const elegirVariante = (variante, valor) => {
         setSeleccionadas(prev => prev.map((v, i) => i === variante ? valor : v));
@@ -55,6 +58,7 @@ export function Detalle() {
             </Container>
         );
     }
+    
     return (
         <>
             <Card>

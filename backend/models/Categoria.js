@@ -11,17 +11,29 @@ const CategoriaSchema = new Schema({
 
 // Trae todas las categorias
 CategoriaSchema.statics.traer = async function() {
-    const categorias = await this.find().sort({ nombre: 1 });
+    try {
+        const categorias = await this.find().sort({ nombre: 1 });
 
-    if (!categorias.length) return { success: false, error: `No hay categorias disponibles ${categorias.length}` };
-    
-    return { success: true, data: categorias };
+        if (!categorias.length) return { success: false, error: 'No hay categorías disponibles' };
+        
+        return { success: true, data: categorias };
+    } catch (error) {
+        console.error('Error al traer categorías:', error);
+        return { success: false, error: 'Error al obtener las categorías' };
+    }
 };
 
 // Cuanta la cantidad de categorias
 CategoriaSchema.statics.cantidad = async function() {
-    return await this.countDocuments();
+    try {
+        const count = await this.countDocuments();
+        return { success: true, data: count };
+    } catch (error) {
+        console.error('Error al contar categorías:', error);
+        return { success: false, error: 'Error al contar las categorías' };
+    }
 };
 
 const Categoria = mongoose.model('Categoria', CategoriaSchema);
 export default Categoria;
+
